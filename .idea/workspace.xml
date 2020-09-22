@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5cda0f7-a533-447c-8fc6-556e6677caaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/registration.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FirstLarProject/jquery-3.5.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/main.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/reply.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/AuthorizationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/AuthorizationModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FirstLarProject/resources/js/authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/resources/js/authorization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/resources/views/comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/comment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FirstLarProject/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FirstLarProject/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/routes/web.php" afterDir="false" />
     </list>
@@ -127,14 +133,16 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FirstLarProject" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\OpenServer\domains\www\FirstLarProject\resources\views" />
       <recent name="E:\OpenServer\domains\www\FirstLarProject\app\Http\Models" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\OpenServer\domains\www\FirstLarProject" />
       <recent name="E:\OpenServer\domains\www\FirstLarProject\resources\js" />
     </key>
   </component>
@@ -148,7 +156,7 @@
       <updated>1600623211425</updated>
       <workItem from="1600623212832" duration="5944000" />
       <workItem from="1600673897983" duration="18301000" />
-      <workItem from="1600757411769" duration="8416000" />
+      <workItem from="1600757411769" duration="24516000" />
     </task>
     <task id="LOCAL-00001" summary="1(22.09.2020)">
       <created>1600763435863</created>
@@ -157,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600763435863</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2(22.09.2020)">
+      <created>1600765865627</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600765865627</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,21 +180,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1(22.09.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1(22.09.2020)" />
+    <MESSAGE value="2(22.09.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2(22.09.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="369" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600760486006">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="369" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600760486006" />
-    <state x="507" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600765461127">
+    <state x="554" y="188" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600771915696">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="507" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600765461127" />
-    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1600763432293">
+    <state x="554" y="188" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1600771915696" />
+    <state x="507" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600777580331">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600763432293" />
+    <state x="507" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600777580331" />
+    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1600765864231">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600765864231" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600763313865">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -188,10 +208,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="211" height="457" key="HiddenNamespacesPopup/0.0.1536.824@0.0.1536.824" timestamp="1600760990785" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1600764874313">
+    <state x="830" y="393" key="NewPhpFileDialog" timestamp="1600777698736">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1600764874313" />
+    <state x="830" y="393" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1600777698736" />
     <state x="369" y="145" key="Vcs.Push.Dialog.v2" timestamp="1600763493228">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -200,10 +220,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="108" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1600696344065" />
-    <state x="241" y="34" width="1005" height="790" key="find.popup" timestamp="1600761295448">
+    <state x="294" y="34" width="1005" height="790" key="find.popup" timestamp="1600782104701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="241" y="34" width="1005" height="790" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600761295448" />
+    <state x="294" y="34" width="1005" height="790" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600782104701" />
     <state x="578" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1600763489883">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

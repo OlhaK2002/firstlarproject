@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/comment/view', 'CommentController@viewAction')->name('commentview');
+Route::get('/comment', 'CommentController@commentAction')->name('comment');
 Route::get('/authorization/view', 'AuthorizationController@viewAction')->name('authorizationview');
 Route::post('/authorization', 'AuthorizationController@loginAction')->name('authorization');
 Route::get('/registration/view', 'RegistrationController@viewAction')->name('registrationview');
