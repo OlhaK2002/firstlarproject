@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/comment/view', 'CommentController@viewAction')->name('commentview');
-Route::get('/comment', 'CommentController@commentAction')->name('comment');
+Route::get('/', 'CommentController@commentAction')->name('comment');
+Route::post('/reply', 'ReplyController@replyAction')->name('reply');
 Route::get('/authorization/view', 'AuthorizationController@viewAction')->name('authorizationview');
 Route::post('/authorization', 'AuthorizationController@loginAction')->name('authorization');
 Route::get('/registration/view', 'RegistrationController@viewAction')->name('registrationview');
