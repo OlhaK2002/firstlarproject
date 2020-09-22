@@ -22,5 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/authorization/view', 'AuthorizationController@viewAction')->name('authorizationview');
 Route::post('/authorization', 'AuthorizationController@loginAction')->name('authorization');
+Route::get('/registration/view', 'RegistrationController@viewAction')->name('registrationview');
+Route::post('/registration', 'RegistrationController@registerAction')->name('registration');
 
 //Route::get('/authorization/ajax', 'AuthorizationController@ajaxAction')->name('authorization_ajax');

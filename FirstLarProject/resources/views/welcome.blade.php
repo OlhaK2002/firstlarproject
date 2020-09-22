@@ -70,9 +70,9 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('authorizationview') }}">Authorization</a>
+                        <a href="{{ route('authorizationview') }}">Login</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('registrationview') }}">Register</a>
                         @endif
                     @endauth
                 </div>

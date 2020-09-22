@@ -20,7 +20,7 @@ class AuthorizationModel extends Model
     }
     public function evidenceAction()
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=guest_book', 'root', 'root');
+        $pdo = DB::connection()->getPDO();
         $this->sql = $pdo->prepare("SELECT * FROM `registor` WHERE `login`= :login LIMIT 1");
         $this->sql->bindParam(':login',$this->login, PDO::PARAM_STR);
         $this->sql->execute();
