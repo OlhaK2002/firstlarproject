@@ -41,8 +41,8 @@ class AuthorizationModel extends Model
             $_SESSION["login"] = $this->login;
             $_SESSION['user_id'] = $this->array['user_id'];
             $this->error['error_login'] = "";
-            return true;
+
         }
-        return false;
+        return $this->error;
     }
 }

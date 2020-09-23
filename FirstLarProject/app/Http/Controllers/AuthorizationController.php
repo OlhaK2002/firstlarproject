@@ -21,8 +21,9 @@ class AuthorizationController extends Controller
         $this->login = $_POST['login1'];
         $this->password = $_POST['password2'];
         $this->model->loginAction($this->login, $this->password);
-        if($this->model->passwordAction()){return redirect('/');}
-        else {return redirect('/authorization/view');}
+        $array = $this->model->passwordAction();
+        $result = json_encode($array);
+        echo $result;
 
 
     }
