@@ -8,6 +8,6 @@ Route::post('/reply', 'ReplyController@replyAction')->name('reply');
 Route::get('/authorization/view', 'AuthorizationController@viewAction')->name('authorizationview');
 Route::post('/authorization', 'AuthorizationController@loginAction')->name('authorization');
 Route::get('/registration/view', 'RegistrationController@viewAction')->name('registrationview');
-Route::post('/registration', 'RegistrationController@registerAction')->name('registration');
+Route::post('/registration/register', 'RegistrationController@registerAction')->name('registration');
 
 //Route::get('/authorization/ajax', 'AuthorizationController@ajaxAction')->name('authorization_ajax');

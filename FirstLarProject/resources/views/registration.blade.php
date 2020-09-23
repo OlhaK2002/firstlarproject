@@ -7,9 +7,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
                     <div class="card-body">
-                        <form method = "POST" action = "{{ route('registration') }}">
+                        <form>
                             {{ csrf_field() }}
-                            <span id="title2">Регистрация:</span><br/>
                             <span>Имя: </span><br/>
                             <input id="Name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required type="text" name="Name"/>
                             <br/><br/><span>Фамилия: </span><br/>
