@@ -19,7 +19,10 @@
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="{{ asset('js/authorization.js') }}" defer></script>    <style>
+    <script src="{{ asset('js/authorization.js') }}" defer></script>
+    <script src="{{ asset('js/registration.js') }}" defer></script>
+    <script src="{{ asset('js/reply.js') }}" defer></script>
+    <style>
         html, body {
             background-color: #fff;
             color: #636b6f;
@@ -86,7 +89,7 @@
         <div class="title m-b-md">
             Guest Book
         </div>
-        <form method="post" action="{{route('reply')}}">
+        <form>
             {{ csrf_field() }}
             <textarea required name="text" id="text_id0" class="form-control"
                       placeholder="Введите Ваш комментарий..."></textarea>
@@ -95,6 +98,8 @@
             <button id="0" type="submit" class="btn">Отправить</button>
         </form>
         @yield('reply')
+
+
 
     </div>
 </div>
