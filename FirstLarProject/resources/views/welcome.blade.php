@@ -17,8 +17,8 @@
     <script src="{{ asset('js/reply.js') }}" defer></script>
     <style>
         html, body {
-            background-color: #fff;
-            color: #636b6f;
+            background-color: 	#F2F2F2;
+            color: #667171;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -52,7 +52,7 @@
         }
 
         .links > a {
-            color: #636b6f;
+            color: #667171;
             padding: 0 25px;
             font-size: 20px;
             font-weight: 600;
@@ -66,9 +66,16 @@
         }
 
         .text {
+            color: #667171;
             font-size: 20px;
             padding: 0 15px;
         }
+        <?php
+        /*.form-control{
+            display: inline-block;
+            width: 33%;
+        }*/
+        ?>
     </style>
 </head>
 <body>
@@ -109,11 +116,11 @@
 
      <form>
         {{ csrf_field() }}
-        <textarea rows="3" required name="text" id="text_id0" class="form-control"
+        <textarea  style="background-color: 	#FFFAF7; border: 	#FFFAF7 " rows="3" required name="text" id="text_id0" class="form-control"
                   placeholder="Введите Ваш комментарий..."></textarea>
         <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
         <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
-        <button id="0" type="submit" class="btn">Отправить</button>
+        <button style="background-color: 	#F2F2F2;" id="0" type="submit" class="btn btn-light">Отправить</button>
     </form><br><br>
     @endif
 
