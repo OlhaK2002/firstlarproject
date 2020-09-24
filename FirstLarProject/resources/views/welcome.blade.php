@@ -66,7 +66,7 @@
 </head>
 <body>
         @yield('reply')
-
+</div>
 
 
     </div>

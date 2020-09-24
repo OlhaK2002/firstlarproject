@@ -21,7 +21,6 @@ $(document).ready(function () {
                 $("#comment" + id).append(result);
                 $('textarea.form-control').val('');
             }
-
         })
     })
 })
