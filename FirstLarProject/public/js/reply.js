@@ -25,6 +25,3 @@ $(document).on('click', 'button.btn', function(event){
 
 
 
-
-
-

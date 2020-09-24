@@ -1,6 +1,5 @@
 @extends('welcome')
 @section('comment')
-    @parent
     @foreach ($array as $key => $value)
         @for($i=0;$i<$value['nesting'];$i++)
             <ul>

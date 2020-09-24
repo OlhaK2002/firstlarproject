@@ -3,16 +3,7 @@
     @endphp
     @foreach ($array as $key => $value)
 
-        @if($key!=0)
-
-            @for($i=0;$i<$value['nesting'];$i++)
-
-                @php echo '<ul>'; @endphp
-            @endfor
-        @endif
-
-        @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: lightseagreen">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"].'
-                        ';
+        @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: lightseagreen">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"];
 
         if(session('login') != "") { echo'<div class="accordion" id="accordionExample">
                             <div class="card">
@@ -41,12 +32,6 @@
         }
 
         @endphp
-
-        @if($key!=0)
-            @for($i=0;$i<$value['nesting'];$i++)
-                @php echo '</ul>'; @endphp
-            @endfor
-        @endif
     @endforeach
 
 
