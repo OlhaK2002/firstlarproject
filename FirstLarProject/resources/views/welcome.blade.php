@@ -26,12 +26,14 @@
         }
 
         .full-height {
-            height: 30vh;
+            height: 40vh;
         }
 
         .flex-center {
-            margin: 10px 10px 10px 30px;
+            margin: 0 0 0 80px;
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .position-ref {
@@ -41,7 +43,7 @@
         .top-right {
             position: absolute;
             right: 10px;
-            top: 10px;
+            top: 20px;
         }
 
 
@@ -61,6 +63,11 @@
 
         .m-b-md {
             margin-bottom: 30px;
+        }
+
+        .text {
+            font-size: 20px;
+            padding: 0 15px;
         }
     </style>
 </head>
@@ -90,12 +97,14 @@
 
 
     <div class="content">
+        <hr>
         <div class="title m-b-md">
             Guest Book
         </div>
+        <hr>
     </div>
 </div>
-<div class="content">
+<div class="content text">
     @if(session('login') != "")
 
      <form>
@@ -109,7 +118,7 @@
     @endif
 
     @if(session('login') == "")
-            Для того чтобы оставить свой отзыв - <a href="{{route("authorizationview")}}">войдите</a> или <a href="{{route("registrationview")}}">зарегистрируйтеся</a><br><br><br><br>
+          <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route("authorizationview")}}">войдите</a> или <a style = "color: lightcoral" href="{{route("registrationview")}}">зарегистрируйтеся</a></h4><br><br>
     @endif
 
 
