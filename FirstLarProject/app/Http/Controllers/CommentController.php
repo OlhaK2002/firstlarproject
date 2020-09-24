@@ -17,6 +17,6 @@ class CommentController extends Controller
         $array = $this->model->indexAction();
         //dd($array);
         //return view('welcome', compact('array'));
-        return view('reply', compact('array'));
+        return view('comment', compact('array'));
     }
 }

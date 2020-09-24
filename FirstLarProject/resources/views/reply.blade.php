@@ -1,9 +1,8 @@
-@extends ('welcome')
-@section('reply')
 
-@php
-    echo '<div id="comment0"></div>';
-@endphp
+
+    @php
+        echo '<div id="comment0"></div>';
+    @endphp
     @foreach ($array as $key => $value)
 
         @if($key!=0)
@@ -14,7 +13,7 @@
             @endfor
         @endif
 
-                @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: lightseagreen">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"].'
+        @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: lightseagreen">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"].'
                         ';
                          if(session('login') != "") echo '<div class="accordion" id="accordionExample">
                             <div class="card">
@@ -37,12 +36,13 @@
                                 </div>
                             </div>
                          <ul><div id="comment' . $value['id'] . '"></div></ul>';
-                @endphp
+        @endphp
 
         @if($key!=0)
             @for($i=0;$i<$value['nesting'];$i++)
-               @php echo '</ul>'; @endphp
+                @php echo '</ul>'; @endphp
             @endfor
         @endif
     @endforeach
-@endsection
+
+
