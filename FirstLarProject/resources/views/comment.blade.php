@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('reply')
+@section('comment')
     @parent
     @foreach ($array as $key => $value)
         @for($i=0;$i<$value['nesting'];$i++)
@@ -25,7 +25,7 @@
                         <div id="collapse_{{ $value['id'] }}" class="collapse"
                              aria-labelledby="heading{{ $value['id'] }}" data-parent="#accordionExample">
                             <div class="card-body">
-                                <form method="post" action="{{route('reply')}}">
+                                <form>
                                     {{ csrf_field() }}
                                     <textarea required name="text" id="text_id{{ $value['id'] }}"
                                               class="form-control"></textarea><br>

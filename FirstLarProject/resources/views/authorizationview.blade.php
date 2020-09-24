@@ -10,7 +10,6 @@
                         <div class="field">
                         <form >
                             @csrf
-                            @method('POST')
                             <span>Логин: </span><br/>
                             <input id="login1" class="form-control" aria-label="Sizing example input"
                                    aria-describedby="inputGroup-sizing-sm" required type="text" name="login1"><br/><br/>

@@ -1,7 +1,5 @@
-
-
-    @php
-        echo '<div id="comment0"></div>';
+@php
+    echo '<div id="comment0"></div>';
     @endphp
     @foreach ($array as $key => $value)
 
@@ -15,7 +13,8 @@
 
         @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: lightseagreen">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"].'
                         ';
-                         if(session('login') != "") echo '<div class="accordion" id="accordionExample">
+
+        if(session('login') != "") { echo'<div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-header" id="heading' . $value['id'] . ' ?>">
                                     <h2 class="mb-0">
@@ -26,7 +25,10 @@
                                 </div>
                                 <div id="collapse_' . $value['id'] . '" class="collapse" aria-labelledby="heading' . $value['id'] . '" data-parent="#accordionExample">
                                    <div class="card-body">
-                                       <form>'.csrf_field().'
+                                       <form>';
+        @endphp
+        {{csrf_field()}}
+        @php echo '
                                            <textarea required  name="text" id="text_id' . $value['id'] . '" class="form-control"></textarea></br>
                                             <input type="hidden" id="parent_id' . $value['id'] . '" class="parent_id" name="parent_id" value="' . $value['id'] . '">
                                             <input type="hidden" id="nesting' . $value['id'] . '" class="nesting" name="nesting" value="' . $value['nesting'] . '">
@@ -36,6 +38,7 @@
                                 </div>
                             </div>
                          <ul><div id="comment' . $value['id'] . '"></div></ul>';
+        }
 
         @endphp
 
