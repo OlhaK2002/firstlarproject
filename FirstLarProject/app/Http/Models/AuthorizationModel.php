@@ -38,8 +38,8 @@ class AuthorizationModel extends Model
     {
         $this->error['error_login'] = "Неверный логин или пароль";
         if (strlen($this->password) > 0 && $this->evidenceAction()) {
-            $_SESSION["login"] = $this->login;
-            $_SESSION['user_id'] = $this->array['user_id'];
+            session(['login'=> "{$this->login}"]);
+            session(['user_id' => "{$this->array['user_id']}"]);
             $this->error['error_login'] = "";
 
         }

@@ -41,18 +41,18 @@
         .top-right {
             position: absolute;
             right: 10px;
-            top: 60px;
+            top: 10px;
         }
 
 
         .title {
-            font-size: 80px;
+            font-size: 140px;
         }
 
         .links > a {
             color: #636b6f;
             padding: 0 25px;
-            font-size: 15px;
+            font-size: 20px;
             font-weight: 600;
             letter-spacing: .1rem;
             text-decoration: none;
@@ -65,11 +65,57 @@
     </style>
 </head>
 <body>
+
+<div class="flex-center position-ref full-height">
+
+    <div class="top-right links">
+
+        @php
+       if(session('login') != "")
+       {
+       @endphp
+        <a href="{{route("logout")}}">Logout</a>
+        @php
+       }
+       else
+       {
+        @endphp
+            <a href="{{route("authorizationview")}}">Login</a>
+            <a href="{{route("registrationview")}}">Register</a>
+        @php
+       }
+      @endphp
+
+    </div>
+
+
+    <div class="content">
+        <div class="title m-b-md">
+            Guest Book
+        </div>
+    </div>
+</div>
+<div class="content">
+    @if(session('login') != "")
+
+     <form>
+        {{ csrf_field() }}
+        <textarea required name="text" id="text_id0" class="form-control"
+                  placeholder="Введите Ваш комментарий..."></textarea>
+        <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
+        <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
+        <button id="0" type="submit" class="btn">Отправить</button>
+    </form>
+    @endif
+
+    @if(session('login') == "")
+            Для того чтобы оставить свой отзыв - <a href="{{route("authorizationview")}}">войдите</a> или <a href="{{route("registrationview")}}">зарегистрируйтеся</a><br><br><br><br>
+    @endif
+
+
         @yield('reply')
 </div>
 
 
-    </div>
-</div>
 </body>
 </html>
