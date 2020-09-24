@@ -11,7 +11,7 @@
                     style="font-style: italic; color: lightseagreen">({{ $value['data'] }})</span><br> &nbsp
                 &nbsp{{ $value['text'] }}
 
-                <div class="accordion" id="accordionExample">
+                @if(session('login')!="") <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="heading{{ $value['id'] }}">
                             <h2 class="mb-0">
@@ -41,6 +41,7 @@
                     <ul>
                         <div id="comment{{ $value['id'] }}"></div>
                     </ul>
+                @endif
                 @for($i=0;$i<$value['nesting'];$i++)
                     </ul>
                 @endfor

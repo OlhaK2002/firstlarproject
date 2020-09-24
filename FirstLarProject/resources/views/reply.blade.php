@@ -36,6 +36,7 @@
                                 </div>
                             </div>
                          <ul><div id="comment' . $value['id'] . '"></div></ul>';
+
         @endphp
 
         @if($key!=0)
