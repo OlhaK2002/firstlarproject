@@ -19,13 +19,9 @@ class EvidenceController extends Controller
 
     public function evidence()
     {
-        $this->login = "Olha019";
+        $this->login = "Olha0123";
         $users = DB::select('select * from `registor` where `login`=:login', ['login'=>$this->login]);
-        foreach ($users as $user) {
-            $this->hash = $user->password1;
-            $this->user_id = $user->user_id;
-        }
-        echo $this->hash. ' '.$this->user_id;
+        if(empty($users))echo 'coool';
     }
 
 }
