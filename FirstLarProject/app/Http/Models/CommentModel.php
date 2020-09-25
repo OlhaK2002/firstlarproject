@@ -22,7 +22,7 @@ class CommentModel extends Model
 
     public function firstcomment()
     {
-        $comments = DB::select('select * from `comments` where `parent_id`=:parent_id', ['parent_id'=> 0]);
+        $comments = DB::table('comments')->where('parent_id', "0")->get();
 
         foreach($comments as $comment){
             $this->ind++;
@@ -36,7 +36,10 @@ class CommentModel extends Model
     public function othercomments($id)
     {
         $this->index = $id;
-        $comments = DB::select('select * from `registor` inner join `comments` where registor.user_id=comments.authorid and comments.id=:id', ['id'=> "{$this->index}"]);
+        $comments = DB::table('registor')
+            ->join('comments', 'registor.user_id', '=', 'comments.authorid')
+            ->where('comments.id', '=', $this->index )
+            ->get();
 
         foreach($comments as $array){
             $this->nesting = $array->nesting + 1;
@@ -49,8 +52,7 @@ class CommentModel extends Model
                 'parent_id' => "{$array->parent_id}"
             ];
         }
-
-        $comments = DB::select('select * from `comments` where `parent_id`=:parent_id', ['parent_id'=> $this->index]);
+        $comments = DB::table('comments')->where('parent_id', "{$this->index}")->get();
 
         if (!(empty($comments))) {
             foreach($comments as $comment){
