@@ -4,7 +4,8 @@
 @foreach ($array as $key => $value)
     @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: #888988">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"];
 
-          if(session('login') != "") { echo'<div class="accordion" id="accordionExample">
+          if(session('login') != "") {
+              echo'<div class="accordion" id="accordionExample">
                             <div style="border: #FFFAF7;" class="card">
                                 <div style="background-color: #FFFAF7;" class="card-header" id="heading' . $value['id'] . ' ?>">
                                     <h2 class="mb-0">

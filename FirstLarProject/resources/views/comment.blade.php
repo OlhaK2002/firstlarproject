@@ -9,9 +9,8 @@
 
                 @if(session('login')!="")
                     <div class="accordion" id="accordionExample">
-                        <div style="border: 	#FFFAF7;" class="card ">
-                            <div style="background-color: 	#FFFAF7;" class="card-header"
-                                 id="heading{{ $value['id'] }}">
+                        <div  class="card" style="border: 	#FFFAF7;">
+                            <div style="background-color: 	#FFFAF7;" class="card-header" id="heading{{ $value['id'] }}">
                                 <h2 class="mb-0">
                                     <button style="color: #888988;" class="btn btn-link btn-block text-left"
                                             type="button" data-toggle="collapse"
@@ -43,6 +42,7 @@
                         <ul>
                             <div id="comment{{ $value['id'] }}"></div>
                         </ul>
+
                 @endif
         @for($i=0;$i<$value['nesting'];$i++)
             </ul>

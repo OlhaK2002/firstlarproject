@@ -127,11 +127,7 @@
     @if(session('login') == "")
           <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route("authorizationview")}}">войдите</a> или <a style = "color: lightcoral" href="{{route("registrationview")}}">зарегистрируйтеся</a></h4><br><br>
     @endif
-
-
         @yield('comment')
-</div>
-
 
 </body>
 </html>
