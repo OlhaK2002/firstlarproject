@@ -2,14 +2,19 @@
     echo '<div id="comment0"></div>';
 @endphp
 @foreach ($array as $key => $value)
-    @php  echo '<span style = "font-style: italic">'.$value["author"].'</span>&nbsp<span style="font-style: italic; color: #888988">'.$value["data"].')</span></br>&nbsp &nbsp'.$value["text"];
+    @php  echo '<div id="comment0"></div>
+                <div style="margin-left:'.($value['nesting']*25).'px;" ><br>
+                    <div class="cool" style=" font-style: italic;">'.$value['author'].'</div>&nbsp
+                    <div class="cool" style="font-style: italic; color: #888988; ">('.$value["data"].')</div><br>
+                    <div class="cool">'.$value['text'].'</div><br>
+                </div>';
 
           if(session('login') != "") {
               echo'<div class="accordion" id="accordionExample">
-                            <div style="border: #FFFAF7;" class="card">
-                                <div style="background-color: #FFFAF7;" class="card-header" id="heading' . $value['id'] . ' ?>">
+                            <div style="background-color: white; border: white; margin-left:'.($value['nesting']*25).'px" class="card">
+                                <div style="background-color: white; border: white; margin-left:'.($value['nesting']*25).'px" class="card-header" id="heading' . $value['id'] . ' ?>">
                                     <h2 class="mb-0">
-                                        <button style="color: #888988;" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" aria-expanded="false" data-target="#collapse_' . $value['id'] . '" aria-controls="collapse_' . $value['id'] . '">
+                                        <button  style="color: #888988;margin-left:'.-($value['nesting']*25).'px" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" aria-expanded="false" data-target="#collapse_' . $value['id'] . '" aria-controls="collapse_' . $value['id'] . '">
                                             Ответить
                                         </button>
                                     </h2>
@@ -28,7 +33,7 @@
                                    </div>
                                 </div>
                             </div>
-                         <ul><div id="comment' . $value['id'] . '"></div></ul>';
+                         <div id="comment' . $value['id'] . '"></div>';
         }
 
     @endphp

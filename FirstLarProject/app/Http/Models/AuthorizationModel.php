@@ -16,13 +16,13 @@ class AuthorizationModel extends Model
     protected $password_verification;
     protected $error = [];
 
-    public function loginAction($login, $password)
+    public function login($login, $password)
     {
         $this->login = $login;
         $this->password = $password;
     }
 
-    public function evidenceAction()
+    public function evidence()
     {
         $pdo = DB::connection()->getPDO();
         $this->sql = $pdo->prepare("SELECT * FROM `registor` WHERE `login`= :login LIMIT 1");
@@ -34,10 +34,10 @@ class AuthorizationModel extends Model
         return $this->password_verification;
     }
 
-    public function passwordAction()
+    public function result()
     {
         $this->error['error_login'] = "Неверный логин или пароль";
-        if (strlen($this->password) > 0 && $this->evidenceAction()) {
+        if (strlen($this->password) > 0 && $this->evidence()) {
             session(['login'=> "{$this->login}"]);
             session(['user_id' => "{$this->array['user_id']}"]);
             $this->error['error_login'] = "";

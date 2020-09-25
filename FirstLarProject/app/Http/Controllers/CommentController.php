@@ -12,7 +12,8 @@ class CommentController extends Controller
     public function commentAction()
     {
         $this->model = new CommentModel();
-        $array = $this->model->indexAction();
+
+        $array = $this->model->firstcomment();
         return view('comment', compact('array'));
     }
 }

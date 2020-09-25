@@ -70,12 +70,20 @@
             font-size: 20px;
             padding: 0 15px;
         }
+
+        .nesting {
+            display: inline-block;
+        }
+        div.cool{
+            display: inline-block;
+        }
         <?php
-        /*.form-control{
+       /* .form-control{
             display: inline-block;
             width: 33%;
         }*/
         ?>
+
     </style>
 </head>
 <body>
@@ -116,11 +124,11 @@
 
      <form>
         {{ csrf_field() }}
-        <textarea  style="background-color: 	#FFFAF7; border: 	#FFFAF7 " rows="3" required name="text" id="text_id0" class="form-control"
+        <textarea  style="background-color: #FFFAF7; border: #FFFAF7; margin-left: 20px;" rows="3" required name="text" id="text_id0" class="form-control nesting"
                   placeholder="Введите Ваш комментарий..."></textarea>
         <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
         <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
-        <button style="background-color: 	#F2F2F2;" id="0" type="submit" class="btn btn-light">Отправить</button>
+        <button style="background-color:#F2F2F2;margin-left: 20px;" id="0" type="submit" class="btn btn-light">Отправить</button>
     </form><br><br>
     @endif
 
