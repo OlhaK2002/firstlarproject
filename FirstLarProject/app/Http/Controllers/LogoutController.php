@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
-    protected $model;
-
     public function logoutAction()
     {
         session(['login' => ""]);
