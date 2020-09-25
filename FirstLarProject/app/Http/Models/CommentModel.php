@@ -43,16 +43,16 @@ class CommentModel extends Model
 
         foreach($comments as $array){
             $this->nesting = $array->nesting + 1;
-            $this->array_view["{$this->ind}"] = [
-                'nesting' => "{$this->nesting}",
-                'author' => "{$array->login}",
-                'data' => "{$array->data}",
-                'text' => "{$array->text}",
-                'id' => "{$array->id}",
-                'parent_id' => "{$array->parent_id}"
+            $this->array_view[$this->ind] = [
+                'nesting' => $this->nesting,
+                'author' => $array->login,
+                'data' => $array->data,
+                'text' => $array->text,
+                'id' => $array->id,
+                'parent_id' => $array->parent_id
             ];
         }
-        $comments = DB::table('comments')->where('parent_id', "{$this->index}")->get();
+        $comments = DB::table('comments')->where('parent_id', $this->index)->get();
 
         if (!(empty($comments))) {
             foreach($comments as $comment){

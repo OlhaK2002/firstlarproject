@@ -18,7 +18,7 @@ class AuthorizationController extends Controller
     public function login()
     {
         $this->model = new AuthorizationModel();
-        $this->model->login("{$_POST['login1']}", "{$_POST['password2']}");
+        $this->model->login($_POST['login1'], $_POST['password2']);
         $array = $this->model->result();
         $result = json_encode($array);
         echo $result;

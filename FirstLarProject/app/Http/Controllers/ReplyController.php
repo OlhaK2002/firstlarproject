@@ -13,7 +13,7 @@ class ReplyController extends Controller
     {
         $this->model = new ReplyModel();
 
-        $this->model->reply("{$_POST['text']}", "{$_POST['parent_id']}", session('user_id'), "{$_POST['nesting']}");
+        $this->model->reply($_POST['text'], $_POST['parent_id'], session('user_id'), $_POST['nesting']);
         $array1 = $this->model->result();
         $array[0] = $array1;
         if(!empty($array)&&$_POST['text']!=""){

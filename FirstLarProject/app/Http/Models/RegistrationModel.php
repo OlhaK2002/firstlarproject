@@ -34,14 +34,14 @@ class RegistrationModel extends Model
 
     public function email_evidence()
     {
-        $users = DB::table('registor')->where('email', "{$this->email}")->first();
+        $users = DB::table('registor')->where('email', $this->email)->first();
         if(!(empty($users))){$this->error['error_email'] = "Ваша почта уже используется другим пользователем";}
 
     }
 
     public function login_evidence()
     {
-        $users = DB::table('registor')->where('login', "{$this->login}")->first();
+        $users = DB::table('registor')->where('login', $this->login)->first();
         if(!(empty($users))){$this->error['error_login'] = "Ваш логин уже используется другим пользователем";}
     }
 
@@ -106,8 +106,8 @@ class RegistrationModel extends Model
 
                 $this->user_id = $users->user_id;
 
-            session(['login'=> "{$this->login}"]);
-            session(['user_id' => "{$this->user_id}"]);
+            session(['login'=> $this->login]);
+            session(['user_id' => $this->user_id]);
             $this->error['success'] = "success";
         }
         return $this->error;

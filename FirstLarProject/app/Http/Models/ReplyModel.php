@@ -61,12 +61,12 @@ class ReplyModel extends Model
             foreach($comments as $array){
                 $this->nesting = $array->nesting + 1;
                 $this->array_view = [
-                    'nesting' => "{$this->nesting}",
-                    'author' => "{$array->login}",
-                    'data' => "{$array->data}",
-                    'text' => "{$array->text}",
-                    'id' => "{$array->id}",
-                    'parent_id' => "{$array->parent_id}"
+                    'nesting' => $this->nesting,
+                    'author' => $array->login,
+                    'data' => $array->data,
+                    'text' => $array->text,
+                    'id' => $array->id,
+                    'parent_id' => $array->parent_id
                 ];
             }
 
