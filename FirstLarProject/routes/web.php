@@ -10,6 +10,5 @@ Route::post('/authorization', 'AuthorizationController@loginAction')->name('auth
 Route::get('/registration/view', 'RegistrationController@viewAction')->name('registrationview');
 Route::post('/registration/register', 'RegistrationController@registerAction')->name('registration');
 Route::get('/logout', 'LogoutController@logoutAction')->name('logout');
-Route::get('/evidence', 'EvidenceController@evidence')->name('evidence');
 
 //Route::get('/authorization/ajax', 'AuthorizationController@ajaxAction')->name('authorization_ajax');
