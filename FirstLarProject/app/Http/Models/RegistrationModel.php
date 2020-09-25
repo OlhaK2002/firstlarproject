@@ -34,14 +34,14 @@ class RegistrationModel extends Model
 
     public function email_evidence()
     {
-        $users = DB::select('select * from `registor` where `email`=:email', ['email'=>$this->email]);
+        $users = DB::table('registor')->where('email', "{$this->email}")->first();
         if(!(empty($users))){$this->error['error_email'] = "Ваша почта уже используется другим пользователем";}
 
     }
 
     public function login_evidence()
     {
-        $users = DB::select('select * from `registor` where `login`= :login', ['login'=>$this->login]);
+        $users = DB::table('registor')->where('login', "{$this->login}")->first();
         if(!(empty($users))){$this->error['error_login'] = "Ваш логин уже используется другим пользователем";}
     }
 
@@ -84,7 +84,7 @@ class RegistrationModel extends Model
 
         if(empty($this->error))
         {
-            $users = DB::insert('insert into `registor` (`name`,`surname`,`email`,`login`,`password1`) values (:name, :surname, :email, :login, :password1)', ['name'=>$this->name, 'surname'=> $this->surname, 'email'=>$this->email, 'login'=>$this->login, 'password1'=>$this->password]);
+            DB::table('registor')->insert(['name' => $this->name, 'surname' => $this->surname, 'email' => $this->email, 'login' => $this->login, 'password1' => $this->password,]);
             return true;
         }
         else return false;
@@ -94,10 +94,18 @@ class RegistrationModel extends Model
     {
         if($this->into_db())
         {
-            $array = DB::select('select * from `registor` where `name`= :name and `surname`=:surname and `email`=:email and `login`=:login and `password1`=:password1', ['name'=>$this->name, 'surname'=> $this->surname, 'email'=>$this->email, 'login'=>$this->login, 'password1'=>$this->password]);
-            foreach ($array as $user) {
-                $this->user_id = $user->user_id;
-            }
+            $users = DB::table('registor')->where([
+                ['name',  $this->name],
+                ['surname',  $this->surname],
+                ['email',  $this->email],
+                ['login',  $this->login],
+                ['password1',  $this->password],
+
+
+            ])->first();
+
+                $this->user_id = $users->user_id;
+
             session(['login'=> "{$this->login}"]);
             session(['user_id' => "{$this->user_id}"]);
             $this->error['success'] = "success";
