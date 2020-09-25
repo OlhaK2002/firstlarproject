@@ -9,12 +9,12 @@ class RegistrationController extends Controller
 {
     protected $model;
 
-    public function viewAction()
+    public function view()
     {
         return view('registration');
     }
 
-    public function registerAction()
+    public function register()
     {
         $this->model = new RegistrationModel();
         $this->model->register($_POST['Name'], $_POST['Surname'], $_POST['Email'], $_POST['Login'], $_POST['Password1'], $_POST['Password2']);

@@ -9,7 +9,7 @@ class ReplyController extends Controller
 {
     protected $model;
 
-    public function replyAction()
+    public function reply()
     {
         $this->model = new ReplyModel();
 

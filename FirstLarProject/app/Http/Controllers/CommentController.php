@@ -9,7 +9,7 @@ class CommentController extends Controller
 {
     protected $model;
 
-    public function commentAction()
+    public function comment()
     {
         $this->model = new CommentModel();
 

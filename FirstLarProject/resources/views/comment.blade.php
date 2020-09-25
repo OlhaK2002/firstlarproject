@@ -3,7 +3,7 @@
     @foreach ($array as $key => $value)
 
                 <div id="comment0"></div>
-                <div style="margin-left:{{$value['nesting']*25}}px;" ><br>
+                <div style="margin-left:{{$value['nesting']*30}}px;" ><br>
                     <div class="cool" style=" font-style: italic;">{{ $value['author'] }}</div>&nbsp
                     <div class="cool" style="font-style: italic; color: #888988; ">({{$value["data"]}})</div><br>
                     <div class="cool">{{$value['text']}}</div><br>
@@ -13,10 +13,10 @@
 
                 @if(session('login')!="")
                     <div class="accordion " id="accordionExample">
-                        <div  class="card" style="background-color: white; border: white;margin-left: {{25*$value['nesting']}}px">
-                            <div style="background-color: white; border: white; margin-left: {{25*$value['nesting']}}px" class="card-header" id="heading{{ $value['id'] }}">
+                        <div  class="card" style="background-color: white; border: white;margin-left: {{30*$value['nesting']}}px">
+                            <div style="background-color: white; border: white; margin-left: {{30*$value['nesting']}}px" class="card-header" id="heading{{ $value['id'] }}">
                                 <h2 class="mb-0">
-                                    <button style="color: #888988;margin-left: {{-25*$value['nesting']}}px" class="btn btn-link btn-block text-left"
+                                    <button style="color: #888988;margin-left: {{-30*$value['nesting']}}px" class="btn btn-link btn-block text-left"
                                             type="button" data-toggle="collapse"
                                             aria-expanded="false" data-target="#collapse_{{ $value['id'] }}"
                                             aria-controls="collapse_{{ $value['id'] }}">
@@ -47,5 +47,3 @@
                 @endif
     @endforeach
 @endsection
-@php
-@endphp

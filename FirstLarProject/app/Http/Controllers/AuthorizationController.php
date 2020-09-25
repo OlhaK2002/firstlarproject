@@ -11,11 +11,11 @@ class AuthorizationController extends Controller
     public $login;
     public $password;
 
-    public function viewAction()
+    public function view()
     {
         return view('authorizationview');
     }
-    public function loginAction()
+    public function login()
     {
         $this->model = new AuthorizationModel();
         $this->model->login("{$_POST['login1']}", "{$_POST['password2']}");

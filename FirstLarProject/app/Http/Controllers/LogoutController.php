@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
-    public function logoutAction()
+    public function logout()
     {
         session(['login' => ""]);
         session(['user_id' => ""]);

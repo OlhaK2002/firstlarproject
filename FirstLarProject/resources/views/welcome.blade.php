@@ -77,12 +77,6 @@
         div.cool{
             display: inline-block;
         }
-        <?php
-       /* .form-control{
-            display: inline-block;
-            width: 33%;
-        }*/
-        ?>
 
     </style>
 </head>
