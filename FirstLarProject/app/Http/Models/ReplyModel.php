@@ -33,7 +33,7 @@ class ReplyModel extends Model
     {
         if($this->text!=""&&$this->authorid!=""&&$this->count<1)
         {
-            $users = DB::insert('insert into `comments` (`authorid`,`text`, `parent_id`, `nesting`) values (:authorid, :text, :parent_id, :nesting)',['authorid'=>$this->authorid, 'text'=> $this->text, 'parent_id'=>$this->parent_id, 'nesting'=>$this->nesting]);
+            DB::table('comments')->insert(['authorid' => $this->authorid, 'text' => $this->text, 'parent_id' => $this->parent_id, 'nesting' => $this->nesting]);
             $this->count++;
         }
         return true;
@@ -44,14 +44,19 @@ class ReplyModel extends Model
     {
         if($this->text!=""&&$this->authorid!="" && $this->into()){
 
-            $comments = DB::select('select * from `comments`  where `text`=:text and `parent_id`=:parent_id and `authorid`=:authorid and `nesting`=:nesting', ['text'=> "{$this->text}", 'parent_id'=> "{$this->parent_id}", 'authorid'=> "{$this->authorid}", 'nesting'=> "{$this->nesting}"]);
+            $comments = DB::table('comments')->where([
+                ['text',  $this->text],
+                ['parent_id',  $this->parent_id],
+                ['authorid',  $this->authorid],
+                ['nesting',  $this->nesting],
+            ])->first();
 
-            foreach($comments as $comment)
-            {
-                $this->id = $comment->id;
-            }
+            $this->id = $comments->id;
 
-            $comments = DB::select('select * from `registor`  inner join `comments` where registor.user_id=comments.authorid AND comments.id=:id', ['id'=> "{$this->id}"]);
+            $comments = DB::table('registor')
+                ->join('comments', 'registor.user_id', '=', 'comments.authorid')
+                ->where('comments.id', '=', $this->id )
+                ->get();
 
             foreach($comments as $array){
                 $this->nesting = $array->nesting + 1;
