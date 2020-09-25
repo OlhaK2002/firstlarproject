@@ -5,7 +5,6 @@ namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\DB;
-use PDO;
 
 class RegistrationModel extends Model
 {
@@ -16,8 +15,6 @@ class RegistrationModel extends Model
     protected $password1;
     protected $password2;
     protected $password;
-    protected $sql;
-    protected $pdo;
     protected $count_0=0;
     protected $count_A=0;
     protected $count_b=0;
