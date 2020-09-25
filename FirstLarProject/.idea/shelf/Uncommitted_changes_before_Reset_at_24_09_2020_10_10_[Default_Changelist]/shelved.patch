@@ -1,0 +1,17 @@
+Index: resources/views/reply.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@extends('welcome')\r\n@section('reply')\r\n    @php\r\n    foreach ($array as $key => $value)\r\n        {   if($key!=0){\r\n            for($i=0;$i<$value['nesting'];$i++)\r\n            {echo '<ul>';}}\r\n\r\n        echo '<div id=\"comment0\"></div>\r\n<span style = \"font-style: italic\">'.$value[\"author\"].'</span>&nbsp<span style=\"font-style: italic; color: lightseagreen\">'.$value['data'].')</span></br>&nbsp &nbsp'.$value['text'].'\r\n<div id=\"comment0\"></div>\r\n<div class=\"accordion\" id=\"accordionExample\">\r\n            <div class=\"card\">\r\n                <div class=\"card-header\" id=\"heading' . $value['id'] . ' ?>\">\r\n                    <h2 class=\"mb-0\">\r\n                        <button class=\"btn btn-link btn-block text-left\" type=\"button\" data-toggle=\"collapse\" aria-expanded=\"false\" data-target=\"#collapse_' . $value['id'] . '\" aria-controls=\"collapse_' . $value['id'] . '\">\r\n                            Ответить\r\n                        </button>\r\n                    </h2>\r\n                </div>\r\n                <div id=\"collapse_' . $value['id'] . '\" class=\"collapse\" aria-labelledby=\"heading' . $value['id'] . '\" data-parent=\"#accordionExample\">\r\n                    <div class=\"card-body\">\r\n                    <form>\r\n                        '.csrf_field().'\r\n                        <textarea required name=\"text\" id=\"text_id' . $value['id'] . '\" class=\"form-control\"></textarea></br>\r\n                        <input type=\"hidden\" id=\"parent_id' . $value['id'] . '\" class=\"parent_id\" name=\"parent_id\" value=\"' . $value['id'] . '\">\r\n                        <input type=\"hidden\" id=\"nesting' . $value['id'] . '\" class=\"nesting\" name=\"nesting\" value=\"' . $value['nesting'] . '\">\r\n                        <button id=\"' . $value['id'] . '\" type=\"submit\" class=\"btn\">Отправить</button>\r\n                    <form>\r\n                    </div>\r\n                </div>\r\n         </div>\r\n         <ul><div id=\"comment' . $value['id'] . '\"></div></ul>';\r\n\r\n        if($key!=0){\r\n            for($i=0;$i<$value['nesting'];$i++)\r\n            {echo '</ul>';}}\r\n\r\n    }\r\n\r\n@endphp\r\n@endsection\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/reply.blade.php	(revision 952f960bdedb6d51259d2e8fbcadf10893089a18)
++++ resources/views/reply.blade.php	(date 1600931187995)
+@@ -1,5 +1,6 @@
+-@extends('welcome')
++@extends('layouts.header')
+ @section('reply')
++    @parent
+     @php
+     foreach ($array as $key => $value)
+         {   if($key!=0){
