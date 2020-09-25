@@ -24,11 +24,9 @@ class AuthorizationModel extends Model
 
     public function evidence()
     {
-        $users = DB::select('select * from `registor` where `login`=:login', ['login'=>$this->login]);
-        foreach ($users as $user) {
-            $this->hash = $user->password1;
-            $this->user_id = $user->user_id;
-        }
+        $users = DB::table('registor')->where('login', "{$this->login}")->first();
+        $this->hash = $users->password1;
+        $this->user_id = $users->user_id;
 
         $this->password_verification = password_verify($this->password, $this->hash);
         return $this->password_verification;
