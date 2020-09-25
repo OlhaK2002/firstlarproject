@@ -21,8 +21,8 @@ class EvidenceController extends Controller
     {
         $this->login = "Olha0123";
         $users = DB::select('select * from `registor` where `login`=:login', ['login'=>$this->login]);
-        if(empty($users))echo 'coool';
     }
+
 
 }
 
