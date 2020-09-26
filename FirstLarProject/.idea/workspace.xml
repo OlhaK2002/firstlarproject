@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="" />
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Registor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/AuthorizationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/AuthorizationModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/CommentModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/CommentModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/RegistrationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/RegistrationModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/ReplyModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/ReplyModel.php" afterDir="false" />
+    </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
@@ -144,7 +152,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mainO" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../laravel/www/secondproject" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -176,7 +184,8 @@
       <workItem from="1600966114710" duration="2117000" />
       <workItem from="1600968309535" duration="2014000" />
       <workItem from="1600972649220" duration="7250000" />
-      <workItem from="1601017772039" duration="28292000" />
+      <workItem from="1601017772039" duration="28303000" />
+      <workItem from="1601112372851" duration="5029000" />
     </task>
     <task id="LOCAL-00001" summary="6(22.09.2020)">
       <created>1600871404507</created>
@@ -388,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601046393431</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="33(25.09.2020)">
+      <created>1601046542508</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1601046542508</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,26 +459,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601033995936" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601046391368">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601046541351">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601046391368" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601046541351" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1600930961872" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601032474145">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601112953942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601032474145" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601112953942" />
     <state x="147" y="65" key="MergeDialog" timestamp="1600931457587">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600931457587" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601041715790">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601114393654">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601041715790" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601114393654" />
     <state x="587" y="115" key="RollbackChangesDialog" timestamp="1600867554342">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -483,10 +499,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1600867163639" />
-    <state x="479" y="145" width="618" height="534" key="find.popup" timestamp="1601044223502">
+    <state x="479" y="145" width="618" height="534" key="find.popup" timestamp="1601118296237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="479" y="145" width="618" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1601044223502" />
+    <state x="479" y="145" width="618" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1601118296237" />
     <state x="547" y="125" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600931405390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -3,8 +3,9 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use PDO;
+use App\Comment;
+use App\Registor;
+
 
 class ReplyModel extends Model
 {
@@ -33,7 +34,7 @@ class ReplyModel extends Model
     {
         if($this->text!=""&&$this->authorid!=""&&$this->count<1)
         {
-            DB::table('comments')->insert(['authorid' => $this->authorid, 'text' => $this->text, 'parent_id' => $this->parent_id, 'nesting' => $this->nesting]);
+            Comment::insert(['authorid' => $this->authorid, 'text' => $this->text, 'parent_id' => $this->parent_id, 'nesting' => $this->nesting]);
             $this->count++;
         }
         return true;
@@ -44,7 +45,7 @@ class ReplyModel extends Model
     {
         if($this->text!=""&&$this->authorid!="" && $this->into()){
 
-            $comments = DB::table('comments')->where([
+            $comments = Comment::where([
                 ['text',  $this->text],
                 ['parent_id',  $this->parent_id],
                 ['authorid',  $this->authorid],
@@ -53,8 +54,7 @@ class ReplyModel extends Model
 
             $this->id = $comments->id;
 
-            $comments = DB::table('registor')
-                ->join('comments', 'registor.user_id', '=', 'comments.authorid')
+            $comments = Registor::join('comments', 'registor.user_id', '=', 'comments.authorid')
                 ->where('comments.id', '=', $this->id )
                 ->get();
 

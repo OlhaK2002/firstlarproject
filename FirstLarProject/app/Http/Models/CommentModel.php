@@ -3,8 +3,9 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use PDO;
+use App\Comment;
+use App\Registor;
+
 
 class CommentModel extends Model
 {
@@ -22,7 +23,7 @@ class CommentModel extends Model
 
     public function firstcomment()
     {
-        $comments = DB::table('comments')->where('parent_id', "0")->get();
+        $comments = Comment::where('parent_id', "0")->get();
 
         foreach($comments as $comment){
             $this->ind++;
@@ -36,8 +37,7 @@ class CommentModel extends Model
     public function othercomments($id)
     {
         $this->index = $id;
-        $comments = DB::table('registor')
-            ->join('comments', 'registor.user_id', '=', 'comments.authorid')
+        $comments = Registor::join('comments', 'registor.user_id', '=', 'comments.authorid')
             ->where('comments.id', '=', $this->index )
             ->get();
 
@@ -52,7 +52,7 @@ class CommentModel extends Model
                 'parent_id' => $array->parent_id
             ];
         }
-        $comments = DB::table('comments')->where('parent_id', $this->index)->get();
+        $comments = Comment::where('parent_id', $this->index)->get();
 
         if (!(empty($comments))) {
             foreach($comments as $comment){

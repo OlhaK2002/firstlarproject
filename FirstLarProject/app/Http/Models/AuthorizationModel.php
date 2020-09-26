@@ -3,7 +3,7 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use App\Registor;
 
 class AuthorizationModel extends Model
 {
@@ -24,7 +24,7 @@ class AuthorizationModel extends Model
 
     public function evidence()
     {
-        $users = DB::table('registor')->where('login', "{$this->login}")->first();
+        $users = Registor::where('login', $this->login)->first();
         $this->hash = $users->password1;
         $this->user_id = $users->user_id;
 
