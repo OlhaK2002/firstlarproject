@@ -34,15 +34,20 @@ $(document).ready(function () {
                 if (result1['success'] === "success") {
                     window.location.href = "/";
                 } else {
-                    $('#error_email').append(result1['error_email']);
-                    $('#error_login').append(result1['error_login']);
-                    $('#error_password').append(result1['error_password']);
+                    $.each(result1, function (parametr, array) {
+                        $.each(array, function (index, value) {
+                            if (value === "The email has already been taken.") $('#error_email').append(result1[index]);
+                            else if (value === "The login has already been taken.") $('#error_login').append(result1[index]);
+                            else if (value === "The password1 must be at least 6 characters.") $('##error_password').append(result1[index]);
+                            else if (value === "The password2 and password1 must match.") $('#error_passwords').append(result1['error_passwords']);
+                        });
+                    });
                     $('#error_password1').append(result1['error_password1']);
-                    $('#error_passwords').append(result1['error_passwords']);
                     $('#Password1').val('');
                     $('#Password2').val('');
                 }
-            }
+            },
+
 
 
         })

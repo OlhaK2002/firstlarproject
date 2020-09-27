@@ -32,33 +32,7 @@ class RegistrationModel extends Model
         $this->password1 = $password1;
         $this->password2 = $password2;
     }
-
-    public function email_evidence()
-    {
-        $users = Registor::where('email', $this->email)->first();
-        if(!(empty($users))){$this->error['error_email'] = "Ваша почта уже используется другим пользователем";}
-
-    }
-
-    public function login_evidence()
-    {
-        $users = Registor::where('login', $this->login)->first();
-        if(!(empty($users))){$this->error['error_login'] = "Ваш логин уже используется другим пользователем";}
-    }
-
-    public function passwords_evidence()
-    {
-        if($this->password1!=$this->password2){$this->error['error_passwords'] = "Пароли не совпадают";}
-
-    }
-
-    public function password_evidence()
-    {
-        if(strlen($this->password1)>0&&strlen($this->password1)<6) {$this->error['error_password'] = "Пароль должен быть не меньше шести символов";}
-
-    }
-
-    public function password1_evidence()
+ public function password1_evidence()
     {
         if (strlen($this->password1)>0){
             for($i=0;$i<strlen($this->password1);$i++) {
@@ -105,7 +79,7 @@ class RegistrationModel extends Model
 
             ])->first();
 
-                $this->user_id = $users->user_id;
+            $this->user_id = $users->user_id;
 
             session(['login'=> $this->login]);
             session(['user_id' => $this->user_id]);
