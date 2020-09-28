@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Models\RegistrationModel;
 use App\Http\Requests\RegistrationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
