@@ -3,8 +3,6 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Comment;
-use App\Registor;
 
 
 class RegistrationModel extends Model
@@ -32,6 +30,7 @@ class RegistrationModel extends Model
         $this->password1 = $password1;
         $this->password2 = $password2;
     }
+
     public function hash()
     {
         $this->password = password_hash($this->password1, PASSWORD_DEFAULT);
@@ -42,7 +41,7 @@ class RegistrationModel extends Model
 
         if(empty($this->error))
         {
-            Registor::insert(['name' => $this->name, 'surname' => $this->surname, 'email' => $this->email, 'login' => $this->login, 'password' => $this->password,]);
+            Registor::insert(['name' => $this->name, 'surname' => $this->surname, 'email' => $this->email, 'login' => $this->login, 'password1' => $this->password,]);
             return true;
         }
         else return false;
@@ -57,7 +56,7 @@ class RegistrationModel extends Model
                 ['surname',  $this->surname],
                 ['email',  $this->email],
                 ['login',  $this->login],
-                ['password',  $this->password],
+                ['password1',  $this->password],
 
 
             ])->first();

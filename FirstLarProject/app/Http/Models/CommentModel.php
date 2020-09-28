@@ -3,9 +3,6 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Comment;
-use App\Registor;
-
 
 class CommentModel extends Model
 {
