@@ -10,7 +10,6 @@ class CommentModel extends Model
     protected $sql;
     protected $result;
     protected $value0;
-    protected $sql0;
     protected $array;
     protected $index;
     protected $pdo;
@@ -27,7 +26,6 @@ class CommentModel extends Model
             $id = $comment->id;
             $this->othercomments($id);
         }
-
         return $this->array_view;
     }
 

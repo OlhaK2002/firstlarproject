@@ -21,18 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Models/AuthorizationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/AuthorizationModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Models/CommentModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/CommentModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Models/RegistrationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/RegistrationModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Models/ReplyModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/ReplyModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Registor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Registor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/comment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/registration.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reply.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reply.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
@@ -202,7 +192,7 @@
       <workItem from="1601196068942" duration="10214000" />
       <workItem from="1601210343844" duration="3550000" />
       <workItem from="1601271198180" duration="809000" />
-      <workItem from="1601276816374" duration="25238000" />
+      <workItem from="1601276816374" duration="26226000" />
     </task>
     <task id="LOCAL-00001" summary="6(22.09.2020)">
       <created>1600871404507</created>
@@ -484,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601296045206</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="42(28.09.2020)">
+      <created>1601304707242</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1601304707242</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="17(24.09.2020)" />
     <MESSAGE value="18(24.09.2020)" />
     <MESSAGE value="19(24.09.2020)" />
     <MESSAGE value="20(24.09.2020)" />
@@ -528,7 +524,8 @@
     <MESSAGE value="39(28.09.2020)" />
     <MESSAGE value="40(28.09.2020)" />
     <MESSAGE value="41(28.09.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="41(28.09.2020)" />
+    <MESSAGE value="42(28.09.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="42(28.09.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -539,10 +536,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601202706303" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601296041719">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601304703406">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601296041719" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601304703406" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -563,10 +560,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="587" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600867554342" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1601296069599">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1601304719895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601296069599" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601304719895" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
