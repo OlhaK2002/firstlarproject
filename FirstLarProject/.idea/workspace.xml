@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="36(28.09.2020)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/registration.js" afterDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
@@ -148,7 +149,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../laravel/www/secondproject" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -188,7 +189,9 @@
       <workItem from="1601112372851" duration="15343000" />
       <workItem from="1601140990979" duration="1669000" />
       <workItem from="1601196068942" duration="10214000" />
-      <workItem from="1601210343844" duration="3456000" />
+      <workItem from="1601210343844" duration="3550000" />
+      <workItem from="1601271198180" duration="809000" />
+      <workItem from="1601276816374" duration="441000" />
     </task>
     <task id="LOCAL-00001" summary="6(22.09.2020)">
       <created>1600871404507</created>
@@ -421,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601241458967</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="36(28.09.2020)">
+      <created>1601242120514</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1601242120514</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +450,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="11(24.09.2020)" />
     <MESSAGE value="12(24.09.2020)" />
     <MESSAGE value="13(24.09.2020)" />
     <MESSAGE value="14(24.09.2020)" />
@@ -465,7 +474,8 @@
     <MESSAGE value="33(25.09.2020)" />
     <MESSAGE value="34(25.09.2020)" />
     <MESSAGE value="35(28.09.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="35(28.09.2020)" />
+    <MESSAGE value="36(28.09.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="36(28.09.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -476,18 +486,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601202706303" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601241454766">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601242148008">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601241454766" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601242148008" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1600930961872" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601196077759">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601276945450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601196077759" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601276945450" />
     <state x="147" y="65" key="MergeDialog" timestamp="1600931457587">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

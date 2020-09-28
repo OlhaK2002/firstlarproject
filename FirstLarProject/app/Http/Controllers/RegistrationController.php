@@ -29,10 +29,8 @@ class RegistrationController extends Controller
 
         if (!($validator->passes())) {
 
-
             return response()->json(['error'=>$validator->errors()->all()]);
         }
-
 
         $this->model = new RegistrationModel();
         $this->model->register($_POST['Name'], $_POST['Surname'], $_POST['Email'], $_POST['Login'], $_POST['Password1'], $_POST['Password2']);
