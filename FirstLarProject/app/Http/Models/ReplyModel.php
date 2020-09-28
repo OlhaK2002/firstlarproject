@@ -3,7 +3,7 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 
 class ReplyModel extends Model
 {
@@ -52,15 +52,15 @@ class ReplyModel extends Model
 
             $this->id = $comments->id;
 
-            $comments = Registor::join('comments', 'registor.user_id', '=', 'comments.authorid')
-                ->where('comments.id', '=', $this->id )
+            $comments = User::join('comment', 'users.id', '=', 'comment.authorid')
+                ->where('comment.id', '=', $this->id )
                 ->get();
 
             foreach($comments as $array){
                 $this->nesting = $array->nesting + 1;
                 $this->array_view = [
                     'nesting' => $this->nesting,
-                    'author' => $array->login,
+                    'author' => $array->name,
                     'data' => $array->data,
                     'text' => $array->text,
                     'id' => $array->id,

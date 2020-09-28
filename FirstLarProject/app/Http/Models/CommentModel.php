@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Models;
+use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,15 +33,15 @@ class CommentModel extends Model
     public function othercomments($id)
     {
         $this->index = $id;
-        $comments = Registor::join('comments', 'registor.user_id', '=', 'comments.authorid')
-            ->where('comments.id', '=', $this->index )
+        $comments = User::join('comment', 'users.id', '=', 'comment.authorid')
+            ->where('comment.id', '=', $this->index )
             ->get();
 
         foreach($comments as $array){
             $this->nesting = $array->nesting + 1;
             $this->array_view[$this->ind] = [
                 'nesting' => $this->nesting,
-                'author' => $array->login,
+                'author' => $array->name,
                 'data' => $array->data,
                 'text' => $array->text,
                 'id' => $array->id,

@@ -7,7 +7,7 @@
                     <div class="cool">{{$value['text']}}</div><br>
                 </div>
 
-  @if(session('login') != "")
+        @if(Auth::check())
              <div class="accordion" id="accordionExample">
                             <div style="background-color: white; border: white; margin-left:{{$value['nesting']*30}}px" class="card">
                                 <div style="background-color: white; border: white; margin-left:{{$value['nesting']*30}}px" class="card-header" id="heading{{$value['id']}}">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                          <div id="comment{{$value['id']}}"></div>
-  @endif
+        @endif
 
 
 @endforeach

@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="content text">
-        @if(session('login') != "")
+        @if(Auth::check())
             <form>
                 {{ csrf_field() }}
                 <textarea  style="background-color: #FFFAF7; border: #FFFAF7; margin-left: 20px;" rows="3" required name="text" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
@@ -19,7 +19,7 @@
                 <button style="background-color:#F2F2F2;margin-left: 20px;" id="0" type="submit" class="btn btn-light">Отправить</button>
             </form><br><br>
         @else
-            <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route("authorizationview")}}">войдите</a> или <a style = "color: lightcoral" href="{{route("registrationview")}}">зарегистрируйтеся</a></h4><br><br>
+            <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route('login')}}">войдите</a> или <a style = "color: lightcoral" href="{{route('register')}}">зарегистрируйтеся</a></h4><br><br>
         @endif
 
             @foreach ($array as $key => $value)
@@ -30,7 +30,7 @@
                     <div class="cool" style="font-style: italic; color: #888988; ">({{$value["data"]}})</div><br>
                     <div class="cool">{{$value['text']}}</div><br>
                 </div>
-                @if(session('login')!="")
+                @if(Auth::check())
                     <div class="accordion " id="accordionExample">
                         <div  class="card" style="background-color: white; border: white;margin-left: {{30*$value['nesting']}}px">
                             <div style="background-color: white; border: white; margin-left: {{30*$value['nesting']}}px" class="card-header" id="heading{{ $value['id'] }}">
