@@ -34,20 +34,24 @@ $(document).ready(function () {
                 if (result1['success'] === "success") {
                     window.location.href = "/";
                 }
-                else {
-                        $.each(result1.error, function (index, value) {
-                            if (value === "The email has already been taken.") $('#error_email').append("Ваша почта уже используется другим пользователем");
-                            else if (value === "The login has already been taken.") $('#error_login').append("Ваш логин уже используется другим пользователем");
-                            else if (value === "The password1 must be at least 6 characters.") $('#error_password').append("Пароль должен быть не меньше шести символов");
-                            else if (value === "The password2 and password1 must match.") $('#error_passwords').append("Пароли не совпадают");
-                            else if (value === "The password1 format is invalid.") $('#error_password1').append("Пароль должен содержать цифры, а также символы верхнего и нижнего регистра");
-
-                        });
-
-                    $('#Password1').val('');
-                    $('#Password2').val('');
-                }
             },
+            error: function (result2)
+            {
+
+                let result = result2.responseJSON.errors;
+                $.each(result, function (index, value) {
+                    if(index === 'Email') $('#error_email').append(value);
+                    else if(index === 'Login') $('#error_login').append(value);
+                    else if(index === 'Password2') $('#error_passwords').append(value);
+                    else {
+                        $.each(value, function (id, value2){
+                            if(value2 === "Пароль должен содержать цифры, а также символы верхнего и нижнего регистра")$('#error_password1').append(value2);
+                            else if (value2 === "Пароль должен быть не меньше шести символов")$('#error_password').append(value2);
+
+                        })
+                    }
+                });
+            }
 
 
 
