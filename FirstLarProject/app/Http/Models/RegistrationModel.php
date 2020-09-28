@@ -42,7 +42,7 @@ class RegistrationModel extends Model
 
         if(empty($this->error))
         {
-            Registor::insert(['name' => $this->name, 'surname' => $this->surname, 'email' => $this->email, 'login' => $this->login, 'password1' => $this->password,]);
+            Registor::insert(['name' => $this->name, 'surname' => $this->surname, 'email' => $this->email, 'login' => $this->login, 'password' => $this->password,]);
             return true;
         }
         else return false;
@@ -57,7 +57,7 @@ class RegistrationModel extends Model
                 ['surname',  $this->surname],
                 ['email',  $this->email],
                 ['login',  $this->login],
-                ['password1',  $this->password],
+                ['password',  $this->password],
 
 
             ])->first();

@@ -25,7 +25,7 @@ class AuthorizationModel extends Model
     public function evidence()
     {
         $users = Registor::where('login', $this->login)->first();
-        $this->hash = $users->password1;
+        $this->hash = $users->password;
         $this->user_id = $users->user_id;
 
         $this->password_verification = password_verify($this->password, $this->hash);
