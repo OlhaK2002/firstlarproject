@@ -19,7 +19,7 @@ class CommentsModel extends Model
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
-            $data = $comment->data;
+            $data = $comment->updated_at;
             $this->otherComments($id, $text, $data, $parent_id, $nesting);
         }
 
@@ -49,7 +49,7 @@ class CommentsModel extends Model
                 $text = $comment->text;
                 $parent_id = $comment->parent_id;
                 $nesting = $comment->nesting;
-                $data = $comment->data;
+                $data = $comment->updated_at;
                 $this->otherComments($id, $text, $data, $parent_id, $nesting);
             }
         }

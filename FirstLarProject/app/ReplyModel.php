@@ -25,22 +25,12 @@ class ReplyModel extends Model
     public function into()
     {
         if($this->text != "" && $this->user_id != "" && $this->count < 1){
-           /* $comment = Comment::create([
+            $comment = Comment::create([
                 'text' => $this->text,
                 'parent_id' => $this->parent_id,
                 'user_id' => $this->user_id,
                 'nesting' => $this->nesting
-            ]);*/
-            $comment = new Comment();
-
-            $comment->user_id = $this->user_id;
-            $comment->text = $this->text;
-            $comment->parent_id = $this->parent_id;
-            $comment->nesting = $this->nesting;
-
-            $comment->save();
-
-            $this->count++;
+            ]);
         }
        return true;
     }
@@ -60,7 +50,7 @@ class ReplyModel extends Model
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
-            $data = $comment->data;
+            $data = $comment->updated_at;
 
             $user = Comment::find($id);
 

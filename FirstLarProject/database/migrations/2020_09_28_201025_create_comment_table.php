@@ -19,7 +19,8 @@ class CreateCommentTable extends Migration
             $table->string('text');
             $table->integer('parent_id');
             $table->integer('nesting');
-            $table->date('data');
+            $table->date('update_at');
+            $table->date('update_at');
         });
     }
 
