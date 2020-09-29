@@ -34,7 +34,7 @@ class ReplyModel extends Model
 
     public function result()
     {
-        if($this->text != "" && $this->user_id != "" && $this->into()){
+        if ($this->text != "" && $this->user_id != "" && $this->into()) {
 
             $comment = Comment::where([
                 ['text', $this->text],

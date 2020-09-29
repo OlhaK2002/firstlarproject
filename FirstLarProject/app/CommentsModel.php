@@ -22,7 +22,6 @@ class CommentsModel extends Model
             $data = $comment->updated_at;
             $this->otherComments($id, $text, $data, $parent_id, $nesting);
         }
-
         return $this->array_view;
     }
 
