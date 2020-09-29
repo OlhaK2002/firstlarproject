@@ -31,8 +31,6 @@
                             </div>
                          <div id="comment{{$value['id']}}"></div>
         @endif
-
-
 @endforeach
 
 

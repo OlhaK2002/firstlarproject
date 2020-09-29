@@ -7,19 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
-    protected $model;
-
     public function reply()
     {
-        $this->model = new ReplyModel();
+        $model = new ReplyModel();
+        $model->reply($_POST['text'], $_POST['parent_id'], Auth::id(), $_POST['nesting']);
 
-        $this->model->reply($_POST['text'], $_POST['parent_id'], Auth::id(), $_POST['nesting']);
-        $array1 = $this->model->result();
-        $array[0] = $array1;
-        if(!empty($array)&&$_POST['text']!=""){
+        $array1 = $model->result();
+        if(!empty($array1) && $_POST['text'] != ""){
+            $array[0] = $array1;
             return view('reply', compact('array'));
-
         }
-
     }
 }
