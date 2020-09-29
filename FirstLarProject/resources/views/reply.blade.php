@@ -24,7 +24,7 @@
                                             <textarea required  name="text" id="text_id{{$value['id']}}" class="form-control"></textarea><br>
                                             <input type="hidden" id="parent_id{{$value['id']}}" class="parent_id" name="parent_id" value="{{$value['id']}}">
                                             <input type="hidden" id="nesting{{$value['id']}}" class="nesting" name="nesting" value="{{$value['nesting']}}">
-                                            <button id="{{$value['id']}}" type="submit" class="btn btn-light">Отправить</button>
+                                            <button id="{{$value['id']}}" type="submit" class="btn btn-light button1">Отправить</button>
                                        </form>
                                    </div>
                                 </div>

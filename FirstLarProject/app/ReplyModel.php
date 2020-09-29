@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class ReplyModel extends Model
 {
     protected $text;
@@ -24,20 +23,18 @@ class ReplyModel extends Model
 
     public function into()
     {
-        if($this->text != "" && $this->user_id != "" && $this->count < 1){
-            $comment = Comment::create([
-                'text' => $this->text,
-                'parent_id' => $this->parent_id,
-                'user_id' => $this->user_id,
-                'nesting' => $this->nesting
-            ]);
-        }
-       return true;
+        Comment::create([
+            'text' => $this->text,
+            'parent_id' => $this->parent_id,
+            'user_id' => $this->user_id,
+            'nesting' => $this->nesting
+        ]);
+        return true;
     }
 
     public function result()
     {
-        if($this->text != "" && $this->user_id != ""  &&  $this->into()){
+        if($this->text != "" && $this->user_id != "" && $this->into()){
 
             $comment = Comment::where([
                 ['text', $this->text],
