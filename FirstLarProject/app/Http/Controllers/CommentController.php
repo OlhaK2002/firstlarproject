@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\CommentModel;
-use Illuminate\Http\Request;
+use App\CommentModel;
 
 class CommentController extends Controller
 {

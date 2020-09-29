@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Comment;
-use App\User;
 
 
 class ReplyModel extends Model
@@ -22,19 +20,19 @@ class ReplyModel extends Model
     protected $index;
     protected $id;
 
-    public function reply( $text, $parent_id, $author_id, $nesting)
+    public function reply( $text, $parent_id, $user_id, $nesting)
     {
         $this->text = $text;
         $this->parent_id = $parent_id;
-        $this->authorid = $author_id;
+        $this->user_id = $user_id;
         $this->nesting = $nesting;
     }
 
     public function into()
     {
-        if($this->text!=""&&$this->authorid!=""&&$this->count<1)
+        if($this->text!=""&&$this->user_id!=""&&$this->count<1)
         {
-            Comment::insert(['authorid' => $this->authorid, 'text' => $this->text, 'parent_id' => $this->parent_id, 'nesting' => $this->nesting]);
+            Comment::insert(['user_id' => $this->user_id, 'text' => $this->text, 'parent_id' => $this->parent_id, 'nesting' => $this->nesting]);
             $this->count++;
         }
         return true;
@@ -43,18 +41,18 @@ class ReplyModel extends Model
 
     public function result()
     {
-        if($this->text!=""&&$this->authorid!="" && $this->into()){
+        if($this->text!=""&&$this->user_id!="" && $this->into()){
 
             $comments = Comment::where([
                 ['text',  $this->text],
                 ['parent_id',  $this->parent_id],
-                ['authorid',  $this->authorid],
+                ['user_id',  $this->user_id],
                 ['nesting',  $this->nesting],
             ])->first();
 
             $this->id = $comments->id;
 
-            $comments = User::join('comment', 'users.id', '=', 'comment.authorid')
+            $comments = User::join('comment', 'users.id', '=', 'comment.user_id')
                 ->where('comment.id', '=', $this->id )
                 ->get();
 

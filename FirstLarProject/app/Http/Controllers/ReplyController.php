@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\ReplyModel;
+use App\ReplyModel;
 use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller

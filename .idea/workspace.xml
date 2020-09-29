@@ -19,18 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5cda0f7-a533-447c-8fc6-556e6677caaf" name="Default Changelist" comment="3(22.09.2020)">
+    <list default="true" id="f5cda0f7-a533-447c-8fc6-556e6677caaf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/CommentModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/CommentModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/ReplyModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/ReplyModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/database/migrations/2020_09_28_200918_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/database/migrations/2020_09_28_200918_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/database/migrations/2020_09_28_201025_create_comment_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/database/migrations/2020_09_28_201025_create_comment_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirstLarProject/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/ReplyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/Http/Controllers/ReplyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/CommentModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/CommentModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Models/ReplyModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/ReplyModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/Http/Requests/RegistrationRequest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirstLarProject/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/FirstLarProject/app/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +158,7 @@
       <recent name="E:\OpenServer\domains\www\FirstLarProject\resources\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\OpenServer\domains\www\FirstLarProject\app" />
       <recent name="E:\OpenServer\domains\www\FirstLarProject\app\Http\Models" />
       <recent name="E:\OpenServer\domains\www\FirstLarProject\resources\views" />
     </key>
@@ -205,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600786652204</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="45(29.09.2020)">
+      <created>1601369305286</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601369305286</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +232,8 @@
     <MESSAGE value="2(22.09.2020)" />
     <MESSAGE value="3(22.09.2020)" />
     <MESSAGE value="4(22.09.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="4(22.09.2020)" />
+    <MESSAGE value="45(29.09.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="45(29.09.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="369" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600760486006">
@@ -242,10 +248,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="507" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1600783133854" />
-    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1600786650236">
+    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1601369301707">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600786650236" />
+    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601369301707" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600763313865">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
