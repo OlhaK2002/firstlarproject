@@ -42,31 +42,33 @@ class ReplyModel extends Model
     public function result()
     {
         if($this->text!=""&&$this->user_id!="" && $this->into()){
-
-            $comments = Comment::where([
+            $comment = Comment::where([
                 ['text',  $this->text],
                 ['parent_id',  $this->parent_id],
                 ['user_id',  $this->user_id],
                 ['nesting',  $this->nesting],
             ])->first();
 
-            $this->id = $comments->id;
+            $id = $comment->id;
+            $user_id = $comment->user_id;
+            $text = $comment->text;
+            $parent_id = $comment->parent_id;
+            $nesting = $comment->nesting;
+            $data = $comment->data;
 
-            $comments = User::join('comment', 'users.id', '=', 'comment.user_id')
-                ->where('comment.id', '=', $this->id )
-                ->get();
+            $user= Comment::find($id);
 
-            foreach($comments as $array){
-                $this->nesting = $array->nesting + 1;
+
+                $this->nesting = $nesting + 1;
                 $this->array_view = [
+                    'id' => $id,
+                    'author' => $user->users['name'],
+                    'text' => $text,
+                    'parent_id' => $parent_id,
                     'nesting' => $this->nesting,
-                    'author' => $array->name,
-                    'data' => $array->data,
-                    'text' => $array->text,
-                    'id' => $array->id,
-                    'parent_id' => $array->parent_id
+                    'data' => $data,
                 ];
-            }
+
 
             return $this->array_view;
         }

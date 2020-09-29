@@ -28,9 +28,9 @@ class CommentModel extends Model
             $id = $comment->id;
             $user_id = $comment->user_id;
             $text = $comment->text;
-            $data = $comment->data;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
+            $data = $comment->data;
             $this->othercomments($id, $user_id, $text, $data, $parent_id, $nesting);
         }
 
@@ -39,20 +39,17 @@ class CommentModel extends Model
 
     public function othercomments($id, $user_id, $text, $data, $parent_id, $nesting)
     {
-       //$array = User::find($user_id)->comments()->where('comment.id', '=', $this->index)->first();
-        $array2= Comment::find($id);
+        $user= Comment::find($id);
 
-
-
-            $this->nesting = $nesting + 1;
-            $this->array_view[$this->ind] = [
-                'nesting' => $this->nesting,
-                'author' => $array2->users['name'],
-                'data' => $data,
-                'text' => $text,
-                'id' => $id,
-                'parent_id' => $parent_id
-            ];
+        $this->nesting = $nesting + 1;
+        $this->array_view[$this->ind] = [
+            'id' => $id,
+            'author' => $user->users['name'],
+            'text' => $text,
+            'parent_id' => $parent_id,
+            'nesting' => $this->nesting,
+            'data' => $data,
+        ];
 
         $comments = Comment::where('parent_id', $id)->get();
 
@@ -62,9 +59,9 @@ class CommentModel extends Model
                 $id = $comment->id;
                 $user_id = $comment->user_id;
                 $text = $comment->text;
-                $data = $comment->data;
                 $parent_id = $comment->parent_id;
                 $nesting = $comment->nesting;
+                $data = $comment->data;
                 $this->othercomments($id, $user_id, $text, $data, $parent_id, $nesting);
             }
         }
