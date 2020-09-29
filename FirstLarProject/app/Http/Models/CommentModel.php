@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Models;
-use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Comment;
+use App\User;
+
 
 class CommentModel extends Model
 {
@@ -11,6 +13,7 @@ class CommentModel extends Model
     protected $sql;
     protected $result;
     protected $value0;
+    protected $sql0;
     protected $array;
     protected $index;
     protected $pdo;
@@ -27,6 +30,7 @@ class CommentModel extends Model
             $id = $comment->id;
             $this->othercomments($id);
         }
+
         return $this->array_view;
     }
 
