@@ -1,6 +1,5 @@
 <div id="comment0"></div>
 @foreach ($array as $key => $value)
-    <div id="comment0"></div>
     <div style="margin-left:{{$value['nesting']*30}}px;" ><br>
         <div class="cool" style=" font-style: italic;">{{$value['author']}}</div>&nbsp
         <div class="cool" style="font-style: italic; color: #888988; ">({{$value["data"]}})</div><br>
