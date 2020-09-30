@@ -13,12 +13,12 @@ class Comment extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User',  'user_id','id' );
+        return Comment::belongsTo('App\User',  'user_id','id' );
     }
 
     public function firstComment()
     {
-        $comments = $this->where('parent_id', "0")->get();
+        $comments = Comment::where('parent_id', "0")->get();
 
         foreach ($comments as $comment) {
             $this->index++;
@@ -34,7 +34,7 @@ class Comment extends Model
 
     public function otherComments($id, $text, $data, $parent_id, $nesting)
     {
-        $user= $this->find($id);
+        $user= Comment::find($id);
 
         $nesting = $nesting + 1;
         $this->array_view[$this->index] = [
@@ -46,7 +46,7 @@ class Comment extends Model
             'data' => $data,
         ];
 
-        $comments = $this->where('parent_id', $id)->get();
+        $comments = Comment::where('parent_id', $id)->get();
 
         if (!empty($comments)) {
             foreach ($comments as $comment) {
