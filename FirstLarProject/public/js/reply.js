@@ -4,6 +4,7 @@ $(document).on('click', 'button.button1', function(event){
     let text = $("#text_id" + id).val();
     let parent_id = $("#parent_id" + id).val();
     let nesting = $("#nesting" + id).val();
+    console.log(id);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

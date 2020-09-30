@@ -12,33 +12,18 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
     <script src="{{asset('js/reply.js')}}" defer></script>
     @endif
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <style>
         html, body {
-            background-color: 	#F2F2F2;
-            color: #667171;
+            background-color:#CFEDF1;
+            color: #35848F;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 100vh;
             margin: 0;
-        }
-
-        .full-height {
-            height: 40vh;
-        }
-
-        .flex-center {
-            margin: 0 0 0 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
         }
 
         .top-right {
@@ -52,7 +37,7 @@
         }
 
         .links > a {
-            color: #667171;
+            color: #35848F;
             padding: 0 25px;
             font-size: 20px;
             font-weight: 600;
@@ -61,12 +46,8 @@
             text-transform: uppercase;
         }
 
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-
         .text {
-            color: #667171;
+            color: #35848F;
             font-size: 20px;
             padding: 0 15px;
         }
@@ -84,8 +65,8 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+        <div class="container text">
+            <a class="navbar-brand text" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -95,19 +76,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <li class="nav-item ">
+                            <a class="nav-link text" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item text" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -121,6 +102,7 @@
         </div>
     </nav>
     <main class="py-4">
+        <comment-component></comment-component>
         @yield('content')
     </main>
 </div>
