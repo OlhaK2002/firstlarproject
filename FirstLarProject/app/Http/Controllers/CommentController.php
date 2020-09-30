@@ -23,7 +23,6 @@ class CommentController extends Controller
     public function reply()
     {
         $this->model->reply($_POST['text'], $_POST['parent_id'], Auth::id(), $_POST['nesting']);
-
         $array = $this->model->result();
         if (!empty($array) && $_POST['text'] != "") {
             return view('reply', compact('array'));
