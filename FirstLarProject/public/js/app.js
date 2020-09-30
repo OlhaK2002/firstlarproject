@@ -1953,7 +1953,8 @@ __webpack_require__.r(__webpack_exports__);
       id: this.value['id'],
       parent_id: this.value['parent_id'],
       nesting: this.value['nesting'],
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      margin: this.value['nesting'] * 30
     };
   }
 });
@@ -38329,7 +38330,7 @@ var render = function() {
   return _c("div", [
     _c("div", { attrs: { id: "'comment0" } }),
     _vm._v(" "),
-    _c("div", [
+    _c("div", { style: { "margin-left": _vm.margin + "px" } }, [
       _c("br"),
       _vm._v(" "),
       _c(
@@ -38353,91 +38354,104 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "accordion", attrs: { id: "accordionExample" } }, [
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-header", attrs: { id: "heading" + _vm.id } },
-          [
-            _c("h2", { staticClass: "mb-0" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-link btn-block text-left",
-                  attrs: {
-                    type: "button",
-                    "data-toggle": "collapse",
-                    "aria-expanded": "false",
-                    "data-target": "#collapse_" + _vm.id,
-                    "aria-controls": "collapse_" + _vm.id
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                        Ответить\n                    "
-                  )
-                ]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse",
-            attrs: {
-              id: "collapse_" + _vm.id,
-              "aria-labelledby": "heading" + _vm.id,
-              "data-parent": "#accordionExample"
-            }
-          },
-          [
-            _c("div", { staticClass: "card-body" }, [
-              _c("form", [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("textarea", {
-                  staticClass: "form-control",
-                  attrs: { required: "", name: "text", id: "text_id" + _vm.id }
-                }),
-                _c("br"),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "parent_id",
-                  attrs: {
-                    type: "hidden",
-                    id: "parent_id" + _vm.id,
-                    name: "parent_id"
-                  },
-                  domProps: { value: _vm.id }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "nesting",
-                  attrs: {
-                    type: "hidden",
-                    id: "nesting" + _vm.id,
-                    name: "nesting"
-                  },
-                  domProps: { value: _vm.nesting }
-                }),
-                _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card", style: { "margin-left": _vm.margin + "px" } },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "card-header",
+              style: { "margin-left": _vm.margin + "px" },
+              attrs: { id: "heading" + _vm.id }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-light button1",
-                    attrs: { id: _vm.id, type: "submit" }
+                    staticClass: "btn btn-link btn-block text-left",
+                    style: { "margin-left": -_vm.margin + "px" },
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "aria-expanded": "false",
+                      "data-target": "#collapse_" + _vm.id,
+                      "aria-controls": "collapse_" + _vm.id
+                    }
                   },
-                  [_vm._v("Отправить")]
+                  [
+                    _vm._v(
+                      "\n                        Ответить\n                    "
+                    )
+                  ]
                 )
               ])
-            ])
-          ]
-        )
-      ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse",
+              attrs: {
+                id: "collapse_" + _vm.id,
+                "aria-labelledby": "heading" + _vm.id,
+                "data-parent": "#accordionExample"
+              }
+            },
+            [
+              _c("div", { staticClass: "card-body" }, [
+                _c("form", [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    staticClass: "form-control",
+                    attrs: {
+                      required: "",
+                      name: "text",
+                      id: "text_id" + _vm.id
+                    }
+                  }),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "parent_id",
+                    attrs: {
+                      type: "hidden",
+                      id: "parent_id" + _vm.id,
+                      name: "parent_id"
+                    },
+                    domProps: { value: _vm.id }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "nesting",
+                    attrs: {
+                      type: "hidden",
+                      id: "nesting" + _vm.id,
+                      name: "nesting"
+                    },
+                    domProps: { value: _vm.nesting }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light button1",
+                      attrs: { id: _vm.id, type: "submit" }
+                    },
+                    [_vm._v("Отправить")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("div", { attrs: { id: "comment" + _vm.id } })
     ])

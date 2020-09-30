@@ -1,16 +1,16 @@
 <template>
     <div>
         <div id="'comment0"></div>
-        <div><br>
+        <div v-bind:style="{'margin-left': margin+'px'}"><br>
             <div class="cool" style=" font-style: italic;">{{author}}</div>&nbsp
             <div class="cool" style="font-style: italic; color: #35848F; ">({{data}})</div><br>
             <div class="cool">{{text}}</div><br>
         </div>
         <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div  class="card-header" :id="'heading'+id">
+            <div class="card" v-bind:style="{'margin-left': margin+'px'}">
+                <div  class="card-header" :id="'heading'+id" v-bind:style="{'margin-left': margin+'px'}">
                     <h2 class="mb-0">
-                        <button  class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" aria-expanded="false" :data-target="'#collapse_'+id" :aria-controls="'collapse_'+id">
+                        <button v-bind:style="{'margin-left': -margin+'px'}" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" aria-expanded="false" :data-target="'#collapse_'+id" :aria-controls="'collapse_'+id">
                             Ответить
                         </button>
                     </h2>
@@ -45,7 +45,9 @@
                 id: this.value['id'],
                 parent_id: this.value['parent_id'],
                 nesting: this.value['nesting'],
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                margin: this.value['nesting']*30,
+
             }
         }
     }

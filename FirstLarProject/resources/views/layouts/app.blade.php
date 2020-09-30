@@ -102,7 +102,6 @@
         </div>
     </nav>
     <main class="py-4">
-        <comment-component></comment-component>
         @yield('content')
     </main>
 </div>
