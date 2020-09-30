@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\ReplyModel;
+use App\Reply;
 use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
     public function reply()
     {
-        $model = new ReplyModel();
+        $model = new Reply();
         $model->reply($_POST['text'], $_POST['parent_id'], Auth::id(), $_POST['nesting']);
 
         $array1 = $model->result();

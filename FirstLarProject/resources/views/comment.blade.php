@@ -16,7 +16,7 @@
                 <textarea  style="background-color: #FFFAF7; border: #FFFAF7; margin-left: 20px;" rows="3" required name="text" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
                 <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
                 <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
-                <button style="background-color:#F2F2F2;margin-left: 20px;" id="0" type="submit" class="btn btn-light">Отправить</button>
+                <button style="background-color:#F2F2F2;margin-left: 20px;" id="0" type="submit" class="button1 btn btn-light">Отправить</button>
             </form><br><br>
         @else
             <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route('login')}}">войдите</a> или <a style = "color: lightcoral" href="{{route('register')}}">зарегистрируйтеся</a></h4><br><br>
@@ -45,7 +45,7 @@
                                     <textarea  required name="text" id="text_id{{ $value['id'] }}" class="form-control"></textarea><br>
                                     <input type="hidden" id="parent_id{{ $value['id'] }}" class="parent_id" name="parent_id" value="{{ $value['id'] }}">
                                     <input type="hidden" id="nesting{{ $value['id'] }}" class="nesting" name="nesting" value="{{ $value['nesting'] }}">
-                                    <button id="{{ $value['id'] }}" type="submit" class="btn btn-light button1">Отправить</button>
+                                    <button id="{{ $value['id'] }}" type="submit" class="button1 btn btn-light ">Отправить</button>
                                 </form>
                             </div>
                         </div>
