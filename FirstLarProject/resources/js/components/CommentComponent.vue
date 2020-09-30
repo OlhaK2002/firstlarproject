@@ -7,8 +7,8 @@
             <div class="cool">{{text}}</div><br>
         </div>
         <div class="accordion" id="accordionExample">
-            <div class="card" v-bind:style="{'margin-left': margin+'px'}">
-                <div  class="card-header" :id="'heading'+id" v-bind:style="{'margin-left': margin+'px'}">
+            <div class="card" v-bind:style="{'margin-left': margin+'px', 'background-color': '#FFFFFF'}">
+                <div  class="card-header" :id="'heading'+id" v-bind:style="{'margin-left': margin+'px', 'background-color': '#FFFFFF'}">
                     <h2 class="mb-0">
                         <button v-bind:style="{'margin-left': -margin+'px'}" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" aria-expanded="false" :data-target="'#collapse_'+id" :aria-controls="'collapse_'+id">
                             Ответить
@@ -47,6 +47,7 @@
                 nesting: this.value['nesting'],
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 margin: this.value['nesting']*30,
+
 
             }
         }

@@ -38356,13 +38356,22 @@ var render = function() {
     _c("div", { staticClass: "accordion", attrs: { id: "accordionExample" } }, [
       _c(
         "div",
-        { staticClass: "card", style: { "margin-left": _vm.margin + "px" } },
+        {
+          staticClass: "card",
+          style: {
+            "margin-left": _vm.margin + "px",
+            "background-color": "#FFFFFF"
+          }
+        },
         [
           _c(
             "div",
             {
               staticClass: "card-header",
-              style: { "margin-left": _vm.margin + "px" },
+              style: {
+                "margin-left": _vm.margin + "px",
+                "background-color": "#FFFFFF"
+              },
               attrs: { id: "heading" + _vm.id }
             },
             [
