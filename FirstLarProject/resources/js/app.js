@@ -11,9 +11,9 @@ window.Vue = require('vue');
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+ * component and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./componensts/ExampleComponent.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i);
@@ -23,7 +23,7 @@ Vue.component('comment-component', require('./components/CommentComponent.vue').
 Vue.component('title-component', require('./components/TitleComponent.vue').default);
 Vue.component('field-component', require('./components/FieldComponent.vue').default);
 Vue.component('reply-component', require('./components/ReplyComponent.vue').default);
-Vue.component('layout-component', require('./components/LayoutComponent.vue').default);
+Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 
 

@@ -1,12 +1,14 @@
-<div id="comment0"></div>
-@foreach ($array as $key => $value)
-    <div style="margin-left:{{$value['nesting']*30}}px;"  class="text"><br>
+@php
+   /*<comment-component :value="@json($value)"></comment-component>
+   <div class="accordion" id="accordionExample">
+   <reply-component :value="@json($value)" :bool='@json(Auth::check())'></reply-component>*/
+@endphp
+ <div style="margin-left:{{$value['nesting']*30}}px;" ><br>
         <div class="cool" style=" font-style: italic;">{{$value['author']}}</div>&nbsp
-        <div class="cool" style="font-style: italic; color: #35848F; ">({{$value['data']}})</div><br>
+        <div class="cool" style="font-style: italic; color: #35848F; ">({{$value["data"]}})</div><br>
         <div class="cool">{{$value['text']}}</div><br>
     </div>
-    @if(Auth::check())
-        <div class="accordion" id="accordionExample">
+ <div class="accordion" id="accordionExample">
             <div style="background-color: white; border: white; margin-left:{{$value['nesting']*30}}px" class="card">
                 <div style="background-color: white; border: white; margin-left:{{$value['nesting']*30}}px" class="card-header" id="heading{{$value['id']}}">
                     <h2 class="mb-0">
@@ -28,7 +30,7 @@
                 </div>
             </div>
          <div id="comment{{$value['id']}}"></div>
-    @endif
-@endforeach
+
+
 
 

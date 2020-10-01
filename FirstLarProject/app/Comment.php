@@ -10,6 +10,10 @@ class Comment extends Model
     protected $fillable = ['user_id', 'text', 'parent_id', 'nesting'];
     protected $array_view;
     protected $index = 0;
+    protected $text1;
+    protected $user_id1;
+    protected $parent_id1;
+    protected $nesting1;
 
     public function users()
     {
@@ -63,32 +67,32 @@ class Comment extends Model
 
     public function reply($text, $parent_id, $user_id, $nesting)
     {
-        $this->text = $text;
-        $this->parent_id = $parent_id;
-        $this->user_id = $user_id;
-        $this->nesting = $nesting;
+        $this->text1 = $text;
+        $this->parent_id1 = $parent_id;
+        $this->user_id1 = $user_id;
+        $this->nesting1 = $nesting;
     }
 
     public function into()
     {
         $this::create([
-            'text' => $this->text,
-            'parent_id' => $this->parent_id,
-            'user_id' => $this->user_id,
-            'nesting' => $this->nesting
+            'text' => $this->text1,
+            'parent_id' => $this->parent_id1,
+            'user_id' => $this->user_id1,
+            'nesting' => $this->nesting1
         ]);
         return true;
     }
 
     public function result()
     {
-        if ($this->text != "" && $this->user_id != "" && $this->into()) {
+        if ($this->text1 != "" && $this->user_id1 != "" && $this->into()) {
 
             $comment = $this::where([
-                ['text', $this->text],
-                ['parent_id', $this->parent_id],
-                ['user_id', $this->user_id],
-                ['nesting', $this->nesting]
+                ['text', $this->text1],
+                ['parent_id', $this->parent_id1],
+                ['user_id', $this->user_id1],
+                ['nesting', $this->nesting1]
             ])->first();
 
             $id = $comment->id;
@@ -99,16 +103,16 @@ class Comment extends Model
 
             $user = $this::find($id);
 
-            $this->nesting = $nesting + 1;
-            $this->array_view[0] = [
+            $this->nesting1 = $nesting + 1;
+            $array_view2 = [
                 'id' => $id,
                 'author' => $user->users['name'],
                 'text' => $text,
                 'parent_id' => $parent_id,
-                'nesting' => $this->nesting,
+                'nesting' => $this->nesting1,
                 'data' => $data,
             ];
-            return $this->array_view;
+            return $array_view2;
         }
     }
 
