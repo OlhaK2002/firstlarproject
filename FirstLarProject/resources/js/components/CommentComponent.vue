@@ -1,13 +1,12 @@
 <template>
-    <div>
+    <div class="text">
         <div id="comment0"></div>
         <div v-bind:style="{'margin-left': margin+'px'}"><br>
-            <div class="cool" style=" font-style: italic;">{{author}}</div>&nbsp
-            <div class="cool" style="font-style: italic; color: #35848F; ">({{data}})</div><br>
+            <div class="cool author">{{author}}</div>&nbsp
+            <div class="cool data">({{data}})</div><br>
             <div class="cool">{{text}}</div><br>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -29,4 +28,17 @@
     }
 
 </script>
-
+<style>
+    .author{
+        font-style: italic;
+    }
+    .data{
+        font-style: italic;
+        color: #35848F;
+    }
+    .text {
+        color: #35848F;
+        font-size: 20px;
+        padding: 0 15px;
+    }
+</style>

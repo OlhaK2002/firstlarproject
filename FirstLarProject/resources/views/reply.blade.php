@@ -1,8 +1,8 @@
 <div id="comment0"></div>
 @foreach ($array as $key => $value)
-    <div style="margin-left:{{$value['nesting']*30}}px;" ><br>
+    <div style="margin-left:{{$value['nesting']*30}}px;"  class="text"><br>
         <div class="cool" style=" font-style: italic;">{{$value['author']}}</div>&nbsp
-        <div class="cool" style="font-style: italic; color: #35848F; ">({{$value["data"]}})</div><br>
+        <div class="cool" style="font-style: italic; color: #35848F; ">({{$value['data']}})</div><br>
         <div class="cool">{{$value['text']}}</div><br>
     </div>
     @if(Auth::check())

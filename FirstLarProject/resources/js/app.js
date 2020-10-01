@@ -21,10 +21,10 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('comment-component', require('./components/CommentComponent.vue').default);
-Vue.component('comment2-component', require('./components/Comment2Component.vue').default);
 Vue.component('title-component', require('./components/TitleComponent.vue').default);
 Vue.component('field-component', require('./components/FieldComponent.vue').default);
 Vue.component('reply-component', require('./components/ReplyComponent.vue').default);
+Vue.component('comment2-component', require('./components/Comment2Component.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

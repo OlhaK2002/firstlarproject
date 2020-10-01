@@ -45,7 +45,6 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-
         .text {
             color: #35848F;
             font-size: 20px;

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="text">
         <form v-if="bool">
             <input type="hidden" name="_token" :value="csrf">
             <textarea rows="3" required name="text" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
@@ -7,6 +7,8 @@
             <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
             <button id="0" type="submit" class="button1 btn btn-light">Отправить</button>
         </form>
+        <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="/login">войдите</a> или <a style = "color: lightcoral" href="/register">зарегистрируйтеся</a></h4><br><br>
+
     </div>
 </template>
 
@@ -35,5 +37,10 @@ html, body {
 }
 .nesting {
     display: inline-block;
+}
+.text {
+    color: #35848F;
+    font-size: 20px;
+    padding: 0 15px;
 }
 </style>
