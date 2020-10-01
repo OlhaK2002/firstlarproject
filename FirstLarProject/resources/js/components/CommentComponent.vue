@@ -19,9 +19,7 @@
                 data: this.value['data'],
                 text: this.value['text'],
                 id: this.value['id'],
-                parent_id: this.value['parent_id'],
                 nesting: this.value['nesting'],
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 margin: this.value['nesting']*30,
             }
         }
@@ -40,5 +38,8 @@
         color: #35848F;
         font-size: 20px;
         padding: 0 15px;
+    }
+    .cool{
+        display: inline-block;
     }
 </style>

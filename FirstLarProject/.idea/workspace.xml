@@ -20,14 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/HomeComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/LayoutComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Comment2Component.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FieldComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FieldComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/comment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reply.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reply.blade.php" afterDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
@@ -215,7 +217,7 @@
       <workItem from="1601472201791" duration="117000" />
       <workItem from="1601472328178" duration="5622000" />
       <workItem from="1601486446857" duration="8851000" />
-      <workItem from="1601535712311" duration="8935000" />
+      <workItem from="1601535712311" duration="15456000" />
     </task>
     <task id="LOCAL-00001" summary="6(22.09.2020)">
       <created>1600871404507</created>
@@ -539,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601542406391</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="59(01.10.2020)">
+      <created>1601545183294</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1601545183294</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +567,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="23(25.09.2020)" />
     <MESSAGE value="24(25.09.2020)" />
     <MESSAGE value="25(25.09.2020)" />
     <MESSAGE value="26(25.09.2020)" />
@@ -583,21 +591,26 @@
     <MESSAGE value="56(30.09.2020)" />
     <MESSAGE value="57(30.09.2020)" />
     <MESSAGE value="58(01.10.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="58(01.10.2020)" />
+    <MESSAGE value="59(01.10.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="59(01.10.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1601031012667" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601545235249">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601545235249" />
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601202706303">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601202706303" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601542403479">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601545181202">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601542403479" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601545181202" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -610,10 +623,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1600931457587" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601462854450">
+    <state x="741" y="450" key="NewPhpFileDialog" timestamp="1601550754378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601462854450" />
+    <state x="741" y="450" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601550754378" />
     <state x="587" y="115" key="RollbackChangesDialog" timestamp="1600867554342">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -622,18 +635,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601461504227" />
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601496637906">
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601545188849">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601496637906" />
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601545188849" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1600867163639" />
-    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601542722908">
+    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601549258376">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1601542722908" />
+    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1601549258376" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
