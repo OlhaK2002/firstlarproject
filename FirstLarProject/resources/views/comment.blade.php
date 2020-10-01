@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <title-component></title-component>
-    <div class="content text">
 
-        @if(Auth::check())
-            <field-component></field-component>
-        @else
-            <h4>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="{{route('login')}}">войдите</a> или <a style = "color: lightcoral" href="{{route('register')}}">зарегистрируйтеся</a></h4><br><br>
-        @endif
+    <div class="content text">
+        <field-component :bool="@json(Auth::check())"></field-component>
+
         @foreach ($array as $key => $value)
             <comment-component :value='@json($value)' ></comment-component>
+
+            <div class="accordion" id="accordionExample">
+                <reply-component :value='@json($value)' :bool='@json(Auth::check())'></reply-component>
         @endforeach
 @endsection
