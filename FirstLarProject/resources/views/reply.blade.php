@@ -1,8 +1,3 @@
-@php
-   /*<comment-component :value="@json($value)"></comment-component>
-   <div class="accordion" id="accordionExample">
-   <reply-component :value="@json($value)" :bool='@json(Auth::check())'></reply-component>*/
-@endphp
  <div style="margin-left:{{$value['nesting']*30}}px;" ><br>
         <div class="cool" style=" font-style: italic;">{{$value['author']}}</div>&nbsp
         <div class="cool" style="font-style: italic; color: #35848F; ">({{$value["data"]}})</div><br>
