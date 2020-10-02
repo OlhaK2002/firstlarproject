@@ -16,7 +16,8 @@ $(document).on('click', 'button.button1', function(event){
         dataType: 'html',
         data: {text: text, parent_id: parent_id, nesting: nesting},
         success: function (result) {
-            $("#comment" + id).append(result);
+            //$("#comment" + id).append(result);
+            console.log(result);
             $('textarea.form-control').val('');
         }
     })

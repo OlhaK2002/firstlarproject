@@ -25,11 +25,6 @@
                 height: 100vh;
                 margin: 0;
             }
-            .text {
-                color: #35848F;
-                font-size: 20px;
-                padding: 0 15px;
-            }
         </style>
     </head>
     <body>

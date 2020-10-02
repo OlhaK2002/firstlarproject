@@ -1946,7 +1946,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array1', 'bool'],
   data: function data() {
@@ -2143,9 +2142,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2156,7 +2152,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/reply').then(function (response) {
+    axios.get('/rep').then(function (response) {
       _this.array = response.data;
     });
   }
@@ -6623,7 +6619,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.text {\n    color: #35848F;\n    font-size: 20px;\n    padding: 0 15px;\n}\n.nesting {\n    display: inline-block;\n}\n.cool{\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.nesting {\n    display: inline-block;\n}\n.cool{\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -39112,11 +39108,7 @@ var render = function() {
                     "aria-controls": "collapse_" + _vm.array["id"]
                   }
                 },
-                [
-                  _vm._v(
-                    "\n                        Ответить\n                    "
-                  )
-                ]
+                [_vm._v("\n                    Ответить\n                ")]
               )
             ])
           ]

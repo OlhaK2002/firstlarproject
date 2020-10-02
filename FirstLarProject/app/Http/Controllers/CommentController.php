@@ -26,9 +26,7 @@ class CommentController extends Controller
         $this->model->reply($_POST['text'], $_POST['parent_id'], Auth::id(), $_POST['nesting']);
         $array = $this->model->result();
         if (!empty($array) && $_POST['text'] != "") {
-            //echo '<comment-component :value="'.json_encode($value).'"></comment-component>';
-            return view('reply', compact('array'));
-            //return response()->json($array, Response::HTTP_OK);
+            return response()->json($array, Response::HTTP_OK);
         }
     }
 

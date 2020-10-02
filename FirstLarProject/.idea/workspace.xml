@@ -19,14 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="64(02.10.2020)">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ReplyController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" afterDir="false" />
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReplyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReplyController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/reply.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/reply.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/reply.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reply.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -219,14 +220,7 @@
       <workItem from="1601486446857" duration="8851000" />
       <workItem from="1601535712311" duration="29121000" />
       <workItem from="1601578488543" duration="3441000" />
-      <workItem from="1601622043409" duration="10852000" />
-    </task>
-    <task id="LOCAL-00002" summary="7(23.09.2020)">
-      <created>1600871916266</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1600871916266</updated>
+      <workItem from="1601622043409" duration="26529000" />
     </task>
     <task id="LOCAL-00003" summary="8(23.09.2020)">
       <created>1600893326958</created>
@@ -564,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601623855299</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="64(02.10.2020)">
+      <created>1601633866053</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1601633866053</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,10 +624,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601633229524">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601633858299">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601633229524" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601633858299" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -651,10 +652,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601461504227" />
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601623867690">
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601633877166">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601623867690" />
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601633877166" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

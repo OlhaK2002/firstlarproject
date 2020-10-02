@@ -30,7 +30,7 @@ class Comment extends Model
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
-            $data = $comment->updated_at;
+            $data = date($comment->updated_at);
             $this->otherComments($id, $text, $data, $parent_id, $nesting);
         }
         return $this->array_view;
@@ -59,7 +59,7 @@ class Comment extends Model
                 $text = $comment->text;
                 $parent_id = $comment->parent_id;
                 $nesting = $comment->nesting;
-                $data = $comment->updated_at;
+                $data = date($comment->updated_at);
                 $this->otherComments($id, $text, $data, $parent_id, $nesting);
             }
         }
@@ -99,7 +99,7 @@ class Comment extends Model
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
-            $data = $comment->updated_at;
+            $data = date($comment->updated_at);
 
             $user = $this::find($id);
 

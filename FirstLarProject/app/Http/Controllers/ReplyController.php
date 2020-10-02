@@ -12,9 +12,9 @@ class ReplyController extends Controller
     public function reply()
     {
         $model= new Comment();
-        $model->reply('iweiuewrg', '0', 5, 0);
+        $model->reply('1', 0, Auth::id(), 0);
         $array = $model->result();
-        if (!empty($array) ) {
+        if (!empty($array)) {
             return response()->json($array, Response::HTTP_OK);
         }
     }
