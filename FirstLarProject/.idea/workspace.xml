@@ -19,18 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="61(01.10.2020)">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at_24_09_2020_10_10_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at_24_09_2020_10_10_[Revert__5(22_09_2020)_]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at_24_09_2020_10_10__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at_24_09_2020_10_10__Revert__5_22_09_2020___.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/LayoutComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ReplyComponent.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/comment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reply.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reply.blade.php" afterDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
@@ -218,7 +217,9 @@
       <workItem from="1601472201791" duration="117000" />
       <workItem from="1601472328178" duration="5622000" />
       <workItem from="1601486446857" duration="8851000" />
-      <workItem from="1601535712311" duration="29090000" />
+      <workItem from="1601535712311" duration="29121000" />
+      <workItem from="1601578488543" duration="3441000" />
+      <workItem from="1601622043409" duration="1585000" />
     </task>
     <task id="LOCAL-00001" summary="6(22.09.2020)">
       <created>1600871404507</created>
@@ -575,7 +576,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="26(25.09.2020)" />
     <MESSAGE value="27(25.09.2020)" />
     <MESSAGE value="28(25.09.2020)" />
     <MESSAGE value="29(25.09.2020)" />
@@ -600,7 +600,8 @@
     <MESSAGE value="59(01.10.2020)" />
     <MESSAGE value="60(01.10.2020)" />
     <MESSAGE value="61(01.10.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="61(01.10.2020)" />
+    <MESSAGE value="62(01.10.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="62(01.10.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -615,18 +616,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601202706303" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601561992069">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601565480999">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601561992069" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601565480999" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1600930961872" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601461376170">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601581869076">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601461376170" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601581869076" />
     <state x="147" y="65" key="MergeDialog" timestamp="1600931457587">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -651,10 +652,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1600867163639" />
-    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601557913102">
+    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601623646220">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1601557913102" />
+    <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1601623646220" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
