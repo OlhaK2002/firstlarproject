@@ -12,7 +12,6 @@
         </div>
         <div v-for = "value in array1">
             <div class = "text">
-                <div id = "comment0">  </div>
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                     <div class = "cool author">{{value['author']}}</div>&nbsp
                     <div class = "cool data">({{value['data']}})</div><br>
@@ -40,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="array['parent_id']===value['id']">  </div>
             </div>
         </div>
     </div>

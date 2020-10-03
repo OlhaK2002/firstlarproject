@@ -1954,8 +1954,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array1', 'bool'],
   data: function data() {
@@ -1963,8 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       text: '',
       parent_id: '',
-      nesting: '',
-      array: []
+      nesting: ''
     };
   },
   methods: {
@@ -38554,8 +38551,6 @@ var render = function() {
       _vm._l(_vm.array1, function(value) {
         return _c("div", [
           _c("div", { staticClass: "text" }, [
-            _c("div", { attrs: { id: "comment0" } }),
-            _vm._v(" "),
             _c(
               "div",
               { style: { "margin-left": value["nesting"] * 30 + "px" } },
@@ -38716,9 +38711,7 @@ var render = function() {
                       ]
                     )
                   ]
-                ),
-                _vm._v(" "),
-                _vm.array["parent_id"] === value["id"] ? _c("div") : _vm._e()
+                )
               ])
             : _vm._e()
         ])
