@@ -18,7 +18,7 @@
             </div>
             <div :id="'collapse_'+array['id']" class="collapse" :aria-labelledby="'heading'+array['id']" data-parent="#accordionExample">
                 <div class="card-body">
-                    <form>
+                    <form @submit.prevent="onSubmit(array['id'], array['nesting'])">
                         <input type="hidden" name="_token" :value="csrf">
                         <textarea required  name="text" :id="'text_id'+array['id']" class="form-control"></textarea><br>
                         <input type="hidden" :id="'parent_id'+array['id']" class="parent_id" name="parent_id" :value="array['id']">
@@ -38,13 +38,9 @@ export default {
         return {
             array: {},
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+
         }
-    },
-    mounted() {
-        axios.get('/rep')
-            .then((response)=>{
-                this.array = response.data
-            })
     },
 }
 </script>

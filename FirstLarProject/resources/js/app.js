@@ -25,6 +25,7 @@ Vue.component('field-component', require('./components/FieldComponent.vue').defa
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 Vue.component('reply-component', require('./components/ReplyComponent.vue').default);
+Vue.component('app-component', require('./components/App.vue').default);
 
 
 /**

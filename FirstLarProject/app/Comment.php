@@ -41,7 +41,7 @@ class Comment extends Model
         $user= $this::find($id);
 
         $nesting = $nesting + 1;
-        $this->array_view[$this->index] = [
+        $this->array_view[] = [
             'id' => $id,
             'author' => $user->users['name'],
             'text' => $text,
