@@ -1,5 +1,15 @@
 <template>
     <div>
+        <div class="text">
+            <form v-if="bool" @submit.prevent="onSubmit(0, 0)">
+                <input type="hidden" name="_token" :value="csrf">
+                <textarea rows="3" required name="text" v-model="text" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
+                <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
+                <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
+                <button id="0" type="submit" class="button1 btn btn-light">Отправить</button>
+            </form>
+            <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="/login">войдите</a> или <a style = "color: lightcoral" href="/register">зарегистрируйтеся</a></h4><br><br>
+        </div>
         <div v-for = "value in array1">
             <div class = "text">
                 <div id = "comment0">  </div>
@@ -45,7 +55,6 @@ export default {
             text: '',
             parent_id: '',
             nesting:  '',
-            array: [],
         }
     },
     methods: {
@@ -62,25 +71,9 @@ export default {
                 }
             )
             .then(response => {
-
-                    let id = response.data['id'];
-                    let parent_id =  response.data['parent_id'];
-                    let author = response.data['author'];
-                    let data = response.data['data'];
-                    let nesting = response.data['nesting'];
-                    let text = response.data['text'];
-
-                    let array = {
-                        id: id,
-                        author: author,
-                        text: text,
-                        parent_id: parent_id,
-                        nesting: nesting,
-                        data: data,
-                    }
-                    this.array1.push(array)
+                    this.array1.push(response.data)
                     console.log(this.array1)
-                this.text = '';
+                    this.text = '';
             })
         }
     },

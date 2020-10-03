@@ -21,11 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('comment-component', require('./components/CommentComponent.vue').default);
 Vue.component('title-component', require('./components/TitleComponent.vue').default);
-Vue.component('field-component', require('./components/FieldComponent.vue').default);
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
-Vue.component('reply-component', require('./components/ReplyComponent.vue').default);
-Vue.component('app-component', require('./components/App.vue').default);
 
 
 /**
