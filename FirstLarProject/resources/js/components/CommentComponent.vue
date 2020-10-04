@@ -1,16 +1,16 @@
 <template>
     <div>
         <div class="text">
-            <form v-if="bool" @submit.prevent="onSubmit(0, 0)">
+            <form v-if="bool" @submit.prevent="onSubmit(0,0, 0)">
                 <input type="hidden" name="_token" :value="csrf">
-                <textarea rows="3" required name="text" v-model="text" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
+                <textarea rows="3" required name="text" v-model="text0" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
                 <input type="hidden" id="parent_id0" class="parent" name="parent_id" value="0">
                 <input type="hidden" id="nesting0" class="nesting" name="nesting" value="0">
                 <button id="0" type="submit" class="button1 btn btn-light">Отправить</button>
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="/login">войдите</a> или <a style = "color: lightcoral" href="/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-        <div v-for = "value in array1">
+        <div v-for = "(value, index) in array1">
             <div class = "text">
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                     <div class = "cool author">{{value['author']}}</div>&nbsp
@@ -29,7 +29,7 @@
                     </div>
                     <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
                         <div class="card-body">
-                            <form @submit.prevent="onSubmit(value['id'], value['nesting'])">
+                            <form @submit.prevent="onSubmit(value['id'], value['nesting'], index)">
                                 <input type = "hidden" name = "_token" :value="csrf">
                                 <textarea required  v-model="text"  name = "text" :id = "'text_id'+value['id']" class = "form-control"></textarea><br>
                                 <input type = "hidden"  :id = "'parent_id'+value['id']" class = "parent_id" name = "parent_id" :value="value['id']">
@@ -51,15 +51,16 @@ export default {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             text: '',
+            text0: '',
             parent_id: '',
             nesting:  '',
         }
     },
     methods: {
-        onSubmit(parent_id, nesting) {
-            console.log(this.text, parent_id, nesting)
+        onSubmit(parent_id, nesting, index) {
             let form = new FormData();
-            form.append('text', this.text);
+            if (parent_id === 0) {form.append('text', this.text0);}
+            else {form.append('text', this.text);}
             form.append('parent_id', parent_id);
             form.append('nesting', nesting);
             axios({
@@ -69,9 +70,11 @@ export default {
                 }
             )
             .then(response => {
-                    this.array1.push(response.data)
-                    console.log(this.array1)
-                    this.text = '';
+                if(parent_id === 0){this.array1.push(response.data)}
+                else {this.array1.splice(index+1, 0, response.data)}
+                console.log(this.array1)
+                this.text = '';
+                this.text0 = '';
             })
         }
     },

@@ -19,9 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="69(02.10.2020)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/reply.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/comment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/comment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/new.blade.php" beforeDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
@@ -213,14 +217,8 @@
       <workItem from="1601578488543" duration="3441000" />
       <workItem from="1601622043409" duration="28672000" />
       <workItem from="1601671240329" duration="806000" />
-      <workItem from="1601711280078" duration="39830000" />
-    </task>
-    <task id="LOCAL-00006" summary="11(24.09.2020)">
-      <created>1600945366123</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1600945366123</updated>
+      <workItem from="1601711280078" duration="40143000" />
+      <workItem from="1601792573849" duration="2491000" />
     </task>
     <task id="LOCAL-00007" summary="12(24.09.2020)">
       <created>1600951581452</created>
@@ -558,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601759648012</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="68(02.10.2020)">
+      <created>1601760034774</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1601760034774</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,8 +582,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="33(25.09.2020)" />
-    <MESSAGE value="34(25.09.2020)" />
     <MESSAGE value="35(28.09.2020)" />
     <MESSAGE value="36(28.09.2020)" />
     <MESSAGE value="37(28.09.2020)" />
@@ -602,7 +605,9 @@
     <MESSAGE value="65(02.10.2020)" />
     <MESSAGE value="66(02.10.2020)" />
     <MESSAGE value="67(02.10.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="67(02.10.2020)" />
+    <MESSAGE value="68(02.10.2020)" />
+    <MESSAGE value="69(02.10.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="69(02.10.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -617,10 +622,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601759645389">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601794958852">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601759645389" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601794958852" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1600930961872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -645,10 +650,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601461504227" />
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601759665965">
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1601760131926">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601759665965" />
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601760131926" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

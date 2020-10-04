@@ -1960,17 +1960,23 @@ __webpack_require__.r(__webpack_exports__);
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       text: '',
+      text0: '',
       parent_id: '',
       nesting: ''
     };
   },
   methods: {
-    onSubmit: function onSubmit(parent_id, nesting) {
+    onSubmit: function onSubmit(parent_id, nesting, index) {
       var _this = this;
 
-      console.log(this.text, parent_id, nesting);
       var form = new FormData();
-      form.append('text', this.text);
+
+      if (parent_id === 0) {
+        form.append('text', this.text0);
+      } else {
+        form.append('text', this.text);
+      }
+
       form.append('parent_id', parent_id);
       form.append('nesting', nesting);
       axios({
@@ -1978,10 +1984,15 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
-        _this.array1.push(response.data);
+        if (parent_id === 0) {
+          _this.array1.push(response.data);
+        } else {
+          _this.array1.splice(index + 1, 0, response.data);
+        }
 
         console.log(_this.array1);
         _this.text = '';
+        _this.text0 = '';
       });
     }
   }
@@ -38456,7 +38467,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.onSubmit(0, 0)
+                    return _vm.onSubmit(0, 0, 0)
                   }
                 }
               },
@@ -38471,8 +38482,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.text,
-                      expression: "text"
+                      value: _vm.text0,
+                      expression: "text0"
                     }
                   ],
                   staticClass: "form-control nesting",
@@ -38483,13 +38494,13 @@ var render = function() {
                     id: "text_id0",
                     placeholder: "Введите Ваш комментарий..."
                   },
-                  domProps: { value: _vm.text },
+                  domProps: { value: _vm.text0 },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.text = $event.target.value
+                      _vm.text0 = $event.target.value
                     }
                   }
                 }),
@@ -38548,7 +38559,7 @@ var render = function() {
         _c("br")
       ]),
       _vm._v(" "),
-      _vm._l(_vm.array1, function(value) {
+      _vm._l(_vm.array1, function(value, index) {
         return _c("div", [
           _c("div", { staticClass: "text" }, [
             _c(
@@ -38643,7 +38654,8 @@ var render = function() {
                                   $event.preventDefault()
                                   return _vm.onSubmit(
                                     value["id"],
-                                    value["nesting"]
+                                    value["nesting"],
+                                    index
                                   )
                                 }
                               }
