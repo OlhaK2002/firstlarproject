@@ -1950,10 +1950,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array1', 'bool'],
   data: function data() {
@@ -1990,7 +1986,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.array1.splice(index + 1, 0, response.data);
         }
 
-        console.log(_this.array1);
         _this.text = '';
         _this.text0 = '';
       });
@@ -6563,7 +6558,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nesting {\n    display: inline-block;\n}\n.cool{\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.nesting {\n    display: inline-block;\n}\n.comment{\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -38505,32 +38500,9 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("input", {
-                  staticClass: "parent",
-                  attrs: {
-                    type: "hidden",
-                    id: "parent_id0",
-                    name: "parent_id",
-                    value: "0"
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "nesting",
-                  attrs: {
-                    type: "hidden",
-                    id: "nesting0",
-                    name: "nesting",
-                    value: "0"
-                  }
-                }),
-                _vm._v(" "),
                 _c(
                   "button",
-                  {
-                    staticClass: "button1 btn btn-light",
-                    attrs: { id: "0", type: "submit" }
-                  },
+                  { staticClass: "btn btn-light", attrs: { type: "submit" } },
                   [_vm._v("Отправить")]
                 )
               ]
@@ -38568,16 +38540,16 @@ var render = function() {
               [
                 _c("br"),
                 _vm._v(" "),
-                _c("div", { staticClass: "cool author" }, [
+                _c("div", { staticClass: "comment author" }, [
                   _vm._v(_vm._s(value["author"]))
                 ]),
                 _vm._v(" \n                "),
-                _c("div", { staticClass: "cool data" }, [
+                _c("div", { staticClass: "comment data" }, [
                   _vm._v("(" + _vm._s(value["data"]) + ")")
                 ]),
                 _c("br"),
                 _vm._v(" "),
-                _c("div", { staticClass: "cool" }, [
+                _c("div", { staticClass: "comment" }, [
                   _vm._v(_vm._s(value["text"]))
                 ]),
                 _c("br")
@@ -38676,11 +38648,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: {
-                                  required: "",
-                                  name: "text",
-                                  id: "text_id" + value["id"]
-                                },
+                                attrs: { required: "", name: "text" },
                                 domProps: { value: _vm.text },
                                 on: {
                                   input: function($event) {
@@ -38693,27 +38661,11 @@ var render = function() {
                               }),
                               _c("br"),
                               _vm._v(" "),
-                              _c("input", {
-                                staticClass: "parent_id",
-                                attrs: {
-                                  type: "hidden",
-                                  id: "parent_id" + value["id"],
-                                  name: "parent_id"
-                                },
-                                domProps: { value: value["id"] }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "nesting",
-                                attrs: { type: "hidden", name: "nesting" },
-                                domProps: { value: value["nesting"] }
-                              }),
-                              _vm._v(" "),
                               _c(
                                 "button",
                                 {
-                                  staticClass: "btn btn-light button1",
-                                  attrs: { id: value["id"], type: "submit" }
+                                  staticClass: "btn btn-light",
+                                  attrs: { type: "submit" }
                                 },
                                 [_vm._v("Отправить")]
                               )
