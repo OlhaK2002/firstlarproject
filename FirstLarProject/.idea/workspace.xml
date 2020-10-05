@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="" />
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
     </list>
@@ -216,14 +214,7 @@
       <workItem from="1601792573849" duration="3078000" />
       <workItem from="1601800645339" duration="66000" />
       <workItem from="1601802703726" duration="3135000" />
-      <workItem from="1601880286386" duration="11070000" />
-    </task>
-    <task id="LOCAL-00013" summary="18(24.09.2020)">
-      <created>1600972395810</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1600972395810</updated>
+      <workItem from="1601880286386" duration="11400000" />
     </task>
     <task id="LOCAL-00014" summary="19(24.09.2020)">
       <created>1600984506029</created>
@@ -561,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601891070877</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="75(05.10.2020)">
+      <created>1601892132394</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1601892132395</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,7 +578,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="40(28.09.2020)" />
     <MESSAGE value="41(28.09.2020)" />
     <MESSAGE value="42(28.09.2020)" />
     <MESSAGE value="43(28.09.2020)" />
@@ -605,7 +602,8 @@
     <MESSAGE value="72(05.10.2020)" />
     <MESSAGE value="73(05.10.2020)" />
     <MESSAGE value="74(05.10.2020)" />
-    <option name="LAST_COMMIT_MESSAGE" value="74(05.10.2020)" />
+    <MESSAGE value="75(05.10.2020)" />
+    <option name="LAST_COMMIT_MESSAGE" value="75(05.10.2020)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -620,10 +618,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601891067949">
+    <state x="360" y="0" key="CommitChangelistDialog2" timestamp="1601892129826">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601891067949" />
+    <state x="360" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601892129826" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1601890707911">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
