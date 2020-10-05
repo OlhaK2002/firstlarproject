@@ -1950,15 +1950,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['array1', 'bool'],
+  props: ['array', 'bool'],
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       text: '',
       text0: '',
       parent_id: '',
-      nesting: ''
+      nesting: '',
+      array1: this.array || []
     };
   },
   methods: {
@@ -1980,6 +1982,8 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
+        _this.array1 = _this.array1 || [];
+
         if (parent_id === 0) {
           _this.array1.push(response.data);
         } else {
@@ -38542,7 +38546,7 @@ var render = function() {
                 _c("div", { staticClass: "comment author" }, [
                   _vm._v(_vm._s(value["author"]))
                 ]),
-                _vm._v(" \n                "),
+                _vm._v(" \n                    "),
                 _c("div", { staticClass: "comment data" }, [
                   _vm._v("(" + _vm._s(value["data"]) + ")")
                 ]),
@@ -38598,7 +38602,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            Ответить\n                        "
+                                "\n                                Ответить\n                            "
                               )
                             ]
                           )
