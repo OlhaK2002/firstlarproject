@@ -2082,9 +2082,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['bool', 'users'],
   data: function data() {
@@ -6575,7 +6572,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.nav-item{\n    font-size: 18px;\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.nav-item {\n    display: inline-block;\n    font-size: 20px;\n}\n.top-left {\n    margin-left: 40px;\n}\n.top-right {\n    margin-right: 40px;\n}\n", ""]);
 
 // exports
 
@@ -38771,89 +38768,92 @@ var render = function() {
         staticClass: "navbar navbar-expand-md navbar-light bg-white shadow-sm"
       },
       [
-        _c("div", { staticClass: "container text" }, [
-          _c("a", { staticClass: "navbar-brand text", attrs: { href: "/" } }, [
-            _vm._v("\n                Laravel\n            ")
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarSupportedContent" }
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                _vm.bool
-                  ? _c("div", [
-                      _c("li", { staticClass: "nav-item dropdown" }, [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(_vm.name) +
-                            "\n                            "
-                        ),
-                        _c("a", {
-                          pre: true,
-                          attrs: {
-                            id: "navbarDropdown",
-                            class: "dropdown-toggle",
-                            style: "color: lightgrey",
-                            href: "#",
-                            role: "button",
-                            "data-toggle": "dropdown",
-                            "aria-haspopup": "true",
-                            "aria-expanded": "false"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "dropdown-menu dropdown-menu-right",
-                            attrs: { "aria-labelledby": "navbarDropdown" }
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item nav-item",
-                                attrs: {
-                                  href: "/logout",
-                                  onclick:
-                                    "event.preventDefault(); document.getElementById('logout-form').submit();"
-                                }
-                              },
-                              [_vm._v("Logout")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "form",
-                              {
-                                staticStyle: { display: "none" },
-                                attrs: {
-                                  id: "logout-form",
-                                  action: "/logout",
-                                  method: "POST"
-                                }
-                              },
-                              [
-                                _c("input", {
-                                  attrs: { type: "hidden", name: "_token" },
-                                  domProps: { value: _vm.csrf }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      ])
+        _c(
+          "a",
+          {
+            staticClass: "navbar-brand nav-item top-left",
+            attrs: { href: "/" }
+          },
+          [_vm._v("Laravel")]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse top-right",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+              _vm.bool
+                ? _c("div", [
+                    _c("li", { staticClass: "nav-item dropdown" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.name) +
+                          "\n                        "
+                      ),
+                      _c("a", {
+                        pre: true,
+                        attrs: {
+                          id: "navbarDropdown",
+                          class: "dropdown-toggle",
+                          style: "color: #35848F",
+                          href: "#",
+                          role: "button",
+                          "data-toggle": "dropdown",
+                          "aria-haspopup": "true",
+                          "aria-expanded": "false"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu dropdown-menu-right",
+                          attrs: { "aria-labelledby": "navbarDropdown" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item nav-item",
+                              attrs: {
+                                href: "/logout",
+                                onclick:
+                                  "event.preventDefault(); document.getElementById('logout-form').submit();"
+                              }
+                            },
+                            [_vm._v("Logout")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "form",
+                            {
+                              staticStyle: { display: "none" },
+                              attrs: {
+                                id: "logout-form",
+                                action: "/logout",
+                                method: "POST"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.csrf }
+                              })
+                            ]
+                          )
+                        ]
+                      )
                     ])
-                  : _c("div", [_vm._m(1), _vm._v(" "), _vm._m(2)])
-              ])
-            ]
-          )
-        ])
+                  ])
+                : _c("div", [_vm._m(1), _vm._v(" "), _vm._m(2)])
+            ])
+          ]
+        )
       ]
     )
   ])
@@ -38883,9 +38883,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item " }, [
-      _c("a", { staticClass: "nav-link text", attrs: { href: "/login" } }, [
-        _vm._v("Login")
-      ])
+      _c("a", { attrs: { href: "/login" } }, [_vm._v("Login")])
     ])
   },
   function() {
@@ -38893,9 +38891,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link text", attrs: { href: "/register" } }, [
-        _vm._v("Register")
-      ])
+      _c("a", { attrs: { href: "/register" } }, [_vm._v("Register")])
     ])
   }
 ]
