@@ -2085,14 +2085,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bool'],
+  props: ['bool', 'users'],
   data: function data() {
     return {
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      name: this.users['name']
     };
   }
 });
@@ -6558,7 +6556,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nesting {\n    display: inline-block;\n}\n.comment{\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.nesting {\n    display: inline-block;\n}\n.comment{\n    font-size: 20px;\n    display: inline-block;\n}\n.comments{\n    margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -6577,7 +6575,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.nav-item{\n    display: inline-block;\n}\n", ""]);
+exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.nav-item{\n    font-size: 18px;\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -38453,83 +38451,87 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "comments" },
     [
-      _c("div", { staticClass: "text" }, [
-        _vm.bool
-          ? _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.onSubmit(0, 0, 0)
-                  }
-                }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.text0,
-                      expression: "text0"
-                    }
-                  ],
-                  staticClass: "form-control nesting",
-                  attrs: {
-                    rows: "3",
-                    required: "",
-                    name: "text",
-                    id: "text_id0",
-                    placeholder: "Введите Ваш комментарий..."
-                  },
-                  domProps: { value: _vm.text0 },
+      _c(
+        "div",
+        { staticClass: "text", staticStyle: { "margin-left": "30px" } },
+        [
+          _vm.bool
+            ? _c(
+                "form",
+                {
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.text0 = $event.target.value
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.onSubmit(0, 0, 0)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-light", attrs: { type: "submit" } },
-                  [_vm._v("Отправить")]
-                )
-              ]
-            )
-          : _c("h4", [
-              _vm._v("  Для того чтобы оставить свой отзыв - "),
-              _c(
-                "a",
-                {
-                  staticStyle: { color: "lightcoral" },
-                  attrs: { href: "/login" }
                 },
-                [_vm._v("войдите")]
-              ),
-              _vm._v(" или "),
-              _c(
-                "a",
-                {
-                  staticStyle: { color: "lightcoral" },
-                  attrs: { href: "/register" }
-                },
-                [_vm._v("зарегистрируйтеся")]
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.text0,
+                        expression: "text0"
+                      }
+                    ],
+                    staticClass: "form-control nesting",
+                    attrs: {
+                      rows: "3",
+                      required: "",
+                      name: "text",
+                      placeholder: "Введите Ваш комментарий..."
+                    },
+                    domProps: { value: _vm.text0 },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.text0 = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-light", attrs: { type: "submit" } },
+                    [_vm._v("Отправить")]
+                  )
+                ]
               )
-            ]),
-        _c("br"),
-        _c("br")
-      ]),
+            : _c("h4", [
+                _vm._v("  Для того чтобы оставить свой отзыв - "),
+                _c(
+                  "a",
+                  {
+                    staticStyle: { color: "lightcoral" },
+                    attrs: { href: "/login" }
+                  },
+                  [_vm._v("войдите")]
+                ),
+                _vm._v(" или "),
+                _c(
+                  "a",
+                  {
+                    staticStyle: { color: "lightcoral" },
+                    attrs: { href: "/register" }
+                  },
+                  [_vm._v("зарегистрируйтеся")]
+                )
+              ]),
+          _c("br"),
+          _c("br")
+        ]
+      ),
       _vm._v(" "),
       _vm._l(_vm.array1, function(value, index) {
         return _c("div", [
@@ -38575,7 +38577,8 @@ var render = function() {
                         staticClass: "card-header",
                         style: {
                           "margin-left": value["nesting"] * 30 + "px",
-                          "background-color": "#FFFFFF"
+                          "background-color": "#FFFFFF",
+                          border: "#FFFFFF"
                         },
                         attrs: { id: "heading" + value["id"] }
                       },
@@ -38786,7 +38789,24 @@ var render = function() {
                 _vm.bool
                   ? _c("div", [
                       _c("li", { staticClass: "nav-item dropdown" }, [
-                        _vm._m(1),
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.name) +
+                            "\n                            "
+                        ),
+                        _c("a", {
+                          pre: true,
+                          attrs: {
+                            id: "navbarDropdown",
+                            class: "dropdown-toggle",
+                            style: "color: lightgrey",
+                            href: "#",
+                            role: "button",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
+                        }),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -38798,18 +38818,14 @@ var render = function() {
                             _c(
                               "a",
                               {
-                                staticClass: "dropdown-item text",
+                                staticClass: "dropdown-item nav-item",
                                 attrs: {
                                   href: "/logout",
                                   onclick:
                                     "event.preventDefault(); document.getElementById('logout-form').submit();"
                                 }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                    Logout\n                                "
-                                )
-                              ]
+                              [_vm._v("Logout")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -38833,7 +38849,7 @@ var render = function() {
                         )
                       ])
                     ])
-                  : _c("div", [_vm._m(2), _vm._v(" "), _vm._m(3)])
+                  : _c("div", [_vm._m(1), _vm._v(" "), _vm._m(2)])
               ])
             ]
           )
@@ -38860,30 +38876,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        pre: true,
-        attrs: {
-          id: "navbarDropdown",
-          class: "nav-link dropdown-toggle text",
-          href: "#",
-          role: "button",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _vm._v("\n                                User "),
-        _c("span", { pre: true, attrs: { class: "caret" } })
-      ]
     )
   },
   function() {

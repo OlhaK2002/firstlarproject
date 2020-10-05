@@ -22,7 +22,7 @@
     </head>
     <body>
         <div id="app">
-            <menu-component :bool="@json(Auth::check())" ></menu-component>
+            <menu-component :bool='@json(Auth::check())' :users='@json(Auth::user())'></menu-component>
             <main class="py-4">
                 @yield('content')
             </main>

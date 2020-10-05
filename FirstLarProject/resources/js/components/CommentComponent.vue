@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <div class="text">
-            <form v-if="bool" @submit.prevent="onSubmit(0,0, 0)">
-                <input type="hidden" name="_token" :value="csrf">
-                <textarea rows="3" required name="text" v-model="text0" id="text_id0" class="form-control nesting" placeholder="Введите Ваш комментарий..."></textarea>
-                <button type="submit" class="btn btn-light">Отправить</button>
+    <div class="comments">
+        <div class = "text" style = "margin-left: 30px">
+            <form v-if = "bool" @submit.prevent = "onSubmit(0,0, 0)">
+                <input type = "hidden" name = "_token" :value = "csrf">
+                <textarea rows = "3" required name = "text" v-model = "text0" class = "form-control nesting" placeholder = "Введите Ваш комментарий..."></textarea>
+                <button type = "submit" class = "btn btn-light">Отправить</button>
             </form>
-            <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href="/login">войдите</a> или <a style = "color: lightcoral" href="/register">зарегистрируйтеся</a></h4><br><br>
+            <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
         <div v-for = "(value, index) in array1">
             <div class = "text">
@@ -18,18 +18,18 @@
             </div>
             <div v-if = "bool">
                 <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
-                    <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
-                        <h2 class="mb-0">
-                            <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle="collapse" aria-expanded="false" :data-target="'#collapse_'+value['id']" :aria-controls="'collapse_'+value['id']">
+                    <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
+                        <h2 class = "mb-0">
+                            <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle = "collapse" aria-expanded = "false" :data-target = "'#collapse_'+value['id']" :aria-controls = "'collapse_'+value['id']">
                                 Ответить
                             </button>
                         </h2>
                     </div>
                     <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
-                        <div class="card-body">
-                            <form @submit.prevent="onSubmit(value['id'], value['nesting'], index)">
-                                <input type = "hidden" name = "_token" :value="csrf">
-                                <textarea required  v-model="text" name = "text" class = "form-control"></textarea><br>
+                        <div class = "card-body">
+                            <form @submit.prevent = "onSubmit(value['id'], value['nesting'], index)">
+                                <input type = "hidden" name = "_token" :value = "csrf">
+                                <textarea required v-model="text" name = "text" class = "form-control"></textarea><br>
                                 <button type = "submit" class = "btn btn-light">Отправить</button>
                             </form>
                         </div>
@@ -49,7 +49,7 @@ export default {
             text: '',
             text0: '',
             parent_id: '',
-            nesting:  '',
+            nesting: '',
         }
     },
     methods: {
@@ -66,7 +66,7 @@ export default {
                 }
             )
             .then(response => {
-                if(parent_id === 0){this.array1.push(response.data)}
+                if (parent_id === 0) {this.array1.push(response.data)}
                 else {this.array1.splice(index+1, 0, response.data)}
                 this.text = '';
                 this.text0 = '';
@@ -81,6 +81,10 @@ export default {
         display: inline-block;
     }
     .comment{
+        font-size: 20px;
         display: inline-block;
+    }
+    .comments{
+        margin-right: 10px;
     }
 </style>
