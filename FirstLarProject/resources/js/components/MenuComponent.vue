@@ -62,4 +62,7 @@ export default {
         text-decoration: none;
         text-transform: uppercase;
     }
+    .nav-item{
+        display: inline-block;
+    }
 </style>

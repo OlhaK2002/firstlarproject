@@ -6577,7 +6577,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n", ""]);
+exports.push([module.i, "\n.links > a {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.nav-item{\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
