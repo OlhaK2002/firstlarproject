@@ -25,6 +25,12 @@ class RegisterController extends Controller
             'name' => ['required', 'unique:users', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/'],
+        ], [
+            'name.unique' => 'Ваша почта уже используется другим пользователем',
+            'email.unique' => 'Ваш логин уже используется другим пользователем',
+            'password.min' => 'Пароль должен быть не меньше шести символов',
+            'password.regex' => 'Пароль должен содержать цифры, а также символы верхнего и нижнего регистра',
+            'password.confirmed' => 'Пароли не совпадают'
         ]);
     }
 
