@@ -1968,7 +1968,6 @@ __webpack_require__.r(__webpack_exports__);
       parent_id: '',
       nesting: '',
       array1: this.array || [],
-      posts: [],
       page: 1,
       perPage: 3,
       pages: [],
@@ -1996,6 +1995,7 @@ __webpack_require__.r(__webpack_exports__);
         data: form
       }).then(function (response) {
         _this.array1 = _this.array1 || [];
+        response.data['page'] = _this.page;
 
         if (parent_id === 0) {
           _this.array1.push(response.data);
@@ -2009,7 +2009,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     setPages: function setPages() {
       var numberOfPages = Math.ceil(this.array1.length / this.perPage);
-      console.log(numberOfPages);
 
       for (var index = 0; index <= numberOfPages; index++) {
         this.pages.push(index);
@@ -2017,41 +2016,40 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     paginate: function paginate() {
-      var from = this.page * this.perPage - this.perPage;
-      var to = this.page * this.perPage;
-      var difference = 0;
-
-      if (this.page > 1) {
-        difference = this.pages_count[this.page - 1];
-      }
-
-      if (difference > 0) {
-        from = from + difference;
-        to = to + difference;
-      }
-
-      while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
-        to++;
-      }
-
-      this.pages_count[this.page] = to - this.page * this.perPage;
-      var array = [];
-      array['from'] = from;
-      array['to'] = to;
-      return array;
-    }
-  },
-  watch: {
-    array1: function array1() {
       this.setPages();
+      var id;
+
+      for (id = 1; id < this.pages.length; id++) {
+        var from = id * this.perPage - this.perPage;
+        var to = id * this.perPage;
+        var difference = this.pages_count[id - 1];
+
+        if (difference > 0) {
+          from = from + difference;
+          to = to + difference;
+        }
+
+        while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
+          to++;
+        }
+
+        if (to >= this.array1.length) {
+          to = this.array1.length;
+        }
+
+        var index = void 0;
+
+        for (index = from; index < to; index++) {
+          this.array1[index]['page'] = id;
+        }
+
+        this.pages_count[id] = to - id * this.perPage;
+      }
     }
   },
   computed: {
     displayedPosts: function displayedPosts() {
-      var array2 = [];
-      array2[this.page] = this.paginate();
-      console.log(array2);
-      return array2;
+      this.paginate();
     }
   }
 });
@@ -38554,12 +38552,18 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.array1, function(value, index) {
         return _c("div", [
-          index >= _vm.displayedPosts[_vm.page]["from"] &&
-          index < _vm.displayedPosts[_vm.page]["to"]
+          _vm._v(
+            "\n             " + _vm._s(_vm.displayedPosts) + "\n            "
+          ),
+          value["page"] === _vm.page
             ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
-                  { style: { "margin-left": value["nesting"] * 30 + "px" } },
+                  {
+                    style: {
+                      "margin-left": _vm.array1[index]["nesting"] * 30 + "px"
+                    }
+                  },
                   [
                     _c("br"),
                     _vm._v(" "),
@@ -38581,9 +38585,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.bool &&
-          index >= _vm.displayedPosts[_vm.page]["from"] &&
-          index < _vm.displayedPosts[_vm.page]["to"]
+          _vm.bool && value["page"] === _vm.page
             ? _c("div", [
                 _c(
                   "div",

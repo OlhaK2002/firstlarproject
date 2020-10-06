@@ -8,16 +8,16 @@
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-
             <div v-for = "(value, index) in array1">
-                <div class = "text" v-if = "index>=displayedPosts[page]['from'] && index<displayedPosts[page]['to']">
-                    <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
+                 {{displayedPosts}}
+                <div class = "text" v-if="value['page'] === page">
+                    <div v-bind:style = "{'margin-left': array1[index]['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
                         <div class = "comment data">({{value['data']}})</div><br>
                         <div class = "comment">{{value['text']}}</div><br>
                     </div>
                 </div>
-                <div v-if = "bool && index>=displayedPosts[page]['from'] && index<displayedPosts[page]['to']">
+                <div v-if = "bool && value['page'] === page">
                     <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
                         <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
                             <h2 class = "mb-0">
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
+        </div>
         <br><br>
         <div class="clearfix btn-group col-md-2 offset-md-5">
             <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page--"> << </button>
@@ -59,7 +59,6 @@ export default {
             parent_id: '',
             nesting: '',
             array1: this.array || [],
-            posts: [],
             page: 1,
             perPage: 3,
             pages: [],
@@ -81,6 +80,7 @@ export default {
             })
             .then(response => {
                 this.array1 = this.array1 || [];
+                response.data['page'] = this.page;
                 if (parent_id === 0) {
                     this.array1.push(response.data)
                 }
@@ -93,45 +93,41 @@ export default {
         },
         setPages () {
             let numberOfPages = Math.ceil(this.array1.length / this.perPage);
-            console.log(numberOfPages);
             for (let index = 0; index <= numberOfPages; index++) {
                 this.pages.push(index);
                 this.pages_count[index] = 0;
 
             }
         },
-        paginate () {
-            let from = (this.page * this.perPage) - this.perPage;
-            let to = (this.page * this.perPage);
-            let difference = 0;
-            if (this.page > 1) {
-                difference = this.pages_count[this.page - 1]
-            }
-            if (difference > 0) {
-                from = from + difference;
-                to = to + difference;
-            }
-            while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
-                to++;
-            }
-            this.pages_count[this.page] = (to - (this.page * this.perPage));
-            let array = [];
-            array['from'] = from;
-            array['to'] = to;
-            return array;
-        }
-    },
-    watch: {
-        array1() {
+        paginate() {
             this.setPages();
+            let id;
+            for (id = 1; id < this.pages.length; id++)
+            {
+                let from = (id * this.perPage) - this.perPage;
+                let to = (id * this.perPage);
+                let difference = this.pages_count[id - 1];
+                if(difference>0) {
+                    from = from + difference;
+                    to = to + difference;
+                }
+                while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
+                    to++;
+                }
+                if (to >= this.array1.length) {to = this.array1.length}
+                let index;
+                for (index = from; index < to; index++)
+                {
+                    this.array1[index]['page'] = id;
+                }
+                this.pages_count[id] = (to - (id * this.perPage));
+            }
+
         }
     },
     computed: {
         displayedPosts() {
-            let array2 = [];
-            array2[this.page] = this.paginate();
-            console.log(array2);
-            return array2;
+             this.paginate();
         }
     },
 }

@@ -48,6 +48,7 @@ class Comment extends Model
             'parent_id' => $parent_id,
             'nesting' => $nesting,
             'data' => $data,
+            'page' => 0,
         ];
 
         $comments = $this::where('parent_id', $id)->get();
@@ -111,6 +112,7 @@ class Comment extends Model
                 'parent_id' => $parent_id,
                 'nesting' => $this->nesting1,
                 'data' => $data,
+                'page' => 0,
             ];
             return $array_view2;
         }
