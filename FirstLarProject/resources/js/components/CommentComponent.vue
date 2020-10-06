@@ -41,9 +41,11 @@
         </div>
         <br><br>
         <div class="clearfix btn-group col-md-2 offset-md-5">
-            <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page--"> << </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page = 1"> << </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page--"> < </button>
             <button type="button" class="btn btn-sm btn-outline-secondary bg-white"  @click="page"> {{page}} </button>
-            <button type="button" @click="page++" class="btn btn-sm btn-outline-secondary  bg-white"> >> </button>
+            <button type="button" @click="page++" v-if="page != pages.length" class="btn btn-sm btn-outline-secondary  bg-white"> > </button>
+            <button type="button" @click="page = pages.length" v-if="page != pages.length" class="btn btn-sm btn-outline-secondary  bg-white"> >> </button>
         </div>
     </div>
 </template>
@@ -101,7 +103,7 @@ export default {
         },
         paginate() {
             this.setPages();
-            let id;
+            let id, empty_page;
             for (id = 1; id < this.pages.length; id++)
             {
                 let from = (id * this.perPage) - this.perPage;
@@ -114,15 +116,24 @@ export default {
                 while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
                     to++;
                 }
-                if (to >= this.array1.length) {to = this.array1.length}
-                let index;
-                for (index = from; index < to; index++)
-                {
-                    this.array1[index]['page'] = id;
-                }
-                this.pages_count[id] = (to - (id * this.perPage));
-            }
+                if (to < this.array1.length) {
 
+                    for (let index = from; index < to; index++) {
+                        this.array1[index]['page'] = id;
+                    }
+
+                    this.pages_count[id] = (to - (id * this.perPage));
+                }
+                else {
+                    to = this.array1.length; empty_page = id;
+                    for (let index = from; index < to; index++) {
+                        this.array1[index]['page'] = id;
+                    }
+                    this.pages_count[id] = (to - (id * this.perPage));
+                    break;
+                }
+            }
+            this.pages.splice(empty_page, (this.pages.length - empty_page));
         }
     },
     computed: {

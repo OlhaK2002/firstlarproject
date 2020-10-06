@@ -1958,6 +1958,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool'],
   data: function data() {
@@ -2017,7 +2019,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     paginate: function paginate() {
       this.setPages();
-      var id;
+      var id, empty_page;
 
       for (id = 1; id < this.pages.length; id++) {
         var from = id * this.perPage - this.perPage;
@@ -2033,18 +2035,26 @@ __webpack_require__.r(__webpack_exports__);
           to++;
         }
 
-        if (to >= this.array1.length) {
+        if (to < this.array1.length) {
+          for (var index = from; index < to; index++) {
+            this.array1[index]['page'] = id;
+          }
+
+          this.pages_count[id] = to - id * this.perPage;
+        } else {
           to = this.array1.length;
+          empty_page = id;
+
+          for (var _index = from; _index < to; _index++) {
+            this.array1[_index]['page'] = id;
+          }
+
+          this.pages_count[id] = to - id * this.perPage;
+          break;
         }
-
-        var index = void 0;
-
-        for (index = from; index < to; index++) {
-          this.array1[index]['page'] = id;
-        }
-
-        this.pages_count[id] = to - id * this.perPage;
       }
+
+      this.pages.splice(empty_page, this.pages.length - empty_page);
     }
   },
   computed: {
@@ -38722,11 +38732,27 @@ var render = function() {
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
-                    _vm.page--
+                    _vm.page = 1
                   }
                 }
               },
               [_vm._v(" << ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.page != 1
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-outline-secondary bg-white",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.page--
+                  }
+                }
+              },
+              [_vm._v(" < ")]
             )
           : _vm._e(),
         _vm._v(" "),
@@ -38740,19 +38766,37 @@ var render = function() {
           [_vm._v(" " + _vm._s(_vm.page) + " ")]
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-sm btn-outline-secondary  bg-white",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                _vm.page++
-              }
-            }
-          },
-          [_vm._v(" >> ")]
-        )
+        _vm.page != _vm.pages.length
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-outline-secondary  bg-white",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.page++
+                  }
+                }
+              },
+              [_vm._v(" > ")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.page != _vm.pages.length
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-sm btn-outline-secondary  bg-white",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.page = _vm.pages.length
+                  }
+                }
+              },
+              [_vm._v(" >> ")]
+            )
+          : _vm._e()
       ])
     ],
     2
