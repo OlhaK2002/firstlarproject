@@ -9,7 +9,9 @@
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
 
-        <div v-for = "(value, index) in displayedPosts">
+        <div v-for = "(array, id) in displayedPosts">
+        <div v-for = "(value, index) in array">
+
             <div class = "text">
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                     <div class = "comment author">{{value['author']}}</div>&nbsp
@@ -17,7 +19,7 @@
                     <div class = "comment">{{value['text']}}</div><br>
                 </div>
             </div>
-            <div v-if = "bool">
+            <div v-if = "bool && id === page" >
                 <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
                     <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
                         <h2 class = "mb-0">
@@ -37,6 +39,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <br><br>
         <div class="clearfix btn-group col-md-2 offset-md-5">
@@ -60,9 +63,10 @@ export default {
             array1: this.array || [],
             posts: [],
             page: 1,
-            perPage: 5,
+            perPage: 3,
             pages: [],
             count: 0,
+            pages_count: [],
         }
     },
     methods: {
@@ -76,55 +80,71 @@ export default {
                     method: 'post',
                     url: '/reply',
                     data: form
+            })
+            .then(response => {
+                let k = ( ( (this.page - 1) * this.perPage) + index + this.pages_count[this.page-1]+1);
+                this.array1 = this.array1 || [];
+                if (parent_id === 0) {
+                    this.array1.push(response.data)
                 }
-            )
-                .then(response => {
-                    this.array1 = this.array1 || [];
-                    if (parent_id === 0) {this.array1.push(response.data)}
-                    else {this.array1.splice(index+1, 0, response.data)}
-                    this.text = '';
-                    this.text0 = '';
-                })
+                else {
+                    this.array1.splice(k+1, 0, response.data)
+                }
+                this.text = '';
+                this.text0 = '';
+            })
         },
         setPages () {
             let numberOfPages = Math.ceil(this.array1.length / this.perPage);
-            for (let index = 1; index <= numberOfPages; index++) {
+            for (let index = 0; index <= numberOfPages; index++) {
                 this.pages.push(index);
+                this.pages_count[index] = 0;
             }
         },
         paginate (array1) {
-            let page = this.page;
-            let perPage = this.perPage;
-            let from = (page * perPage) - perPage+1;
-            let to = (page * perPage)+1;
+            let from = (this.page * this.perPage) - this.perPage + 1;
+            let to = (this.page * this.perPage)+1;
+            let difference = 0;
+            if (this.page > 1) {
+                difference = this.pages_count[this.page-1]
+            }
+            if (difference > 0) {
+                from = from + difference; to = to + difference
+            }
+            while (to < array1.length && array1[to]['parent_id'] !== 0){
+                to++;
+            }
+            this.pages_count[this.page] = (to - (this.page * this.perPage + 1));
             return  array1.slice(from, to);
         }
     },
-    created () {
+    created() {
         this.onSubmit();
     },
     watch: {
-        array1 () {
+        array1() {
             this.setPages();
         }
     },
     computed: {
-        displayedPosts () {
-            return this.paginate(this.array1);
+        displayedPosts() {
+            let array2 = [];
+            array2[this.page] = this.paginate(this.array1);
+            return array2;
         }
     },
 }
 </script>
 
 <style>
-.nesting {
-    display: inline-block;
-}
-.comment{
-    font-size: 20px;
-    display: inline-block;
-}
-.comments{
-    margin-right: 10px;
-}
+    .nesting {
+        display: inline-block;
+    }
+    .comment{
+        font-size: 20px;
+        display: inline-block;
+    }
+    .comments{
+        margin-right: 10px;
+    }
 </style>
