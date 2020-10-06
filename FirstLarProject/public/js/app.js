@@ -1958,8 +1958,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool'],
   data: function data() {
@@ -1997,13 +1995,12 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
-        var k = (_this.page - 1) * _this.perPage + index + _this.pages_count[_this.page - 1] + 1;
         _this.array1 = _this.array1 || [];
 
         if (parent_id === 0) {
           _this.array1.push(response.data);
         } else {
-          _this.array1.splice(k + 1, 0, response.data);
+          _this.array1.splice(index + 1, 0, response.data);
         }
 
         _this.text = '';
@@ -2012,15 +2009,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     setPages: function setPages() {
       var numberOfPages = Math.ceil(this.array1.length / this.perPage);
+      console.log(numberOfPages);
 
       for (var index = 0; index <= numberOfPages; index++) {
         this.pages.push(index);
         this.pages_count[index] = 0;
       }
     },
-    paginate: function paginate(array1) {
-      var from = this.page * this.perPage - this.perPage + 1;
-      var to = this.page * this.perPage + 1;
+    paginate: function paginate() {
+      var from = this.page * this.perPage - this.perPage;
+      var to = this.page * this.perPage;
       var difference = 0;
 
       if (this.page > 1) {
@@ -2032,16 +2030,16 @@ __webpack_require__.r(__webpack_exports__);
         to = to + difference;
       }
 
-      while (to < array1.length && array1[to]['parent_id'] !== 0) {
+      while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
         to++;
       }
 
-      this.pages_count[this.page] = to - (this.page * this.perPage + 1);
-      return array1.slice(from, to);
+      this.pages_count[this.page] = to - this.page * this.perPage;
+      var array = [];
+      array['from'] = from;
+      array['to'] = to;
+      return array;
     }
-  },
-  created: function created() {
-    this.onSubmit();
   },
   watch: {
     array1: function array1() {
@@ -2051,7 +2049,8 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     displayedPosts: function displayedPosts() {
       var array2 = [];
-      array2[this.page] = this.paginate(this.array1);
+      array2[this.page] = this.paginate();
+      console.log(array2);
       return array2;
     }
   }
@@ -38553,12 +38552,11 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._l(_vm.displayedPosts, function(array, id) {
-        return _c(
-          "div",
-          _vm._l(array, function(value, index) {
-            return _c("div", [
-              _c("div", { staticClass: "text" }, [
+      _vm._l(_vm.array1, function(value, index) {
+        return _c("div", [
+          index >= _vm.displayedPosts[_vm.page]["from"] &&
+          index < _vm.displayedPosts[_vm.page]["to"]
+            ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
                   { style: { "margin-left": value["nesting"] * 30 + "px" } },
@@ -38568,7 +38566,7 @@ var render = function() {
                     _c("div", { staticClass: "comment author" }, [
                       _vm._v(_vm._s(value["author"]))
                     ]),
-                    _vm._v(" \n                "),
+                    _vm._v(" \n                    "),
                     _c("div", { staticClass: "comment data" }, [
                       _vm._v("(" + _vm._s(value["data"]) + ")")
                     ]),
@@ -38580,135 +38578,134 @@ var render = function() {
                     _c("br")
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _vm.bool && id === _vm.page
-                ? _c("div", [
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.bool &&
+          index >= _vm.displayedPosts[_vm.page]["from"] &&
+          index < _vm.displayedPosts[_vm.page]["to"]
+            ? _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card",
+                    style: {
+                      "margin-left": value["nesting"] * 30 + "px",
+                      "background-color": "#FFFFFF"
+                    }
+                  },
+                  [
                     _c(
                       "div",
                       {
-                        staticClass: "card",
+                        staticClass: "card-header",
                         style: {
                           "margin-left": value["nesting"] * 30 + "px",
-                          "background-color": "#FFFFFF"
+                          "background-color": "#FFFFFF",
+                          border: "#FFFFFF"
+                        },
+                        attrs: { id: "heading" + value["id"] }
+                      },
+                      [
+                        _c("h2", { staticClass: "mb-0" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-link btn-block text-left",
+                              style: {
+                                "margin-left": -value["nesting"] * 30 + "px"
+                              },
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "collapse",
+                                "aria-expanded": "false",
+                                "data-target": "#collapse_" + value["id"],
+                                "aria-controls": "collapse_" + value["id"]
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Ответить\n                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "collapse",
+                        attrs: {
+                          id: "collapse_" + value["id"],
+                          "aria-labelledby": "heading" + value["id"],
+                          "data-parent": "#accordionExample"
                         }
                       },
                       [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "card-header",
-                            style: {
-                              "margin-left": value["nesting"] * 30 + "px",
-                              "background-color": "#FFFFFF",
-                              border: "#FFFFFF"
+                        _c("div", { staticClass: "card-body" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.onSubmit(
+                                    value["id"],
+                                    value["nesting"],
+                                    index
+                                  )
+                                }
+                              }
                             },
-                            attrs: { id: "heading" + value["id"] }
-                          },
-                          [
-                            _c("h2", { staticClass: "mb-0" }, [
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.csrf }
+                              }),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.text,
+                                    expression: "text"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { required: "", name: "text" },
+                                domProps: { value: _vm.text },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.text = $event.target.value
+                                  }
+                                }
+                              }),
+                              _c("br"),
+                              _vm._v(" "),
                               _c(
                                 "button",
                                 {
-                                  staticClass:
-                                    "btn btn-link btn-block text-left",
-                                  style: {
-                                    "margin-left": -value["nesting"] * 30 + "px"
-                                  },
-                                  attrs: {
-                                    type: "button",
-                                    "data-toggle": "collapse",
-                                    "aria-expanded": "false",
-                                    "data-target": "#collapse_" + value["id"],
-                                    "aria-controls": "collapse_" + value["id"]
-                                  }
+                                  staticClass: "btn btn-light",
+                                  attrs: { type: "submit" }
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                            Ответить\n                        "
-                                  )
-                                ]
+                                [_vm._v("Отправить")]
                               )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "collapse",
-                            attrs: {
-                              id: "collapse_" + value["id"],
-                              "aria-labelledby": "heading" + value["id"],
-                              "data-parent": "#accordionExample"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "card-body" }, [
-                              _c(
-                                "form",
-                                {
-                                  on: {
-                                    submit: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.onSubmit(
-                                        value["id"],
-                                        value["nesting"],
-                                        index
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("input", {
-                                    attrs: { type: "hidden", name: "_token" },
-                                    domProps: { value: _vm.csrf }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.text,
-                                        expression: "text"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { required: "", name: "text" },
-                                    domProps: { value: _vm.text },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.text = $event.target.value
-                                      }
-                                    }
-                                  }),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-light",
-                                      attrs: { type: "submit" }
-                                    },
-                                    [_vm._v("Отправить")]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        )
+                            ]
+                          )
+                        ])
                       ]
                     )
-                  ])
-                : _vm._e()
-            ])
-          }),
-          0
-        )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
       }),
       _vm._v(" "),
       _c("br"),
@@ -38741,21 +38738,19 @@ var render = function() {
           [_vm._v(" " + _vm._s(_vm.page) + " ")]
         ),
         _vm._v(" "),
-        _vm.page < _vm.pages.length
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-outline-secondary  bg-white",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.page++
-                  }
-                }
-              },
-              [_vm._v(" >> ")]
-            )
-          : _vm._e()
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-outline-secondary  bg-white",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                _vm.page++
+              }
+            }
+          },
+          [_vm._v(" >> ")]
+        )
       ])
     ],
     2
