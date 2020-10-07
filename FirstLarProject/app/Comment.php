@@ -14,7 +14,7 @@ class Comment extends Model
     protected $user_id1;
     protected $parent_id1;
     protected $nesting1;
-    protected $max_children;
+    protected $children_count;
 
 
     public function users()
@@ -25,8 +25,7 @@ class Comment extends Model
     public function firstComment()
     {
         $comments = $this::where('parent_id', "0")->get();
-        $this->max_children = config('app.max_children_comments');
-
+        $count = 0;
         foreach ($comments as $comment) {
             $this->index++;
             $id = $comment->id;
@@ -34,6 +33,7 @@ class Comment extends Model
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
             $data = date($comment->updated_at);
+            $count++;
             $this->otherComments($id, $text, $data, $parent_id, $nesting);
         }
         return $this->array_view;
@@ -42,6 +42,7 @@ class Comment extends Model
     public function otherComments($id, $text, $data, $parent_id, $nesting)
     {
         $user= $this::find($id);
+        $count = $this::where('parent_id', $id)->count();
 
         $nesting = $nesting + 1;
         $this->array_view[] = [
@@ -52,10 +53,12 @@ class Comment extends Model
             'nesting' => $nesting,
             'data' => $data,
             'page' => 0,
+            'count_children' => $count,
         ];
 
         $comments = $this::where('parent_id', $id)->get();
 
+        $count2 = 0;
         if (!empty($comments)) {
             foreach ($comments as $comment) {
                 $this->index++;
@@ -64,6 +67,7 @@ class Comment extends Model
                 $parent_id = $comment->parent_id;
                 $nesting = $comment->nesting;
                 $data = date($comment->updated_at);
+                $count2++;
                 $this->otherComments($id, $text, $data, $parent_id, $nesting);
             }
         }
@@ -116,6 +120,7 @@ class Comment extends Model
                 'nesting' => $this->nesting1,
                 'data' => $data,
                 'page' => 0,
+                'count_children' => 0
             ];
             return $array_view2;
         }

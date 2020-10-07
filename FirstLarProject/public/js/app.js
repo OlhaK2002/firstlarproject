@@ -1931,35 +1931,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1975,7 +1946,9 @@ __webpack_require__.r(__webpack_exports__);
       children_limit: this.array_limit['children_limit'],
       pages: [],
       count: 0,
-      pages_count: []
+      count2: 0,
+      count_pages_comment: [],
+      count_comment: []
     };
   },
   methods: {
@@ -2010,57 +1983,48 @@ __webpack_require__.r(__webpack_exports__);
         _this.text0 = '';
       });
     },
-    setPages: function setPages() {
-      var numberOfPages = Math.ceil(this.array1.length / this.perPage);
+    newArray: function newArray() {
+      var array = [];
 
-      for (var index = 0; index <= numberOfPages; index++) {
-        this.pages.push(index);
-        this.pages_count[index] = 0;
-      }
-    },
-    paginate: function paginate() {
-      this.setPages();
-      var id, empty_page;
+      for (var index = 0; index <= this.count_comment.length; index++) {
+        var count = this.perPage * this.count_pages_comment[index];
 
-      for (id = 1; id < this.pages.length; id++) {
-        var from = id * this.perPage - this.perPage;
-        var to = id * this.perPage;
-        var difference = this.pages_count[id - 1];
-
-        if (difference > 0) {
-          from = from + difference;
-          to = to + difference;
-        }
-
-        while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
-          to++;
-        }
-
-        if (to < this.array1.length) {
-          for (var index = from; index < to; index++) {
-            this.array1[index]['page'] = id;
+        if (count > 0) {
+          for (var id = 0; id < this.array1.length; id++) {
+            if (this.array1[id]['parent_id'] === this.count_comment[index]['id'] && count > 0) {
+              array.push(this.array1[id]);
+              count--;
+            }
           }
-
-          this.pages_count[id] = to - id * this.perPage;
-        } else {
-          to = this.array1.length;
-          empty_page = id;
-
-          for (var _index = from; _index < to; _index++) {
-            this.array1[_index]['page'] = id;
-          }
-
-          this.pages_count[id] = to - id * this.perPage;
-          break;
         }
       }
 
-      this.pages.splice(empty_page, this.pages.length - empty_page);
+      return array;
     }
   },
   computed: {
-    displayedPosts: function displayedPosts() {
-      this.paginate();
+    displayComment: function displayComment() {
+      var array = [];
+      var count_0 = 0;
+
+      for (var index = 0; index < this.array1.length; index++) {
+        if (this.array1[index]['parent_id'] === 0) count_0++;
+
+        if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
+          this.count_pages_comment.push(0);
+          array['id'] = this.array1[index]['id'];
+          array['count_children'] = this.array1[index]['count_children'];
+          this.count_comment.push(array);
+          array = [];
+        }
+      }
+
+      array = [];
+      array['id'] = 0;
+      array['count_children'] = count_0;
+      this.count_comment.splice(0, 0, array);
+      this.count_pages_comment.splice(0, 0, 1);
+      return this.newArray();
     }
   }
 });
@@ -38561,12 +38525,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._l(_vm.array1, function(value, index) {
+      _vm._l(_vm.displayComment, function(value, index) {
         return _c("div", [
-          _vm._v(
-            "\n             " + _vm._s(_vm.displayedPosts) + "\n            "
-          ),
-          value["page"] === _vm.page && value["nesting"] <= _vm.children_limit
+          value["nesting"] === 0 || value["nesting"] - 1 <= _vm.children_limit
             ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
@@ -38594,213 +38555,12 @@ var render = function() {
                   ]
                 )
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.bool &&
-          value["page"] === _vm.page &&
-          value["nesting"] < _vm.children_limit
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card",
-                    style: {
-                      "margin-left": value["nesting"] * 30 + "px",
-                      "background-color": "#FFFFFF"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "card-header",
-                        style: {
-                          "margin-left": value["nesting"] * 30 + "px",
-                          "background-color": "#FFFFFF",
-                          border: "#FFFFFF"
-                        },
-                        attrs: { id: "heading" + value["id"] }
-                      },
-                      [
-                        _c("h2", { staticClass: "mb-0" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-link btn-block text-left",
-                              style: {
-                                "margin-left": -value["nesting"] * 30 + "px"
-                              },
-                              attrs: {
-                                type: "button",
-                                "data-toggle": "collapse",
-                                "aria-expanded": "false",
-                                "data-target": "#collapse_" + value["id"],
-                                "aria-controls": "collapse_" + value["id"]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                Ответить\n                            "
-                              )
-                            ]
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "collapse",
-                        attrs: {
-                          id: "collapse_" + value["id"],
-                          "aria-labelledby": "heading" + value["id"],
-                          "data-parent": "#accordionExample"
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "card-body" }, [
-                          _c(
-                            "form",
-                            {
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.onSubmit(
-                                    value["id"],
-                                    value["nesting"],
-                                    index
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("input", {
-                                attrs: { type: "hidden", name: "_token" },
-                                domProps: { value: _vm.csrf }
-                              }),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.text,
-                                    expression: "text"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { required: "", name: "text" },
-                                domProps: { value: _vm.text },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.text = $event.target.value
-                                  }
-                                }
-                              }),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-light",
-                                  attrs: { type: "submit" }
-                                },
-                                [_vm._v("Отправить")]
-                              )
-                            ]
-                          )
-                        ])
-                      ]
-                    )
-                  ]
-                )
-              ])
             : _vm._e()
         ])
       }),
       _vm._v(" "),
       _c("br"),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "clearfix btn-group col-md-2 offset-md-5" }, [
-        _vm.page != 1
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-outline-secondary bg-white",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.page = 1
-                  }
-                }
-              },
-              [_vm._v(" << ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.page != 1
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-outline-secondary bg-white",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.page--
-                  }
-                }
-              },
-              [_vm._v(" < ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-sm btn-outline-secondary bg-white",
-            attrs: { type: "button" },
-            on: { click: _vm.page }
-          },
-          [_vm._v(" " + _vm._s(_vm.page) + " ")]
-        ),
-        _vm._v(" "),
-        _vm.page != _vm.pages.length
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-outline-secondary  bg-white",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.page++
-                  }
-                }
-              },
-              [_vm._v(" > ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.page != _vm.pages.length
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-sm btn-outline-secondary  bg-white",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.page = _vm.pages.length
-                  }
-                }
-              },
-              [_vm._v(" >> ")]
-            )
-          : _vm._e()
-      ])
+      _c("br")
     ],
     2
   )

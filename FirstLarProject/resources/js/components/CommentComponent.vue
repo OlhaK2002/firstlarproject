@@ -8,45 +8,16 @@
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-            <div v-for = "(value, index) in array1">
-                 {{displayedPosts}}
-                <div class = "text" v-if="value['page'] === page && value['nesting']<=children_limit">
+            <div v-for = "(value, index) in displayComment">
+                <div class = "text" v-if=" value['nesting']===0 || (value['nesting']-1)<=children_limit">
                     <div v-bind:style = "{'margin-left': array1[index]['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
                         <div class = "comment data">({{value['data']}})</div><br>
                         <div class = "comment">{{value['text']}}</div><br>
                     </div>
                 </div>
-                <div v-if = "bool && value['page'] === page && value['nesting']<children_limit">
-                    <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
-                        <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
-                            <h2 class = "mb-0">
-                                <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle = "collapse" aria-expanded = "false" :data-target = "'#collapse_'+value['id']" :aria-controls = "'collapse_'+value['id']">
-                                    Ответить
-                                </button>
-                            </h2>
-                        </div>
-                        <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
-                            <div class = "card-body">
-                                <form @submit.prevent = "onSubmit(value['id'], value['nesting'], index)">
-                                    <input type = "hidden" name = "_token" :value = "csrf">
-                                    <textarea required v-model="text" name = "text" class = "form-control"></textarea><br>
-                                    <button type = "submit" class = "btn btn-light">Отправить</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
         </div>
         <br><br>
-        <div class="clearfix btn-group col-md-2 offset-md-5">
-            <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page = 1"> << </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary bg-white" v-if="page != 1" @click="page--"> < </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary bg-white"  @click="page"> {{page}} </button>
-            <button type="button" @click="page++" v-if="page != pages.length" class="btn btn-sm btn-outline-secondary  bg-white"> > </button>
-            <button type="button" @click="page = pages.length" v-if="page != pages.length" class="btn btn-sm btn-outline-secondary  bg-white"> >> </button>
-        </div>
     </div>
 </template>
 
@@ -66,7 +37,9 @@ export default {
             children_limit: this.array_limit['children_limit'],
             pages: [],
             count: 0,
-            pages_count: [],
+            count2: 0,
+            count_pages_comment: [],
+            count_comment: [],
         }
     },
     methods: {
@@ -94,52 +67,43 @@ export default {
                 this.text0 = '';
             })
         },
-        setPages () {
-            let numberOfPages = Math.ceil(this.array1.length / this.perPage);
-            for (let index = 0; index <= numberOfPages; index++) {
-                this.pages.push(index);
-                this.pages_count[index] = 0;
-
-            }
-        },
-        paginate() {
-            this.setPages();
-            let id, empty_page;
-            for (id = 1; id < this.pages.length; id++)
-            {
-                let from = (id * this.perPage) - this.perPage;
-                let to = (id * this.perPage);
-                let difference = this.pages_count[id - 1];
-                if (difference > 0) {
-                    from = from + difference;
-                    to = to + difference;
-                }
-                while (to < this.array1.length && this.array1[to]['parent_id'] !== 0) {
-                    to++;
-                }
-                if (to < this.array1.length) {
-
-                    for (let index = from; index < to; index++) {
-                        this.array1[index]['page'] = id;
+        newArray() {
+            let array = [];
+            for (let index = 0; index <= this.count_comment.length; index++) {
+                let count = this.perPage*this.count_pages_comment[index];
+                if(count > 0) {
+                    for (let id = 0; id < this.array1.length; id++) {
+                        if (this.array1[id]['parent_id'] === this.count_comment[index]['id'] && count > 0) {
+                            array.push(this.array1[id]);
+                            count--;
+                        }
                     }
-
-                    this.pages_count[id] = (to - (id * this.perPage));
-                }
-                else {
-                    to = this.array1.length; empty_page = id;
-                    for (let index = from; index < to; index++) {
-                        this.array1[index]['page'] = id;
-                    }
-                    this.pages_count[id] = (to - (id * this.perPage));
-                    break;
                 }
             }
-            this.pages.splice(empty_page, (this.pages.length - empty_page));
+            return array;
         }
     },
     computed: {
-        displayedPosts() {
-            this.paginate();
+        displayComment() {
+            let array = [];
+            let count_0 = 0;
+            for (let index = 0; index<this.array1.length; index++)
+            {
+                if (this.array1[index]['parent_id'] === 0) count_0++;
+                if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
+                    this.count_pages_comment.push(0);
+                    array['id'] = this.array1[index]['id'];
+                    array['count_children'] = this.array1[index]['count_children'];
+                    this.count_comment.push(array);
+                    array = [];
+                }
+            }
+            array = [];
+            array['id'] = 0;
+            array['count_children'] = count_0;
+            this.count_comment.splice(0, 0, array);
+            this.count_pages_comment.splice(0, 0, 1);
+            return this.newArray()
         }
     },
 }
