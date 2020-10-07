@@ -8,22 +8,43 @@
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-        {{displayComment}}
-            <div v-for = "(value, index) in array2">
-                <div class = "text" v-if="value['nesting']===0 || (value['nesting']-1)<=children_limit">
+            {{displayComment}}
+            <div v-for = "(value, index) in array1">
+                <div class = "text" v-if = "(value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && (value['nesting']===0 || (value['nesting']-1)<=children_limit)">
                     <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
                         <div class = "comment data">({{value['data']}})</div><br>
-                        <div class = "comment">{{value['text']}}</div><br>
+                        <div class = "comment">{{value['text']}}</div>
                     </div>
                 </div>
-                <form v-if="value['count_children']>0" @submit.prevent = "showMore(value['id'])">
-                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
-                </form>
+                <div v-if = "bool && (value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && (value['nesting']-1)<children_limit">
+                    <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
+                        <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
+                            <h2 class = "mb-0">
+                                <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle = "collapse" aria-expanded = "false" :data-target = "'#collapse_'+value['id']" :aria-controls = "'collapse_'+value['id']">
+                                    Ответить
+                                </button>
+                            </h2>
+                        </div>
+                        <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
+                            <div class = "card-body">
+                                <form @submit.prevent = "onSubmit(value['id'], value['nesting'], index)">
+                                    <input type = "hidden" name = "_token" :value = "csrf">
+                                    <textarea required v-model="text" name = "text" class = "form-control"></textarea><br>
+                                    <button type = "submit" class = "btn btn-light">Отправить</button>
+                                </form>
+                            </div>
+                        </div>
+                        <form  v-if="value['count_children']>0">
+                            <button type="button" class = "btn btn-light" @click = "page = (count_pages_comment[value['id']]++)">Показать больше {{page}}</button>
+                        </form>
+                    </div>
+                </div>
         </div>
         <br><br>
-        <form @submit.prevent = "showMore(0)">
-            <button type="submit" class = "btn btn-light">Показать больше</button>
+        <form>
+            <button type="button" class = "btn btn-light" @click = "page = count_pages_comment[0]++">Показать больше </button>
+            <input type="hidden" :value = "page">
         </form>
     </div>
 </template>
@@ -40,6 +61,7 @@ export default {
             nesting: '',
             array1: this.array || [],
             array2: [],
+            page: 0,
             k: 0,
             perPage: this.array_limit['perPage'],
             children_limit: this.array_limit['children_limit'],
@@ -65,7 +87,8 @@ export default {
             })
             .then(response => {
                 this.array1 = this.array1 || [];
-                response.data['page'] = this.page;
+                response.data['number_in_parent'] = this.array[index]['count_children'] + 1;
+
                 if (parent_id === 0) {
                     this.array1.push(response.data)
                 }
@@ -74,71 +97,25 @@ export default {
                 }
                 this.text = '';
                 this.text0 = '';
+                console.log(this.array1);
             })
         },
         showMore(id){
-            for (let index = 0; index < this.count_comment.length; index++){
-                if(this.count_comment[index]['id'] === id) {this.count_pages_comment[index]++; this.newArray()}
-            }
+            this.count_pages_comment[id]++;
         },
-        newArray() {
-            let array = [], to;
-            console.log(this.index_comment, this.count_comment, this.count_pages_comment)
-            for (let index = 0; index < this.count_comment.length; index++) {
-                let count = this.perPage * this.count_pages_comment[index];
-                to = 0;
-                if (count > 0) {
-                    for (let id = 0; id < this.array1.length; id++) {
-                        if (this.array1[id]['parent_id'] === this.count_comment[index]['id'] && count > 0) {
-                            array[this.index_comment[index]+to] = this.array1[id];
-                            count--; to++;
-                        }
-                    }
-                    to = 0;
-                    console.log(array)
-                    this.array2 = array;
-                }
-            }
-        }
+
     },
     computed: {
         displayComment() {
             let array = [];
-            let count_0 = 0, count =0;
-            for (let index = 0; index<this.array1.length; index++) {
-                if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
-                    this.count++;
-                }
-            }
-            this.index_comment[0] = 0;
             for (let index = 0; index < this.array1.length; index++)
             {
-                let count_00 = 0;
-                if (this.array1[index]['parent_id'] === 0) {count_0++; count_00++}
-                if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
-                    count++;
-                    array['id'] = this.array1[index]['id'];
-                    array['count_children'] = this.array1[index]['count_children'];
-                    this.count_comment.push(array);
-                    if (this.k < 1) {
-                        this.count_pages_comment.push(0);
-                    }
-                    array = [];
-                    if (index === 0) {
-                        this.index_comment[count] = (this.array1[index]['count_children']);
-                    } else {
-                        this.index_comment[count] = (this.index_comment[count - 1] + this.array1[index]['count_children'] + count_00);
-                    }
-                }
+                array[this.array1[index]['id']] = 0;
             }
-            array = [];
-            array['id'] = 0;
-            array['count_children'] = count_0;
-            if(this.k<1) this.count_comment.splice(0, 0, array);
-            if(this.k<1)this.count_pages_comment.splice(0, 0, 1);
-            this.k++;
-            this.newArray()
+            array[0] = 1;
+            this.count_pages_comment = array;
         }
+
     },
 }
 </script>

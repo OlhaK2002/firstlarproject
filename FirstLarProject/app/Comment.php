@@ -15,6 +15,7 @@ class Comment extends Model
     protected $parent_id1;
     protected $nesting1;
     protected $children_count;
+    protected $number;
 
 
     public function users()
@@ -34,15 +35,15 @@ class Comment extends Model
             $nesting = $comment->nesting;
             $data = date($comment->updated_at);
             $count++;
-            $this->otherComments($id, $text, $data, $parent_id, $nesting);
+            $this->otherComments($id, $text, $data, $parent_id, $nesting, $count);
         }
         return $this->array_view;
     }
 
-    public function otherComments($id, $text, $data, $parent_id, $nesting)
+    public function otherComments($id, $text, $data, $parent_id, $nesting, $count)
     {
         $user= $this::find($id);
-        $count = $this::where('parent_id', $id)->count();
+        $count_children = $this::where('parent_id', $id)->count();
 
         $nesting = $nesting + 1;
         $this->array_view[] = [
@@ -53,7 +54,8 @@ class Comment extends Model
             'nesting' => $nesting,
             'data' => $data,
             'page' => 0,
-            'count_children' => $count,
+            'number_in_parent' => $count,
+            'count_children' => $count_children,
         ];
 
         $comments = $this::where('parent_id', $id)->get();
@@ -68,7 +70,7 @@ class Comment extends Model
                 $nesting = $comment->nesting;
                 $data = date($comment->updated_at);
                 $count2++;
-                $this->otherComments($id, $text, $data, $parent_id, $nesting);
+                $this->otherComments($id, $text, $data, $parent_id, $nesting, $count2);
             }
         }
     }
@@ -110,6 +112,7 @@ class Comment extends Model
             $data = date($comment->updated_at);
 
             $user = $this::find($id);
+            $array = $this->array_view;
 
             $this->nesting1 = $nesting + 1;
             $array_view2 = [
@@ -120,7 +123,7 @@ class Comment extends Model
                 'nesting' => $this->nesting1,
                 'data' => $data,
                 'page' => 0,
-                'count_children' => 0
+                'count_children' => 0,
             ];
             return $array_view2;
         }

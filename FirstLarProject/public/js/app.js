@@ -1938,6 +1938,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1949,6 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
       nesting: '',
       array1: this.array || [],
       array2: [],
+      page: 0,
       k: 0,
       perPage: this.array_limit['perPage'],
       children_limit: this.array_limit['children_limit'],
@@ -1980,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
         data: form
       }).then(function (response) {
         _this.array1 = _this.array1 || [];
-        response.data['page'] = _this.page;
+        response.data['number_in_parent'] = _this.array[index]['count_children'] + 1;
 
         if (parent_id === 0) {
           _this.array1.push(response.data);
@@ -1990,90 +2012,23 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.text = '';
         _this.text0 = '';
+        console.log(_this.array1);
       });
     },
     showMore: function showMore(id) {
-      for (var index = 0; index < this.count_comment.length; index++) {
-        if (this.count_comment[index]['id'] === id) {
-          this.count_pages_comment[index]++;
-          this.newArray();
-        }
-      }
-    },
-    newArray: function newArray() {
-      var array = [],
-          to;
-      console.log(this.index_comment, this.count_comment, this.count_pages_comment);
-
-      for (var index = 0; index < this.count_comment.length; index++) {
-        var count = this.perPage * this.count_pages_comment[index];
-        to = 0;
-
-        if (count > 0) {
-          for (var id = 0; id < this.array1.length; id++) {
-            if (this.array1[id]['parent_id'] === this.count_comment[index]['id'] && count > 0) {
-              array[this.index_comment[index] + to] = this.array1[id];
-              count--;
-              to++;
-            }
-          }
-
-          to = 0;
-          console.log(array);
-          this.array2 = array;
-        }
-      }
+      this.count_pages_comment[id]++;
     }
   },
   computed: {
     displayComment: function displayComment() {
       var array = [];
-      var count_0 = 0,
-          count = 0;
 
       for (var index = 0; index < this.array1.length; index++) {
-        if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
-          this.count++;
-        }
+        array[this.array1[index]['id']] = 0;
       }
 
-      this.index_comment[0] = 0;
-
-      for (var _index = 0; _index < this.array1.length; _index++) {
-        var count_00 = 0;
-
-        if (this.array1[_index]['parent_id'] === 0) {
-          count_0++;
-          count_00++;
-        }
-
-        if (this.array1[_index]['count_children'] > 0 && this.array1[_index]['nesting'] < this.children_limit) {
-          count++;
-          array['id'] = this.array1[_index]['id'];
-          array['count_children'] = this.array1[_index]['count_children'];
-          this.count_comment.push(array);
-
-          if (this.k < 1) {
-            this.count_pages_comment.push(0);
-          }
-
-          array = [];
-
-          if (_index === 0) {
-            this.index_comment[count] = this.array1[_index]['count_children'];
-          } else {
-            this.index_comment[count] = this.index_comment[count - 1] + this.array1[_index]['count_children'] + count_00;
-          }
-        }
-      }
-
-      array = [];
-      array['id'] = 0;
-      array['count_children'] = count_0;
-      if (this.k < 1) this.count_comment.splice(0, 0, array);
-      if (this.k < 1) this.count_pages_comment.splice(0, 0, 1);
-      this.k++;
-      this.newArray();
+      array[0] = 1;
+      this.count_pages_comment = array;
     }
   }
 });
@@ -38573,10 +38528,12 @@ var render = function() {
           _c("br")
         ]
       ),
-      _vm._v("\n    " + _vm._s(_vm.displayComment) + "\n        "),
-      _vm._l(_vm.array2, function(value, index) {
+      _vm._v("\n        " + _vm._s(_vm.displayComment) + "\n        "),
+      _vm._l(_vm.array1, function(value, index) {
         return _c("div", [
-          value["nesting"] === 0 || value["nesting"] - 1 <= _vm.children_limit
+          value["number_in_parent"] <=
+            _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+          (value["nesting"] === 0 || value["nesting"] - 1 <= _vm.children_limit)
             ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
@@ -38595,36 +38552,156 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "comment" }, [
                       _vm._v(_vm._s(value["text"]))
-                    ]),
-                    _c("br")
+                    ])
                   ]
                 )
               ])
             : _vm._e(),
           _vm._v(" "),
-          value["count_children"] > 0
-            ? _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.showMore(value["id"])
+          _vm.bool &&
+          value["number_in_parent"] <=
+            _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+          value["nesting"] - 1 < _vm.children_limit
+            ? _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card",
+                    style: {
+                      "margin-left": value["nesting"] * 30 + "px",
+                      "background-color": "#FFFFFF"
                     }
-                  }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light",
-                      style: { "margin-left": value["nesting"] * 30 + "px" },
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("Показать больше")]
-                  )
-                ]
-              )
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card-header",
+                        style: {
+                          "margin-left": value["nesting"] * 30 + "px",
+                          "background-color": "#FFFFFF",
+                          border: "#FFFFFF"
+                        },
+                        attrs: { id: "heading" + value["id"] }
+                      },
+                      [
+                        _c("h2", { staticClass: "mb-0" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-link btn-block text-left",
+                              style: {
+                                "margin-left": -value["nesting"] * 30 + "px"
+                              },
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "collapse",
+                                "aria-expanded": "false",
+                                "data-target": "#collapse_" + value["id"],
+                                "aria-controls": "collapse_" + value["id"]
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Ответить\n                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "collapse",
+                        attrs: {
+                          id: "collapse_" + value["id"],
+                          "aria-labelledby": "heading" + value["id"],
+                          "data-parent": "#accordionExample"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card-body" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.onSubmit(
+                                    value["id"],
+                                    value["nesting"],
+                                    index
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.csrf }
+                              }),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.text,
+                                    expression: "text"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { required: "", name: "text" },
+                                domProps: { value: _vm.text },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.text = $event.target.value
+                                  }
+                                }
+                              }),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-light",
+                                  attrs: { type: "submit" }
+                                },
+                                [_vm._v("Отправить")]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    value["count_children"] > 0
+                      ? _c("form", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.page = _vm.count_pages_comment[
+                                    value["id"]
+                                  ]++
+                                }
+                              }
+                            },
+                            [_vm._v("Показать больше " + _vm._s(_vm.page))]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ])
             : _vm._e()
         ])
       }),
@@ -38632,24 +38709,26 @@ var render = function() {
       _c("br"),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.showMore(0)
+      _c("form", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                _vm.page = _vm.count_pages_comment[0]++
+              }
             }
-          }
-        },
-        [
-          _c(
-            "button",
-            { staticClass: "btn btn-light", attrs: { type: "submit" } },
-            [_vm._v("Показать больше")]
-          )
-        ]
-      )
+          },
+          [_vm._v("Показать больше ")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden" },
+          domProps: { value: _vm.page }
+        })
+      ])
     ],
     2
   )
