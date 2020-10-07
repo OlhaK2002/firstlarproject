@@ -10,14 +10,14 @@
         </div>
             <div v-for = "(value, index) in array1">
                  {{displayedPosts}}
-                <div class = "text" v-if="value['page'] === page">
+                <div class = "text" v-if="value['page'] === page && value['nesting']<=children_limit">
                     <div v-bind:style = "{'margin-left': array1[index]['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
                         <div class = "comment data">({{value['data']}})</div><br>
                         <div class = "comment">{{value['text']}}</div><br>
                     </div>
                 </div>
-                <div v-if = "bool && value['page'] === page">
+                <div v-if = "bool && value['page'] === page && value['nesting']<children_limit">
                     <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
                         <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
                             <h2 class = "mb-0">
@@ -52,7 +52,7 @@
 
 <script>
 export default {
-    props: ['array','bool'],
+    props: ['array','bool', 'array_limit'],
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -62,7 +62,8 @@ export default {
             nesting: '',
             array1: this.array || [],
             page: 1,
-            perPage: 3,
+            perPage: this.array_limit['perPage'],
+            children_limit: this.array_limit['children_limit'],
             pages: [],
             count: 0,
             pages_count: [],
@@ -109,7 +110,7 @@ export default {
                 let from = (id * this.perPage) - this.perPage;
                 let to = (id * this.perPage);
                 let difference = this.pages_count[id - 1];
-                if(difference>0) {
+                if (difference > 0) {
                     from = from + difference;
                     to = to + difference;
                 }
@@ -138,7 +139,7 @@ export default {
     },
     computed: {
         displayedPosts() {
-             this.paginate();
+            this.paginate();
         }
     },
 }

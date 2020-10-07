@@ -1961,7 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['array', 'bool'],
+  props: ['array', 'bool', 'array_limit'],
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -1971,7 +1971,8 @@ __webpack_require__.r(__webpack_exports__);
       nesting: '',
       array1: this.array || [],
       page: 1,
-      perPage: 3,
+      perPage: this.array_limit['perPage'],
+      children_limit: this.array_limit['children_limit'],
       pages: [],
       count: 0,
       pages_count: []
@@ -38565,7 +38566,7 @@ var render = function() {
           _vm._v(
             "\n             " + _vm._s(_vm.displayedPosts) + "\n            "
           ),
-          value["page"] === _vm.page
+          value["page"] === _vm.page && value["nesting"] <= _vm.children_limit
             ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
@@ -38595,7 +38596,9 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.bool && value["page"] === _vm.page
+          _vm.bool &&
+          value["page"] === _vm.page &&
+          value["nesting"] < _vm.children_limit
             ? _c("div", [
                 _c(
                   "div",

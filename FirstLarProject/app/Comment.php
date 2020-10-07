@@ -14,6 +14,8 @@ class Comment extends Model
     protected $user_id1;
     protected $parent_id1;
     protected $nesting1;
+    protected $max_children;
+
 
     public function users()
     {
@@ -23,6 +25,7 @@ class Comment extends Model
     public function firstComment()
     {
         $comments = $this::where('parent_id', "0")->get();
+        $this->max_children = config('app.max_children_comments');
 
         foreach ($comments as $comment) {
             $this->index++;
