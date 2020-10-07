@@ -1931,6 +1931,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1941,14 +1948,16 @@ __webpack_require__.r(__webpack_exports__);
       parent_id: '',
       nesting: '',
       array1: this.array || [],
-      page: 1,
+      array2: [],
+      k: 0,
       perPage: this.array_limit['perPage'],
       children_limit: this.array_limit['children_limit'],
       pages: [],
       count: 0,
       count2: 0,
       count_pages_comment: [],
-      count_comment: []
+      count_comment: [],
+      index_comment: []
     };
   },
   methods: {
@@ -1983,48 +1992,88 @@ __webpack_require__.r(__webpack_exports__);
         _this.text0 = '';
       });
     },
+    showMore: function showMore(id) {
+      for (var index = 0; index < this.count_comment.length; index++) {
+        if (this.count_comment[index]['id'] === id) {
+          this.count_pages_comment[index]++;
+          this.newArray();
+        }
+      }
+    },
     newArray: function newArray() {
-      var array = [];
+      var array = [],
+          to;
+      console.log(this.index_comment, this.count_comment, this.count_pages_comment);
 
-      for (var index = 0; index <= this.count_comment.length; index++) {
+      for (var index = 0; index < this.count_comment.length; index++) {
         var count = this.perPage * this.count_pages_comment[index];
+        to = 0;
 
         if (count > 0) {
           for (var id = 0; id < this.array1.length; id++) {
             if (this.array1[id]['parent_id'] === this.count_comment[index]['id'] && count > 0) {
-              array.push(this.array1[id]);
+              array[this.index_comment[index] + to] = this.array1[id];
               count--;
+              to++;
             }
           }
+
+          to = 0;
+          console.log(array);
+          this.array2 = array;
         }
       }
-
-      return array;
     }
   },
   computed: {
     displayComment: function displayComment() {
       var array = [];
-      var count_0 = 0;
+      var count_0 = 0,
+          count = 0;
 
       for (var index = 0; index < this.array1.length; index++) {
-        if (this.array1[index]['parent_id'] === 0) count_0++;
-
         if (this.array1[index]['count_children'] > 0 && this.array1[index]['nesting'] < this.children_limit) {
-          this.count_pages_comment.push(0);
-          array['id'] = this.array1[index]['id'];
-          array['count_children'] = this.array1[index]['count_children'];
+          this.count++;
+        }
+      }
+
+      this.index_comment[0] = 0;
+
+      for (var _index = 0; _index < this.array1.length; _index++) {
+        var count_00 = 0;
+
+        if (this.array1[_index]['parent_id'] === 0) {
+          count_0++;
+          count_00++;
+        }
+
+        if (this.array1[_index]['count_children'] > 0 && this.array1[_index]['nesting'] < this.children_limit) {
+          count++;
+          array['id'] = this.array1[_index]['id'];
+          array['count_children'] = this.array1[_index]['count_children'];
           this.count_comment.push(array);
+
+          if (this.k < 1) {
+            this.count_pages_comment.push(0);
+          }
+
           array = [];
+
+          if (_index === 0) {
+            this.index_comment[count] = this.array1[_index]['count_children'];
+          } else {
+            this.index_comment[count] = this.index_comment[count - 1] + this.array1[_index]['count_children'] + count_00;
+          }
         }
       }
 
       array = [];
       array['id'] = 0;
       array['count_children'] = count_0;
-      this.count_comment.splice(0, 0, array);
-      this.count_pages_comment.splice(0, 0, 1);
-      return this.newArray();
+      if (this.k < 1) this.count_comment.splice(0, 0, array);
+      if (this.k < 1) this.count_pages_comment.splice(0, 0, 1);
+      this.k++;
+      this.newArray();
     }
   }
 });
@@ -38524,18 +38573,14 @@ var render = function() {
           _c("br")
         ]
       ),
-      _vm._v(" "),
-      _vm._l(_vm.displayComment, function(value, index) {
+      _vm._v("\n    " + _vm._s(_vm.displayComment) + "\n        "),
+      _vm._l(_vm.array2, function(value, index) {
         return _c("div", [
           value["nesting"] === 0 || value["nesting"] - 1 <= _vm.children_limit
             ? _c("div", { staticClass: "text" }, [
                 _c(
                   "div",
-                  {
-                    style: {
-                      "margin-left": _vm.array1[index]["nesting"] * 30 + "px"
-                    }
-                  },
+                  { style: { "margin-left": value["nesting"] * 30 + "px" } },
                   [
                     _c("br"),
                     _vm._v(" "),
@@ -38555,12 +38600,56 @@ var render = function() {
                   ]
                 )
               ])
+            : _vm._e(),
+          _vm._v(" "),
+          value["count_children"] > 0
+            ? _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.showMore(value["id"])
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      style: { "margin-left": value["nesting"] * 30 + "px" },
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Показать больше")]
+                  )
+                ]
+              )
             : _vm._e()
         ])
       }),
       _vm._v(" "),
       _c("br"),
-      _c("br")
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.showMore(0)
+            }
+          }
+        },
+        [
+          _c(
+            "button",
+            { staticClass: "btn btn-light", attrs: { type: "submit" } },
+            [_vm._v("Показать больше")]
+          )
+        ]
+      )
     ],
     2
   )
