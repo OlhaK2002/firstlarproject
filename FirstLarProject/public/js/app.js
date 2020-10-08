@@ -1977,21 +1977,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       text: '',
-      text0: '',
+      text_parent_id_0: '',
       parent_id: '',
       nesting: '',
-      array1: this.array || [],
-      array2: [],
-      page: 0,
-      k: 0,
+      array_comment: this.array || [],
       perPage: this.array_limit['perPage'],
       children_limit: this.array_limit['children_limit'],
-      pages: [],
       count: 0,
-      count_0: 0,
-      count_pages_comment: [],
-      count_comment: [],
-      index_comment: []
+      count_parent_id0: 0,
+      count_comment: []
     };
   },
   methods: {
@@ -2001,7 +1995,7 @@ __webpack_require__.r(__webpack_exports__);
       var form = new FormData();
 
       if (parent_id === 0) {
-        form.append('text', this.text0);
+        form.append('text', this.text_parent_id_0);
       } else {
         form.append('text', this.text);
       }
@@ -2013,36 +2007,36 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
-        _this.array1 = _this.array1 || [];
+        _this.array_comment = _this.array_comment || [];
         response.data['number_in_parent'] = _this.array[index]['count_children'] + 1;
         _this.array[index]['count_children']++;
 
         if (parent_id === 0) {
-          _this.array1.push(response.data);
+          _this.array_comment.push(response.data);
         } else {
-          _this.array1.splice(index + 1, 0, response.data);
+          _this.array_comment.splice(index + 1, 0, response.data);
         }
 
         _this.text = '';
         _this.text0 = '';
-        console.log(_this.array1);
+        console.log(_this.array_comment);
       });
     },
     showMore: function showMore(id) {
-      var count = this.count_pages_comment[id] + 1;
-      this.count_pages_comment.splice(id, 1, count);
+      var count = this.count_comment[id] + 1;
+      this.count_comment.splice(id, 1, count);
     },
     coverUp: function coverUp(id) {
       if (id === 0) {
-        this.count_pages_comment.splice(id, 1, 1);
+        this.count_comment.splice(id, 1, 1);
       } else {
-        for (var index = 0; index < this.array1.length; index++) {
+        for (var index = 0; index < this.array_comment.length; index++) {
           if (this.array[index]['parent_id'] === id) {
             this.coverUp(this.array[index]['id']);
           }
         }
 
-        this.count_pages_comment.splice(id, 1, 0);
+        this.count_comment.splice(id, 1, 0);
       }
     }
   },
@@ -2050,14 +2044,14 @@ __webpack_require__.r(__webpack_exports__);
     displayComment: function displayComment() {
       var array = [];
 
-      for (var index = 0; index < this.array1.length; index++) {
-        if (this.array1[index]['parent_id'] === 0) this.count_0++;
-        array[this.array1[index]['id']] = 0;
+      for (var index = 0; index < this.array_comment.length; index++) {
+        if (this.array_comment[index]['parent_id'] === 0) this.count_parent_id0++;
+        array[this.array_comment[index]['id']] = 0;
       }
 
       array[0] = 1;
-      if (this.k < 1) this.count_pages_comment = array;
-      this.k++;
+      if (this.count < 1) this.count_comment = array;
+      this.count++;
     }
   }
 });
@@ -38504,8 +38498,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.text0,
-                        expression: "text0"
+                        value: _vm.text_parent_id_0,
+                        expression: "text_parent_id_0"
                       }
                     ],
                     staticClass: "form-control nesting",
@@ -38515,13 +38509,13 @@ var render = function() {
                       name: "text",
                       placeholder: "Введите Ваш комментарий..."
                     },
-                    domProps: { value: _vm.text0 },
+                    domProps: { value: _vm.text_parent_id_0 },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.text0 = $event.target.value
+                        _vm.text_parent_id_0 = $event.target.value
                       }
                     }
                   }),
@@ -38558,10 +38552,10 @@ var render = function() {
         ]
       ),
       _vm._v("\n        " + _vm._s(_vm.displayComment) + "\n        "),
-      _vm._l(_vm.array1, function(value, index) {
+      _vm._l(_vm.array_comment, function(value, index) {
         return _c("div", [
           value["number_in_parent"] <=
-            _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+            _vm.count_comment[value["parent_id"]] * _vm.perPage &&
           (value["nesting"] === 0 || value["nesting"] - 1 <= _vm.children_limit)
             ? _c("div", { staticClass: "text" }, [
                 _c(
@@ -38589,7 +38583,7 @@ var render = function() {
           _vm._v(" "),
           _vm.bool &&
           value["number_in_parent"] <=
-            _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+            _vm.count_comment[value["parent_id"]] * _vm.perPage &&
           value["nesting"] - 1 < _vm.children_limit
             ? _c("div", [
                 _c(
@@ -38714,10 +38708,10 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _vm.count_pages_comment[value["id"]] === 0 &&
+            _vm.count_comment[value["id"]] === 0 &&
             value["count_children"] > 0 &&
             value["number_in_parent"] <=
-              _vm.count_pages_comment[value["parent_id"]] * _vm.perPage
+              _vm.count_comment[value["parent_id"]] * _vm.perPage
               ? _c(
                   "form",
                   {
@@ -38741,9 +38735,9 @@ var render = function() {
                   ]
                 )
               : value["number_in_parent"] <=
-                  _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+                  _vm.count_comment[value["parent_id"]] * _vm.perPage &&
                 value["count_children"] >
-                  _vm.count_pages_comment[value["parent_id"]] * _vm.perPage
+                  _vm.count_comment[value["id"]] * _vm.perPage
               ? _c(
                   "form",
                   {
@@ -38768,9 +38762,9 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.count_pages_comment[value["id"]] > 0 &&
+            _vm.count_comment[value["id"]] > 0 &&
             value["number_in_parent"] <=
-              _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
+              _vm.count_comment[value["parent_id"]] * _vm.perPage &&
             value["count_children"] > 0
               ? _c(
                   "form",
@@ -38803,7 +38797,7 @@ var render = function() {
       _c("br"),
       _vm._v(" "),
       _c("div", [
-        this.count_0 > this.count_pages_comment[0] * _vm.perPage
+        this.count_parent_id0 > this.count_comment[0] * _vm.perPage
           ? _c(
               "form",
               {
@@ -38824,7 +38818,7 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        this.count_pages_comment[0] > 1
+        this.count_comment[0] > 1
           ? _c(
               "form",
               {

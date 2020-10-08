@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="Відображення і приховування коментарів при натиску на відповідну кнопку (із додаванням нових коментарів)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
@@ -226,14 +226,8 @@
       <workItem from="1602018718699" duration="40000" />
       <workItem from="1602053859234" duration="28388000" />
       <workItem from="1602088912136" duration="15727000" />
-      <workItem from="1602129891418" duration="6735000" />
-    </task>
-    <task id="LOCAL-00030" summary="33(25.09.2020)">
-      <created>1601046393431</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1601046393431</updated>
+      <workItem from="1602129891418" duration="7433000" />
+      <workItem from="1602140709827" duration="2788000" />
     </task>
     <task id="LOCAL-00031" summary="33(25.09.2020)">
       <created>1601046542508</created>
@@ -571,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602133076967</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Відображення і приховування коментарів при натиску на відповідну кнопку (із додаванням нових коментарів)">
+      <created>1602137685181</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1602137685182</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +591,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="66(02.10.2020)" />
     <MESSAGE value="67(02.10.2020)" />
     <MESSAGE value="68(02.10.2020)" />
     <MESSAGE value="69(02.10.2020)" />
@@ -615,7 +615,8 @@
     <MESSAGE value="commit2" />
     <MESSAGE value="Відображення і приховування коментарів при натиску на відповідну кнопку." />
     <MESSAGE value="Відображення і приховування коментарів при натиску на відповідну кнопку і для коментарів з parent_id = 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Відображення і приховування коментарів при натиску на відповідну кнопку і для коментарів з parent_id = 0" />
+    <MESSAGE value="Відображення і приховування коментарів при натиску на відповідну кнопку (із додаванням нових коментарів)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Відображення і приховування коментарів при натиску на відповідну кнопку (із додаванням нових коментарів)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -630,10 +631,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602133075508">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602137842095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602133075508" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602137842095" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1601890707911">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -658,10 +659,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601461504227" />
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1602133093356">
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1602137693740">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1602133093356" />
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1602137693740" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
