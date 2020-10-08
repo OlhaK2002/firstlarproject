@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -2038,18 +2039,21 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var index1 = 0; index1 < response.data.length; index1++) {
           _this.array_comment.splice(index1 + i, 0, response.data[index1]);
+
+          _this.count_comment.splice(index, 0, 0);
         }
 
         _this.count_comment.splice(index, 1, count_comment_id);
+
+        console.log(_this.array_comment, _this.count_comment);
       });
     },
     coverUp: function coverUp(id, index) {
       this.count_element = [];
-      console.log(this.count_element);
 
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
         if (this.array_comment[index1]['parent_id'] === id) {
-          this.count_element.push(0);
+          this.count_element.push(index1);
           this.deleteElement(this.array_comment[index1]['id']);
         }
       }
@@ -2058,11 +2062,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
       console.log(this.count_element.length);
+      this.array_comment.splice(index + 1, this.count_element.length);
+      this.count_comment.splice(index + 1, this.count_element.length);
+      console.log(this.array_comment, this.count_comment);
     },
     deleteElement: function deleteElement(id) {
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
         if (this.array_comment[index1]['parent_id'] === id) {
-          this.count_element.push(0);
+          this.count_element.push(index1);
           this.deleteElement(this.array_comment[index1]['id']);
         }
       }
@@ -38586,6 +38593,7 @@ var render = function() {
       _vm._v("\n        " + _vm._s(_vm.displayComment) + "\n        "),
       _vm._l(_vm.array_comment, function(value, index) {
         return _c("div", [
+          _vm._v("\n            " + _vm._s(index) + "\n            "),
           _c("div", { staticClass: "text" }, [
             _c(
               "div",

@@ -10,6 +10,7 @@
         </div>
             {{displayComment}}
             <div v-for = "(value, index) in array_comment">
+                {{index}}
                 <div class = "text">
                     <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
@@ -119,17 +120,19 @@ export default {
                     for (let index1 = 0; index1 < response.data.length; index1++)
                     {
                         this.array_comment.splice(index1 + i, 0, response.data[index1]);
+                        this.count_comment.splice(index, 0, 0);
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
+                    console.log(this.array_comment, this.count_comment);
+
                 })
         },
 
         coverUp(id, index) {
             this.count_element = [];
-            console.log(this.count_element);
             for (let index1 = 0; index1 < this.array_comment.length; index1++) {
                 if (this.array_comment[index1]['parent_id'] === id) {
-                    this.count_element.push(0);
+                    this.count_element.push(index1);
                     this.deleteElement(this.array_comment[index1]['id']);
                 }
             }
@@ -137,12 +140,15 @@ export default {
             this.count_comment.splice(index + 2, this.count_element.length - 1);*/
             console.log(this.count_element.length);
 
+                this.array_comment.splice(index + 1, this.count_element.length);
+                this.count_comment.splice(index + 1, this.count_element.length);
+                console.log(this.array_comment, this.count_comment);
         },
 
         deleteElement(id) {
             for (let index1 = 0; index1 < this.array_comment.length; index1++) {
                 if (this.array_comment[index1]['parent_id'] === id) {
-                    this.count_element.push(0);
+                    this.count_element.push(index1);
                     this.deleteElement(this.array_comment[index1]['id']);
                 }
             }
