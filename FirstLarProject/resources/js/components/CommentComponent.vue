@@ -47,6 +47,9 @@
                 </div>
         </div>
         <br><br>
+        <form @submit.prevent = "showMore(0, -1)">
+            <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
+        </form>
     </div>
 </template>
 
@@ -104,9 +107,10 @@ export default {
                 url: '/comment',
                 data: form
             })
-                .then(response => {
+                .then( response => {
                     let i;
-                    if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
+                    if (index === 0) {i = this.array_comment.length;}
+                    else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
                     else i = 0;
                     for (let index1 = 0; index1 < response.data.length; index1++)
                     {
@@ -136,7 +140,7 @@ export default {
                 if (!(this.count_comment[this.array_comment[index - 1]['id']] >= 0)) {this.count_comment.splice(index, 0, 0);}
             }
 
-            if(this.count < 1){this.count_comment.fill(0);}
+            if(this.count < 1){this.count_comment.fill(0); this.count_comment.splice(0,0,1)}
             this.count++;
         }
 

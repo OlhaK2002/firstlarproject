@@ -1960,6 +1960,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -2023,7 +2026,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         var i;
 
-        if (count_comment_id > 0) {
+        if (index === 0) {
+          i = _this.array_comment.length;
+        } else if (count_comment_id > 0) {
           i = count_comment_id * _this.perPage - _this.perPage + index;
         } else i = 0;
 
@@ -2062,6 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.count < 1) {
         this.count_comment.fill(0);
+        this.count_comment.splice(0, 0, 1);
       }
 
       this.count++;
@@ -38764,7 +38770,30 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("br"),
-      _c("br")
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.showMore(0, -1)
+            }
+          }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light",
+              style: { "margin-left": 30 + "px" },
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Показать ответы")]
+          )
+        ]
+      )
     ],
     2
   )
