@@ -1963,6 +1963,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1976,13 +1982,11 @@ __webpack_require__.r(__webpack_exports__);
       perPage: this.array_limit['perPage'],
       children_limit: this.array_limit['children_limit'],
       count: 0,
+      count_element: [],
       count_parent_id0: 0,
       count_comment: [],
       limit_comment: []
     };
-  },
-  mounted: function mounted() {
-    console.log(this.array_comment, this.array, this.array_limit);
   },
   methods: {
     onSubmit: function onSubmit(parent_id, nesting, index) {
@@ -2037,21 +2041,30 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this.count_comment.splice(index, 1, count_comment_id);
-
-        console.log(_this.array_comment, _this.count_comment);
       });
     },
     coverUp: function coverUp(id, index) {
-      if (id === 0) {
-        this.count_comment.splice(id, 1, 1);
-      } else {
-        for (var _index = 0; _index < this.array_comment.length; _index++) {
-          if (this.array[_index]['parent_id'] === id) {
-            this.coverUp(this.array[_index]['id']);
-          }
-        }
+      this.count_element = [];
+      console.log(this.count_element);
 
-        this.count_comment.splice(id, 1, 0);
+      for (var index1 = 0; index1 < this.array_comment.length; index1++) {
+        if (this.array_comment[index1]['parent_id'] === id) {
+          this.count_element.push(0);
+          this.deleteElement(this.array_comment[index1]['id']);
+        }
+      }
+      /*this.array_comment.splice(index + 1, this.count_element.length - 1);
+      this.count_comment.splice(index + 2, this.count_element.length - 1);*/
+
+
+      console.log(this.count_element.length);
+    },
+    deleteElement: function deleteElement(id) {
+      for (var index1 = 0; index1 < this.array_comment.length; index1++) {
+        if (this.array_comment[index1]['parent_id'] === id) {
+          this.count_element.push(0);
+          this.deleteElement(this.array_comment[index1]['id']);
+        }
       }
     }
   },
@@ -2060,7 +2073,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var index = 1; index <= this.array_comment.length; index++) {
         if (this.array_comment[index - 1]['parent_id'] === 0) this.count_parent_id0++;
 
-        if (!(this.count_comment[this.array_comment[index - 1]['id']] >= 0)) {
+        if (!(this.count_comment[index - 1] >= 0)) {
           this.count_comment.splice(index, 0, 0);
         }
       }
@@ -38720,51 +38733,83 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.showMore(value["id"], index)
-                  }
-                }
-              },
-              [
-                _c(
-                  "button",
+            _vm.count_comment[index + 1] > 0
+              ? _c(
+                  "form",
                   {
-                    staticClass: "btn btn-light",
-                    style: { "margin-left": value["nesting"] * 30 + "px" },
-                    attrs: { type: "submit" }
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.coverUp(value["id"], index)
+                      }
+                    }
                   },
-                  [_vm._v("Показать ответы")]
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        style: { "margin-left": value["nesting"] * 30 + "px" },
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Скрыть ответы")]
+                    )
+                  ]
                 )
-              ]
-            ),
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.coverUp(value["id"])
-                  }
-                }
-              },
-              [
-                _c(
-                  "button",
+            value["count_children"] > 0 && _vm.count_comment[index + 1] === 0
+              ? _c(
+                  "form",
                   {
-                    staticClass: "btn btn-light",
-                    style: { "margin-left": value["nesting"] * 30 + "px" },
-                    attrs: { type: "submit" }
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.showMore(value["id"], index)
+                      }
+                    }
                   },
-                  [_vm._v("Скрыть ответы")]
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        style: { "margin-left": value["nesting"] * 30 + "px" },
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Показать ответы")]
+                    )
+                  ]
                 )
-              ]
-            )
+              : _vm._e(),
+            _vm._v(" "),
+            value["count_children"] > 0 &&
+            _vm.count_comment[index + 1] * _vm.perPage <
+              value["count_children"] &&
+            _vm.count_comment[index + 1] !== 0
+              ? _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.showMore(value["id"], index)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        style: { "margin-left": value["nesting"] * 30 + "px" },
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Показать больше")]
+                    )
+                  ]
+                )
+              : _vm._e()
           ])
         ])
       }),
@@ -38790,7 +38835,7 @@ var render = function() {
               style: { "margin-left": 30 + "px" },
               attrs: { type: "submit" }
             },
-            [_vm._v("Показать ответы")]
+            [_vm._v("Показать больше")]
           )
         ]
       )

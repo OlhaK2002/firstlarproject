@@ -38,17 +38,23 @@
                     </div>
                 </div>
                 <div>
-                    <form @submit.prevent = "showMore(value['id'], index)">
+
+                    <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index+1] > 0" >
+                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+                    </form>
+
+                    <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] === 0">
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
                     </form>
-                    <form @submit.prevent = "coverUp(value['id'])">
-                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+
+                    <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] * perPage < value['count_children'] && count_comment[index+1] !== 0">
+                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
                     </form>
                 </div>
         </div>
         <br><br>
         <form @submit.prevent = "showMore(0, -1)">
-            <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
+            <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
         </form>
     </div>
 </template>
@@ -67,13 +73,11 @@ export default {
             perPage: this.array_limit['perPage'],
             children_limit: this.array_limit['children_limit'],
             count: 0,
+            count_element: [],
             count_parent_id0: 0,
             count_comment: [],
             limit_comment: [],
         }
-    },
-    mounted() {
-        console.log(this.array_comment, this.array, this.array_limit)
     },
     methods: {
         onSubmit(parent_id, nesting, index) {
@@ -117,33 +121,46 @@ export default {
                         this.array_comment.splice(index1 + i, 0, response.data[index1]);
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
-                    console.log(this.array_comment, this.count_comment);
                 })
         },
-        coverUp(id, index){
-            if (id === 0) {this.count_comment.splice(id, 1, 1);}
-            else {
-                for( let index = 0; index < this.array_comment.length; index++)
-                {
-                    if(this.array[index]['parent_id'] === id){this.coverUp(this.array[index]['id']);}
+
+        coverUp(id, index) {
+            this.count_element = [];
+            console.log(this.count_element);
+            for (let index1 = 0; index1 < this.array_comment.length; index1++) {
+                if (this.array_comment[index1]['parent_id'] === id) {
+                    this.count_element.push(0);
+                    this.deleteElement(this.array_comment[index1]['id']);
                 }
-                this.count_comment.splice(id, 1, 0);
             }
+            /*this.array_comment.splice(index + 1, this.count_element.length - 1);
+            this.count_comment.splice(index + 2, this.count_element.length - 1);*/
+            console.log(this.count_element.length);
+
         },
 
+        deleteElement(id) {
+            for (let index1 = 0; index1 < this.array_comment.length; index1++) {
+                if (this.array_comment[index1]['parent_id'] === id) {
+                    this.count_element.push(0);
+                    this.deleteElement(this.array_comment[index1]['id']);
+                }
+            }
+        }
     },
+
     computed: {
         displayComment() {
-            for (let index = 1; index <= this.array_comment.length; index++)
-            {
+            for (let index = 1; index <= this.array_comment.length; index++) {
                 if (this.array_comment[index - 1]['parent_id'] === 0) this.count_parent_id0++;
-                if (!(this.count_comment[this.array_comment[index - 1]['id']] >= 0)) {this.count_comment.splice(index, 0, 0);}
+                if (!(this.count_comment[index - 1] >= 0)) {this.count_comment.splice(index, 0, 0);}
             }
-
-            if(this.count < 1){this.count_comment.fill(0); this.count_comment.splice(0,0,1)}
+            if (this.count < 1) {
+                this.count_comment.fill(0);
+                this.count_comment.splice(0,0,1);
+            }
             this.count++;
         }
-
     },
 }
 </script>

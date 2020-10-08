@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="Завантаження коментарів із БД (після натиску на кнопку + коментарі з parent_id = 0)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
@@ -226,13 +226,6 @@
       <workItem from="1602088912136" duration="15727000" />
       <workItem from="1602129891418" duration="7433000" />
       <workItem from="1602140709827" duration="2788000" />
-    </task>
-    <task id="LOCAL-00032" summary="34(25.09.2020)">
-      <created>1601118696426</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1601118696426</updated>
     </task>
     <task id="LOCAL-00033" summary="35(28.09.2020)">
       <created>1601241458967</created>
@@ -570,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602162044055</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Завантаження коментарів із БД (після натиску на кнопку + коментарі з parent_id = 0)">
+      <created>1602162804825</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1602162804825</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +589,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="68(02.10.2020)" />
     <MESSAGE value="69(02.10.2020)" />
     <MESSAGE value="70(04.10.2020)" />
     <MESSAGE value="71(05.10.2020)" />
@@ -614,7 +613,8 @@
     <MESSAGE value="Відображення і приховування коментарів при натиску на відповідну кнопку і для коментарів з parent_id = 0" />
     <MESSAGE value="Відображення і приховування коментарів при натиску на відповідну кнопку (із додаванням нових коментарів)" />
     <MESSAGE value="Завантаження коментарів із БД (після натиску на кнопку)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Завантаження коментарів із БД (після натиску на кнопку)" />
+    <MESSAGE value="Завантаження коментарів із БД (після натиску на кнопку + коментарі з parent_id = 0)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Завантаження коментарів із БД (після натиску на кнопку + коментарі з parent_id = 0)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -629,10 +629,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602162037183">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602164025670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602162037183" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602164025670" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1601890707911">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
