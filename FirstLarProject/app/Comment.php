@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $table = 'comment';
-    protected $fillable = ['user_id', 'text', 'parent_id', 'nesting'];
+    protected $fillable = ['user_id', 'text', 'parent_id', 'nesting', 'number_in_parent'];
     protected $array_view;
     protected $index = 0;
     protected $text1;
@@ -28,6 +28,7 @@ class Comment extends Model
     {
         $comments = $this::where('parent_id', $id)->get();
         foreach ($comments as $comment) {
+            $count = 0;
             $this->index++;
             $id = $comment->id;
             $text = $comment->text;
@@ -35,7 +36,8 @@ class Comment extends Model
             $nesting = $comment->nesting;
             $number_in_parent = $comment->number_in_parent;
             $data = date($comment->updated_at);
-            if ($number_in_parent >= $from && $number_in_parent <= $to) {
+            if ($number_in_parent >= $from && $number_in_parent <= $to && $count<=($to-$from)) {
+                $count++;
                 $this->otherComments($id, $text, $data, $parent_id, $nesting, $number_in_parent);
             }
         }
@@ -71,7 +73,9 @@ class Comment extends Model
 
     public function into()
     {
-        $this->number_in_parent1 = $this::where('parent_id', $this->parent_id1)->count() + 1;
+        $number_in_parent1 = $this::where('parent_id', $this->parent_id1)->count();
+        $this->number_in_parent1 = $number_in_parent1 + 1;
+
         $this::create([
             'text' => $this->text1,
             'parent_id' => $this->parent_id1,
@@ -91,13 +95,13 @@ class Comment extends Model
                 ['parent_id', $this->parent_id1],
                 ['user_id', $this->user_id1],
                 ['nesting', $this->nesting1],
-                ['number_in_parent', $this->number_in_parent1]
             ])->first();
 
             $id = $comment->id;
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
+            $number_in_parent = $comment->number_in_parent;
             $data = date($comment->updated_at);
 
             $user = $this::find($id);
@@ -110,7 +114,7 @@ class Comment extends Model
                 'parent_id' => $parent_id,
                 'nesting' => $this->nesting1,
                 'data' => $data,
-                'number_in_parent' => $this->number_in_parent1,
+                'number_in_parent' => $number_in_parent,
                 'count_children' => 0,
             ];
             return $array_view2;

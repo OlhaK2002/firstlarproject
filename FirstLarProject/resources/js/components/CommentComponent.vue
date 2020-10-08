@@ -1,5 +1,6 @@
 <template>
     <div class="comments">
+        {{displayComment}}
         <div class = "text" style = "margin-left: 30px">
             <form v-if = "bool" @submit.prevent = "onSubmit(0,0, 0)">
                 <input type = "hidden" name = "_token" :value = "csrf">
@@ -8,7 +9,7 @@
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-            {{displayComment}}
+
             <div v-for = "(value, index) in array_comment">
                 {{index}}
                 <div class = "text">
@@ -40,7 +41,7 @@
                 </div>
                 <div>
 
-                    <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index+1] > 0" >
+                    <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index+1] > 0 && (value['number_in_parent'] <= (count_comment[index + 1]*perPage))" >
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
                     </form>
 
@@ -93,7 +94,15 @@ export default {
                     data: form
             })
             .then(response => {
-                console.log(response.data);
+                this.array_comment = this.array_comment || [];
+                this.array_comment[index]['count_children']++;
+                this.text = '';
+                this.text_parent_id_0 = '';
+                console.log(this.array_comment);
+            })
+
+            .catch(function (error) {
+                console.log(error.response);
             })
         },
         showMore(id, index) {
@@ -112,22 +121,20 @@ export default {
                 url: '/comment',
                 data: form
             })
-                .then( response => {
-                    let i;
-                    if (index === 0) {i = this.array_comment.length;}
-                    else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
-                    else i = 0;
-                    for (let index1 = 0; index1 < response.data.length; index1++)
-                    {
-                        this.array_comment.splice(index1 + i, 0, response.data[index1]);
-                        this.count_comment.splice(index, 0, 0);
-                    }
-                    this.count_comment.splice(index, 1, count_comment_id);
-                    console.log(this.array_comment, this.count_comment);
+            .then( response => {
+                let i;
+                if (index === 0) {i = this.array_comment.length;}
+                else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
+                else i = 0;
+                for (let index1 = 0; index1 < response.data.length; index1++)
+                {
+                    this.array_comment.splice(index1 + i, 0, response.data[index1]);
+                    this.count_comment.splice(index, 0, 0);
+                }
+                this.count_comment.splice(index, 1, count_comment_id);
 
-                })
+            })
         },
-
         coverUp(id, index) {
             this.count_element = [];
             for (let index1 = 0; index1 < this.array_comment.length; index1++) {
@@ -136,13 +143,8 @@ export default {
                     this.deleteElement(this.array_comment[index1]['id']);
                 }
             }
-            /*this.array_comment.splice(index + 1, this.count_element.length - 1);
-            this.count_comment.splice(index + 2, this.count_element.length - 1);*/
-            console.log(this.count_element.length);
-
-                this.array_comment.splice(index + 1, this.count_element.length);
-                this.count_comment.splice(index + 1, this.count_element.length);
-                console.log(this.array_comment, this.count_comment);
+            this.array_comment.splice(index + 1, this.count_element.length);
+            this.count_comment.splice(index + 1, this.count_element.length);
         },
 
         deleteElement(id) {

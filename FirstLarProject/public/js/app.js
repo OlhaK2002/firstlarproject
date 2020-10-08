@@ -1970,6 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1991,6 +1992,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onSubmit: function onSubmit(parent_id, nesting, index) {
+      var _this = this;
+
       var form = new FormData();
 
       if (parent_id === 0) {
@@ -2006,11 +2009,17 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
-        console.log(response.data);
+        _this.array_comment = _this.array_comment || [];
+        _this.array_comment[index]['count_children']++;
+        _this.text = '';
+        _this.text_parent_id_0 = '';
+        console.log(_this.array_comment);
+      })["catch"](function (error) {
+        console.log(error.response);
       });
     },
     showMore: function showMore(id, index) {
-      var _this = this;
+      var _this2 = this;
 
       index = index + 1;
       var to,
@@ -2032,20 +2041,18 @@ __webpack_require__.r(__webpack_exports__);
         var i;
 
         if (index === 0) {
-          i = _this.array_comment.length;
+          i = _this2.array_comment.length;
         } else if (count_comment_id > 0) {
-          i = count_comment_id * _this.perPage - _this.perPage + index;
+          i = count_comment_id * _this2.perPage - _this2.perPage + index;
         } else i = 0;
 
         for (var index1 = 0; index1 < response.data.length; index1++) {
-          _this.array_comment.splice(index1 + i, 0, response.data[index1]);
+          _this2.array_comment.splice(index1 + i, 0, response.data[index1]);
 
-          _this.count_comment.splice(index, 0, 0);
+          _this2.count_comment.splice(index, 0, 0);
         }
 
-        _this.count_comment.splice(index, 1, count_comment_id);
-
-        console.log(_this.array_comment, _this.count_comment);
+        _this2.count_comment.splice(index, 1, count_comment_id);
       });
     },
     coverUp: function coverUp(id, index) {
@@ -2057,14 +2064,9 @@ __webpack_require__.r(__webpack_exports__);
           this.deleteElement(this.array_comment[index1]['id']);
         }
       }
-      /*this.array_comment.splice(index + 1, this.count_element.length - 1);
-      this.count_comment.splice(index + 2, this.count_element.length - 1);*/
 
-
-      console.log(this.count_element.length);
       this.array_comment.splice(index + 1, this.count_element.length);
       this.count_comment.splice(index + 1, this.count_element.length);
-      console.log(this.array_comment, this.count_comment);
     },
     deleteElement: function deleteElement(id) {
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
@@ -38511,6 +38513,7 @@ var render = function() {
     "div",
     { staticClass: "comments" },
     [
+      _vm._v("\n    " + _vm._s(_vm.displayComment) + "\n    "),
       _c(
         "div",
         { staticClass: "text", staticStyle: { "margin-left": "30px" } },
@@ -38590,7 +38593,7 @@ var render = function() {
           _c("br")
         ]
       ),
-      _vm._v("\n        " + _vm._s(_vm.displayComment) + "\n        "),
+      _vm._v(" "),
       _vm._l(_vm.array_comment, function(value, index) {
         return _c("div", [
           _vm._v("\n            " + _vm._s(index) + "\n            "),
@@ -38741,7 +38744,9 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _vm.count_comment[index + 1] > 0
+            _vm.count_comment[index + 1] > 0 &&
+            value["number_in_parent"] <=
+              _vm.count_comment[index + 1] * _vm.perPage
               ? _c(
                   "form",
                   {
