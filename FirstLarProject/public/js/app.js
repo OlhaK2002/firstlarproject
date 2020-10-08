@@ -2015,6 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.array1 = _this.array1 || [];
         response.data['number_in_parent'] = _this.array[index]['count_children'] + 1;
+        _this.array[index]['count_children']++;
 
         if (parent_id === 0) {
           _this.array1.push(response.data);
@@ -2034,7 +2035,15 @@ __webpack_require__.r(__webpack_exports__);
     coverUp: function coverUp(id) {
       if (id === 0) {
         this.count_pages_comment.splice(id, 1, 1);
-      } else this.count_pages_comment.splice(id, 1, 0);
+      } else {
+        for (var index = 0; index < this.array1.length; index++) {
+          if (this.array[index]['parent_id'] === id) {
+            this.coverUp(this.array[index]['id']);
+          }
+        }
+
+        this.count_pages_comment.splice(id, 1, 0);
+      }
     }
   },
   computed: {
@@ -2047,7 +2056,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       array[0] = 1;
-      this.count_pages_comment = array;
+      if (this.k < 1) this.count_pages_comment = array;
+      this.k++;
     }
   }
 });
@@ -38732,7 +38742,8 @@ var render = function() {
                 )
               : value["number_in_parent"] <=
                   _vm.count_pages_comment[value["parent_id"]] * _vm.perPage &&
-                value["count_children"] > 0
+                value["count_children"] >
+                  _vm.count_pages_comment[value["parent_id"]] * _vm.perPage
               ? _c(
                   "form",
                   {

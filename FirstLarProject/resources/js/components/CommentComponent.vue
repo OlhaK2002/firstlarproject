@@ -41,7 +41,7 @@
                     <form @submit.prevent = "showMore(value['id'])" v-if="count_pages_comment[value['id']] === 0 && value['count_children']>0 && (value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage))">
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
                     </form>
-                    <form @submit.prevent = "showMore(value['id'])" v-else-if="(value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && value['count_children']>0">
+                    <form @submit.prevent = "showMore(value['id'])" v-else-if="(value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && value['count_children']>(count_pages_comment[value['parent_id']]*perPage)">
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
                     </form>
                     <form @submit.prevent = "coverUp(value['id'])" v-if="count_pages_comment[value['id']] > 0 && (value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && value['count_children']>0">
@@ -100,6 +100,7 @@ export default {
             .then(response => {
                 this.array1 = this.array1 || [];
                 response.data['number_in_parent'] = this.array[index]['count_children'] + 1;
+                this.array[index]['count_children']++;
 
                 if (parent_id === 0) {
                     this.array1.push(response.data)
@@ -117,8 +118,14 @@ export default {
             this.count_pages_comment.splice(id, 1, count);
         },
         coverUp(id){
-            if(id === 0) {this.count_pages_comment.splice(id, 1, 1);}
-            else this.count_pages_comment.splice(id, 1, 0);
+            if (id === 0) {this.count_pages_comment.splice(id, 1, 1);}
+            else {
+                for( let index = 0; index < this.array1.length; index++)
+                {
+                    if(this.array[index]['parent_id'] === id){this.coverUp(this.array[index]['id']);}
+                }
+                this.count_pages_comment.splice(id, 1, 0);
+            }
         },
 
     },
@@ -131,7 +138,8 @@ export default {
                 array[this.array1[index]['id']] = 0;
             }
             array[0] = 1;
-            this.count_pages_comment = array;
+            if(this.k<1)this.count_pages_comment = array;
+            this.k++;
         }
 
     },
