@@ -50,9 +50,14 @@
                 </div>
         </div>
         <br><br>
-        <form @submit.prevent = "showMore(0)" >
-            <button type="submit" class = "btn btn-light">Показать больше </button>
-        </form>
+        <div>
+            <form @submit.prevent = "showMore(0)" v-if="this.count_0 > (this.count_pages_comment[0] * perPage)">
+                <button type="submit" class = "btn btn-light">Показать больше </button>
+            </form>
+            <form @submit.prevent = "coverUp(0)" v-if="this.count_pages_comment[0]>1">
+                <button type="submit" class = "btn btn-light">Скрыть ответы</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -112,7 +117,8 @@ export default {
             this.count_pages_comment.splice(id, 1, count);
         },
         coverUp(id){
-            this.count_pages_comment.splice(id, 1, 0);
+            if(id === 0) {this.count_pages_comment.splice(id, 1, 1);}
+            else this.count_pages_comment.splice(id, 1, 0);
         },
 
     },

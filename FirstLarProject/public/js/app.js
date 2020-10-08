@@ -1966,6 +1966,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -2027,7 +2032,9 @@ __webpack_require__.r(__webpack_exports__);
       this.count_pages_comment.splice(id, 1, count);
     },
     coverUp: function coverUp(id) {
-      this.count_pages_comment.splice(id, 1, 0);
+      if (id === 0) {
+        this.count_pages_comment.splice(id, 1, 1);
+      } else this.count_pages_comment.splice(id, 1, 0);
     }
   },
   computed: {
@@ -38784,24 +38791,49 @@ var render = function() {
       _c("br"),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.showMore(0)
-            }
-          }
-        },
-        [
-          _c(
-            "button",
-            { staticClass: "btn btn-light", attrs: { type: "submit" } },
-            [_vm._v("Показать больше ")]
-          )
-        ]
-      )
+      _c("div", [
+        this.count_0 > this.count_pages_comment[0] * _vm.perPage
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.showMore(0)
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-light", attrs: { type: "submit" } },
+                  [_vm._v("Показать больше ")]
+                )
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        this.count_pages_comment[0] > 1
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.coverUp(0)
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-light", attrs: { type: "submit" } },
+                  [_vm._v("Скрыть ответы")]
+                )
+              ]
+            )
+          : _vm._e()
+      ])
     ],
     2
   )
