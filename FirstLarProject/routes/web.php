@@ -3,6 +3,7 @@
 Auth::routes();
 
 
-Route::get('/', 'CommentController@comment')->name('comment');
+Route::get('/', 'CommentController@commentView')->name('view');
+Route::post('/comment', 'CommentController@comment')->name('comment');
 Route::post('/reply', 'CommentController@reply')->name('reply');
 

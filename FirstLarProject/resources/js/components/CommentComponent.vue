@@ -10,14 +10,14 @@
         </div>
             {{displayComment}}
             <div v-for = "(value, index) in array_comment">
-                <div class = "text" v-if = "(value['number_in_parent'] <= (count_comment[value['parent_id']]*perPage)) && (value['nesting']===0 || (value['nesting']-1)<=children_limit)">
+                <div class = "text">
                     <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                         <div class = "comment author">{{value['author']}}</div>&nbsp
                         <div class = "comment data">({{value['data']}})</div><br>
                         <div class = "comment">{{value['text']}}</div>
                     </div>
                 </div>
-                <div v-if = "bool && (value['number_in_parent'] <= (count_comment[value['parent_id']]*perPage)) && (value['nesting']-1)<children_limit">
+                <div v-if = "bool">
                     <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
                         <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
                             <h2 class = "mb-0">
@@ -38,32 +38,21 @@
                     </div>
                 </div>
                 <div>
-                    <form @submit.prevent = "showMore(value['id'])" v-if = "count_comment[value['id']] === 0 && value['count_children'] > 0 && (value['number_in_parent'] <= (count_comment[value['parent_id']] * perPage))">
+                    <form @submit.prevent = "showMore(value['id'], index)">
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
                     </form>
-                    <form @submit.prevent = "showMore(value['id'])" v-else-if = "(value['number_in_parent'] <= (count_comment[value['parent_id']] * perPage)) && value['count_children'] > (count_comment[value['id']] * perPage)">
-                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
-                    </form>
-                    <form @submit.prevent = "coverUp(value['id'])" v-if = "count_comment[value['id']] > 0 && (value['number_in_parent'] <= (count_comment[value['parent_id']] * perPage)) && value['count_children'] > 0">
+                    <form @submit.prevent = "coverUp(value['id'])">
                         <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
                     </form>
                 </div>
         </div>
         <br><br>
-        <div>
-            <form @submit.prevent = "showMore(0)" v-if = "this.count_parent_id0 > (this.count_comment[0] * perPage)">
-                <button type="submit" class = "btn btn-light">Показать больше </button>
-            </form>
-            <form @submit.prevent = "coverUp(0)" v-if = "this.count_comment[0] > 1">
-                <button type="submit" class = "btn btn-light">Скрыть ответы</button>
-            </form>
-        </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['array','bool', 'array_limit'],
+    props: ['array', 'bool', 'array_limit'],
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -77,7 +66,11 @@ export default {
             count: 0,
             count_parent_id0: 0,
             count_comment: [],
+            limit_comment: [],
         }
+    },
+    mounted() {
+        console.log(this.array_comment, this.array, this.array_limit)
     },
     methods: {
         onSubmit(parent_id, nesting, index) {
@@ -92,26 +85,38 @@ export default {
                     data: form
             })
             .then(response => {
-                this.array_comment = this.array_comment || [];
-                response.data['number_in_parent'] = this.array[index]['count_children'] + 1;
-                this.array[index]['count_children']++;
-
-                if (parent_id === 0) {
-                    this.array_comment.push(response.data)
-                }
-                else {
-                    this.array_comment.splice(index+1, 0, response.data)
-                }
-                this.text = '';
-                this.text0 = '';
-                console.log(this.array_comment);
+                console.log(response.data);
             })
         },
-        showMore(id){
-            let count = this.count_comment[id] + 1;
-            this.count_comment.splice(id, 1, count);
+        showMore(id, index) {
+            index = index+1;
+            let to, from, count_comment_id = 0;
+            count_comment_id = this.count_comment[index] + 1;
+            from = count_comment_id * this.perPage - this.perPage + 1;
+            to = count_comment_id * this.perPage;
+            console.log(from, to);
+            let form = new FormData();
+            form.append('id', id);
+            form.append('from', from);
+            form.append('to', to);
+            axios({
+                method: 'post',
+                url: '/comment',
+                data: form
+            })
+                .then(response => {
+                    let i;
+                    if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
+                    else i = 0;
+                    for (let index1 = 0; index1 < response.data.length; index1++)
+                    {
+                        this.array_comment.splice(index1 + i, 0, response.data[index1]);
+                    }
+                    this.count_comment.splice(index, 1, count_comment_id);
+                    console.log(this.array_comment, this.count_comment);
+                })
         },
-        coverUp(id){
+        coverUp(id, index){
             if (id === 0) {this.count_comment.splice(id, 1, 1);}
             else {
                 for( let index = 0; index < this.array_comment.length; index++)
@@ -125,14 +130,13 @@ export default {
     },
     computed: {
         displayComment() {
-            let array = [];
-            for (let index = 0; index < this.array_comment.length; index++)
+            for (let index = 1; index <= this.array_comment.length; index++)
             {
-                if (this.array_comment[index]['parent_id'] === 0) this.count_parent_id0++;
-                array[this.array_comment[index]['id']] = 0;
+                if (this.array_comment[index - 1]['parent_id'] === 0) this.count_parent_id0++;
+                if (!(this.count_comment[this.array_comment[index - 1]['id']] >= 0)) {this.count_comment.splice(index, 0, 0);}
             }
-            array[0] = 1;
-            if (this.count<1) this.count_comment = array;
+
+            if(this.count < 1){this.count_comment.fill(0);}
             this.count++;
         }
 

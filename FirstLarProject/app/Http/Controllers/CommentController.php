@@ -15,14 +15,21 @@ class CommentController extends Controller
         $this->model = new Comment();
     }
 
-    public function comment()
+    public function commentView()
     {
-        $array = $this->model->firstComment();
+        $array = $this->model->firstComment(0, 1, 3);
         $array_limit = [
             'perPage' => config('app.comments'),
             'children_limit' => config('app.max_children_comments'),
         ];
         return view('comment', compact('array'), compact('array_limit'));
+    }
+
+    public function comment()
+    {
+        $array = $this->model->firstComment($_POST['id'], $_POST['from'], $_POST['to']);
+            return response()->json($array, Response::HTTP_OK);
+
     }
 
     public function reply()

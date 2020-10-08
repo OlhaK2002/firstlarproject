@@ -14,6 +14,7 @@ class Comment extends Model
     protected $user_id1;
     protected $parent_id1;
     protected $nesting1;
+    protected $number_in_parent1;
     protected $children_count;
     protected $number;
 
@@ -23,26 +24,27 @@ class Comment extends Model
         return $this::belongsTo('App\User',  'user_id','id' );
     }
 
-    public function firstComment()
+    public function firstComment($id, $from, $to)
     {
-        $comments = $this::where('parent_id', "0")->get();
-        $count = 0;
+        $comments = $this::where('parent_id', $id)->get();
         foreach ($comments as $comment) {
             $this->index++;
             $id = $comment->id;
             $text = $comment->text;
             $parent_id = $comment->parent_id;
             $nesting = $comment->nesting;
+            $number_in_parent = $comment->number_in_parent;
             $data = date($comment->updated_at);
-            $count++;
-            $this->otherComments($id, $text, $data, $parent_id, $nesting, $count);
+            if ($number_in_parent >= $from && $number_in_parent <= $to) {
+                $this->otherComments($id, $text, $data, $parent_id, $nesting, $number_in_parent);
+            }
         }
         return $this->array_view;
     }
 
-    public function otherComments($id, $text, $data, $parent_id, $nesting, $count)
+    public function otherComments($id, $text, $data, $parent_id, $nesting, $number_in_parent)
     {
-        $user= $this::find($id);
+        $user = $this::find($id);
         $count_children = $this::where('parent_id', $id)->count();
 
         $nesting = $nesting + 1;
@@ -53,27 +55,11 @@ class Comment extends Model
             'parent_id' => $parent_id,
             'nesting' => $nesting,
             'data' => $data,
-            'page' => 0,
-            'number_in_parent' => $count,
+            'number_in_parent' => $number_in_parent,
             'count_children' => $count_children,
         ];
-
-        $comments = $this::where('parent_id', $id)->get();
-
-        $count2 = 0;
-        if (!empty($comments)) {
-            foreach ($comments as $comment) {
-                $this->index++;
-                $id = $comment->id;
-                $text = $comment->text;
-                $parent_id = $comment->parent_id;
-                $nesting = $comment->nesting;
-                $data = date($comment->updated_at);
-                $count2++;
-                $this->otherComments($id, $text, $data, $parent_id, $nesting, $count2);
-            }
-        }
     }
+
 
     public function reply($text, $parent_id, $user_id, $nesting)
     {
@@ -85,11 +71,13 @@ class Comment extends Model
 
     public function into()
     {
+        $this->number_in_parent1 = $this::where('parent_id', $this->parent_id1)->count() + 1;
         $this::create([
             'text' => $this->text1,
             'parent_id' => $this->parent_id1,
             'user_id' => $this->user_id1,
-            'nesting' => $this->nesting1
+            'nesting' => $this->nesting1,
+            'number_in_parent' => $this->number_in_parent1,
         ]);
         return true;
     }
@@ -102,7 +90,8 @@ class Comment extends Model
                 ['text', $this->text1],
                 ['parent_id', $this->parent_id1],
                 ['user_id', $this->user_id1],
-                ['nesting', $this->nesting1]
+                ['nesting', $this->nesting1],
+                ['number_in_parent', $this->number_in_parent1]
             ])->first();
 
             $id = $comment->id;
@@ -112,7 +101,6 @@ class Comment extends Model
             $data = date($comment->updated_at);
 
             $user = $this::find($id);
-            $array = $this->array_view;
 
             $this->nesting1 = $nesting + 1;
             $array_view2 = [
@@ -122,7 +110,7 @@ class Comment extends Model
                 'parent_id' => $parent_id,
                 'nesting' => $this->nesting1,
                 'data' => $data,
-                'page' => 0,
+                'number_in_parent' => $this->number_in_parent1,
                 'count_children' => 0,
             ];
             return $array_view2;
