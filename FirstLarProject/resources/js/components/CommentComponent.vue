@@ -35,16 +35,23 @@
                                 </form>
                             </div>
                         </div>
-                        <form  v-if="value['count_children']>0">
-                            <button type="button" class = "btn btn-light" @click = "page = (count_pages_comment[value['id']]++)">Показать больше {{page}}</button>
-                        </form>
                     </div>
+                </div>
+                <div>
+                    <form @submit.prevent = "showMore(value['id'])" v-if="count_pages_comment[value['id']] === 0 && value['count_children']>0 && (value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage))">
+                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
+                    </form>
+                    <form @submit.prevent = "showMore(value['id'])" v-else-if="(value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && value['count_children']>0">
+                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
+                    </form>
+                    <form @submit.prevent = "coverUp(value['id'])" v-if="count_pages_comment[value['id']] > 0 && (value['number_in_parent'] <= (count_pages_comment[value['parent_id']]*perPage)) && value['count_children']>0">
+                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+                    </form>
                 </div>
         </div>
         <br><br>
-        <form>
-            <button type="button" class = "btn btn-light" @click = "page = count_pages_comment[0]++">Показать больше </button>
-            <input type="hidden" :value = "page">
+        <form @submit.prevent = "showMore(0)" >
+            <button type="submit" class = "btn btn-light">Показать больше </button>
         </form>
     </div>
 </template>
@@ -67,7 +74,7 @@ export default {
             children_limit: this.array_limit['children_limit'],
             pages: [],
             count: 0,
-            count2: 0,
+            count_0: 0,
             count_pages_comment: [],
             count_comment: [],
             index_comment: [],
@@ -101,7 +108,11 @@ export default {
             })
         },
         showMore(id){
-            this.count_pages_comment[id]++;
+            let count = this.count_pages_comment[id] + 1;
+            this.count_pages_comment.splice(id, 1, count);
+        },
+        coverUp(id){
+            this.count_pages_comment.splice(id, 1, 0);
         },
 
     },
@@ -110,6 +121,7 @@ export default {
             let array = [];
             for (let index = 0; index < this.array1.length; index++)
             {
+                if(this.array1[index]['parent_id'] === 0)this.count_0++;
                 array[this.array1[index]['id']] = 0;
             }
             array[0] = 1;

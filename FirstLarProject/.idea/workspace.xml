@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="commit">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
     </list>
@@ -226,14 +225,8 @@
       <workItem from="1602004308202" duration="9966000" />
       <workItem from="1602018718699" duration="40000" />
       <workItem from="1602053859234" duration="28388000" />
-      <workItem from="1602088912136" duration="15259000" />
-    </task>
-    <task id="LOCAL-00027" summary="30(25.09.2020)">
-      <created>1601043126295</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1601043126295</updated>
+      <workItem from="1602088912136" duration="15727000" />
+      <workItem from="1602129891418" duration="2218000" />
     </task>
     <task id="LOCAL-00028" summary="31(25.09.2020)">
       <created>1601043573478</created>
@@ -571,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602083414137</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="commit2">
+      <created>1602107121523</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1602107121524</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +590,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="63(02.10.2020)" />
     <MESSAGE value="64(02.10.2020)" />
     <MESSAGE value="65(02.10.2020)" />
     <MESSAGE value="66(02.10.2020)" />
@@ -615,7 +614,8 @@
     <MESSAGE value="Встановлення обмежень кількості коментарів на сторінці і максимальної кількості дочірніх коментарів, заданих у config" />
     <MESSAGE value="Завантаження батьківських і дочірніх коментарів від вказаної кількості" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="commit2" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -630,10 +630,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602106491209">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602107116105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602106491209" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602107116105" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1601890707911">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
