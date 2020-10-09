@@ -42,18 +42,18 @@
                     <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
                 </form>
 
-                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
+                <form @submit.prevent = "showMore(value['id'], index, value['parent_id'])" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
                     <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
                 </form>
 
-                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] !== 0 && value['count_children'] > (count_comment[index + 1]*perPage)">
+                <form @submit.prevent = "showMore(value['id'], index, value['parent_id'])" v-if = "value['count_children'] > 0 && count_comment[index + 1] !== 0 && value['count_children'] > (count_comment[index + 1]*perPage)">
                     <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
                 </form>
             </div>
         </div>
         <br><br>
 
-        <form @submit.prevent = "showMore(0, -1)" v-if="count_parent_id0 < count_parent_id0_in_db">
+        <form @submit.prevent = "showMore(0, -1, 0)" v-if="count_parent_id0 < count_parent_id0_in_db">
             <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
         </form>
         <form @submit.prevent = "coverUp(0, -1)" v-if="count_parent_id0 > 3">
@@ -107,7 +107,7 @@ export default {
                     console.log(error.response);
                 })
         },
-        showMore(id, index) {
+        showMore(id, index, parent_id) {
             index = index+1;
             let to, from, count_comment_id = 0;
             count_comment_id = this.count_comment[index] + 1;
@@ -124,18 +124,26 @@ export default {
                 data: form
             })
                 .then( response => {
-                    let i;
-                    if (index === 0) {i = this.array_comment.length;}
-                    else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
-                    else i = 0;
+                    let i, ind, count = 0;
+                    if (index === 0) {
+                        i = this.array_comment.length + 1;
+                    }
+                    else {
+                        for (ind = this.array_comment.length - 1; ind >= index - 1; ind--) {
+                            if (this.array_comment[ind]['parent_id'] === id) {
+                                count = ind;
+                                break;
+                            }
+                        }
+                        if (count === 0) {i = index + 1;}
+                        else {i = count + 2;}
+                    }
                     for (let index1 = 0; index1 < response.data.length; index1++)
                     {
-                        this.array_comment.splice(index1 + i, 0, response.data[index1]);
-                        this.count_comment.splice(index1 + i, 0, 0);
+                        this.array_comment.splice(i + index1 - 1,0, response.data[index1]);
+                        this.count_comment.splice(i + index1, 0, 0);
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
-
-                    console.log(this.count_comment);
                 })
         },
         coverUp(id, index) {
@@ -144,7 +152,7 @@ export default {
             for (let index1 = 0; index1 < this.array_comment.length; index1++) {
                 let comment = this.array_comment[index1];
                 if (comment['parent_id'] === id) {
-                    if(index !== -1){
+                    if (index !== -1) {
                         this.count_element.push(index1);
                         this.deleteElement(this.array_comment[index1]['id']);
                     }
@@ -188,7 +196,6 @@ export default {
                 this.array_first.splice(0, 0, this.array_comment['0'])
                 this.array_first.splice(1, 0, this.array_comment['1'])
                 this.array_first.splice(2, 0, this.array_comment['2'])
-
                 this.count_comment.fill(0);
                 this.count_comment.splice(0,0,1);
             }

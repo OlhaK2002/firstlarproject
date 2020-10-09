@@ -2020,7 +2020,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error.response);
       });
     },
-    showMore: function showMore(id, index) {
+    showMore: function showMore(id, index, parent_id) {
       var _this2 = this;
 
       index = index + 1;
@@ -2040,23 +2040,34 @@ __webpack_require__.r(__webpack_exports__);
         url: '/comment',
         data: form
       }).then(function (response) {
-        var i;
+        var i,
+            ind,
+            count = 0;
 
         if (index === 0) {
-          i = _this2.array_comment.length;
-        } else if (count_comment_id > 0) {
-          i = count_comment_id * _this2.perPage - _this2.perPage + index;
-        } else i = 0;
+          i = _this2.array_comment.length + 1;
+        } else {
+          for (ind = _this2.array_comment.length - 1; ind >= index - 1; ind--) {
+            if (_this2.array_comment[ind]['parent_id'] === id) {
+              count = ind;
+              break;
+            }
+          }
+
+          if (count === 0) {
+            i = index + 1;
+          } else {
+            i = count + 2;
+          }
+        }
 
         for (var index1 = 0; index1 < response.data.length; index1++) {
-          _this2.array_comment.splice(index1 + i, 0, response.data[index1]);
+          _this2.array_comment.splice(i + index1 - 1, 0, response.data[index1]);
 
-          _this2.count_comment.splice(index1 + i, 0, 0);
+          _this2.count_comment.splice(i + index1, 0, 0);
         }
 
         _this2.count_comment.splice(index, 1, count_comment_id);
-
-        console.log(_this2.count_comment);
       });
     },
     coverUp: function coverUp(id, index) {
@@ -38803,7 +38814,11 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.showMore(value["id"], index)
+                        return _vm.showMore(
+                          value["id"],
+                          index,
+                          value["parent_id"]
+                        )
                       }
                     }
                   },
@@ -38830,7 +38845,11 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.showMore(value["id"], index)
+                        return _vm.showMore(
+                          value["id"],
+                          index,
+                          value["parent_id"]
+                        )
                       }
                     }
                   },
@@ -38861,7 +38880,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.showMore(0, -1)
+                  return _vm.showMore(0, -1, 0)
                 }
               }
             },
