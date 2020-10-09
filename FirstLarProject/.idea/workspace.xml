@@ -19,11 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="Налаштування стилів посилань на авторизцію і реєстрацію">
+    <list default="true" id="74ba35ed-fea8-4d92-ac63-3d66cfe9f30d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" afterDir="false" />
     </list>
     <list id="d399eced-4ad3-4ce8-b369-c611b87a8f46" name="Revert &quot;5(22.09.2020)&quot;" comment="Revert &quot;5(22.09.2020)&quot;&#10;&#10;This reverts commit 754da09e" />
     <option name="SHOW_DIALOG" value="false" />
@@ -231,13 +229,6 @@
       <workItem from="1602181911135" duration="7882000" />
       <workItem from="1602218361599" duration="5080000" />
       <workItem from="1602227020737" duration="19969000" />
-    </task>
-    <task id="LOCAL-00040" summary="41(28.09.2020)">
-      <created>1601296045205</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1601296045206</updated>
     </task>
     <task id="LOCAL-00041" summary="42(28.09.2020)">
       <created>1601304707242</created>
@@ -575,7 +566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602252849858</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Налаштування стилів посилань авторизції і реєстрації">
+      <created>1602256556847</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1602256556847</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +592,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="79(05.10.2020)" />
     <MESSAGE value="80(05.10.2020)" />
     <MESSAGE value="81(05.10.2020)" />
     <MESSAGE value="82(05.10.2020)" />
@@ -619,7 +616,8 @@
     <MESSAGE value="Виправлення помилок" />
     <MESSAGE value="+ міграції" />
     <MESSAGE value="Усунення помилки для неавторизованих користувачів" />
-    <option name="LAST_COMMIT_MESSAGE" value="Усунення помилки для неавторизованих користувачів" />
+    <MESSAGE value="Налаштування стилів посилань авторизції і реєстрації" />
+    <option name="LAST_COMMIT_MESSAGE" value="Налаштування стилів посилань авторизції і реєстрації" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601031012667">
@@ -634,10 +632,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601628438669" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602255969021">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602256553222">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602255969021" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1602256553222" />
     <state x="147" y="65" width="1228" height="687" key="DiffContextDialog" timestamp="1602255692032">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -662,10 +660,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601461504227" />
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1602253037844">
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2" timestamp="1602256562403">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1602253037844" />
+    <state x="377" y="131" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1602256562403" />
     <state x="100" y="100" width="1336" height="624" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600867163639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

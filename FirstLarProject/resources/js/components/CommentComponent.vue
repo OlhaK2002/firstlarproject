@@ -97,8 +97,18 @@ export default {
                 data: form
             })
                 .then(response => {
+                    let count = 0, k =0;
                     this.array_comment = this.array_comment || [];
                     this.array_comment[index]['count_children']++;
+                    for (let id = this.array_comment.length - 1; id >= index - 1; id--) {
+                        if (this.array_comment[id]['parent_id'] === this.array_comment[index]) {
+                            count = id; k++;
+                            if (k === 3) break;
+                        }
+                    }
+                    if(k === 3) {this.coverUp(this.array_comment[count]['id'], count); this.array_comment.splice(count, 0, response.data)}
+                    else if (k>0) {this.array_comment.splice(count, 0, response.data)}
+                    else this.array_comment.splice(index, 0, response.data);
                     this.text = '';
                     this.text_parent_id_0 = '';
                 })

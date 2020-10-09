@@ -2012,8 +2012,27 @@ __webpack_require__.r(__webpack_exports__);
         url: '/reply',
         data: form
       }).then(function (response) {
+        var count = 0,
+            k = 0;
         _this.array_comment = _this.array_comment || [];
         _this.array_comment[index]['count_children']++;
+
+        for (var id = _this.array_comment.length - 1; id >= index - 1; id--) {
+          if (_this.array_comment[id]['parent_id'] === _this.array_comment[index]) {
+            count = id;
+            k++;
+            if (k === 3) break;
+          }
+        }
+
+        if (k === 3) {
+          _this.coverUp(_this.array_comment[count]['id'], count);
+
+          _this.array_comment.splice(count, 0, response.data);
+        } else if (k > 0) {
+          _this.array_comment.splice(count, 0, response.data);
+        } else _this.array_comment.splice(index, 0, response.data);
+
         _this.text = '';
         _this.text_parent_id_0 = '';
       })["catch"](function (error) {
