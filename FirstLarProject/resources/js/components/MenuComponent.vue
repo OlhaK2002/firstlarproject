@@ -9,7 +9,7 @@
                 <ul class = "navbar-nav ml-auto">
                     <div v-if = "bool">
                         <li class = "nav-item dropdown">
-                            {{name}}
+                            {{user['name']}}
                             <a id = "navbarDropdown" class = "dropdown-toggle" style = "color: #35848F" href = "#" role = "button" data-toggle = "dropdown" aria-haspopup = "true" aria-expanded = "false" v-pre></a>
                             <div class = "dropdown-menu dropdown-menu-right" aria-labelledby = "navbarDropdown">
                                 <a class = "dropdown-item nav-item" href = "/logout" onclick = "event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -41,7 +41,7 @@ export default {
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            name: this.users['name'],
+            user: this.users || [],
         }
     }
 }

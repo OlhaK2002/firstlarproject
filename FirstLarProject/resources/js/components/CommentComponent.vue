@@ -113,7 +113,6 @@ export default {
             count_comment_id = this.count_comment[index] + 1;
             from = count_comment_id * this.perPage - this.perPage + 1;
             to = count_comment_id * this.perPage;
-            console.log(from, to);
             let form = new FormData();
             form.append('id', id);
             form.append('from', from);
@@ -171,7 +170,6 @@ export default {
                 this.count_comment.splice(index + (array_length - this.count_element.length) , this.count_element.length);
                 this.count_comment.splice(0, 1, 1);
             }
-            console.log(this.array_comment, this.count_comment);
         },
 
         deleteElement(id) {

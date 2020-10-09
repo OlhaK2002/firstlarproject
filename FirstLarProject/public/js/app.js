@@ -2030,7 +2030,6 @@ __webpack_require__.r(__webpack_exports__);
       count_comment_id = this.count_comment[index] + 1;
       from = count_comment_id * this.perPage - this.perPage + 1;
       to = count_comment_id * this.perPage;
-      console.log(from, to);
       var form = new FormData();
       form.append('id', id);
       form.append('from', from);
@@ -2096,8 +2095,6 @@ __webpack_require__.r(__webpack_exports__);
         this.count_comment.splice(index + (array_length - this.count_element.length), this.count_element.length);
         this.count_comment.splice(0, 1, 1);
       }
-
-      console.log(this.array_comment, this.count_comment);
     },
     deleteElement: function deleteElement(id) {
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
@@ -2187,7 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      name: this.users['name']
+      user: this.users || []
     };
   }
 });
@@ -38979,7 +38976,7 @@ var render = function() {
                     _c("li", { staticClass: "nav-item dropdown" }, [
                       _vm._v(
                         "\n                        " +
-                          _vm._s(_vm.name) +
+                          _vm._s(_vm.user["name"]) +
                           "\n                        "
                       ),
                       _c("a", {
