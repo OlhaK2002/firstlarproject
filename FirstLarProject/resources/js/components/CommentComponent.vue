@@ -5,9 +5,9 @@
             <form v-if = "bool" @submit.prevent = "onSubmit(0,0, 0)">
                 <input type = "hidden" name = "_token" :value = "csrf">
                 <textarea rows = "3" required name = "text" v-model = "text_parent_id_0" class = "form-control nesting" placeholder = "Введите Ваш комментарий..."></textarea>
-                <button type = "submit" class = "btn btn-light">Отправить</button>
+                <button type = "submit" class = "btn btn-light"> Отправить </button>
             </form>
-            <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
+            <div class="link" v-else>  Для того чтобы оставить свой отзыв - <a href = "/login">войдите</a> или <a href = "/register">зарегистрируйтеся</a></div><br><br>
         </div>
         <div v-for = "(value, index) in array_comment">
             <div class = "text" v-if="value['number_in_parent']">
@@ -38,26 +38,26 @@
                 </div>
             </div>
             <div>
-                <form @submit.prevent = "coverUp(value['id'], index)" v-if="count_comment[index + 1] > 0 ">
-                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+                <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index + 1] > 0">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Скрыть ответы </button>
                 </form>
 
-                <form @submit.prevent = "showMore(value['id'], index, value['parent_id'])" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
-                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
+                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать ответы </button>
                 </form>
 
-                <form @submit.prevent = "showMore(value['id'], index, value['parent_id'])" v-if = "value['count_children'] > 0 && count_comment[index + 1] !== 0 && value['count_children'] > (count_comment[index + 1]*perPage)">
-                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
+                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] !== 0 && value['count_children'] > (count_comment[index + 1]*perPage)">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
                 </form>
             </div>
         </div>
         <br><br>
 
-        <form @submit.prevent = "showMore(0, -1, 0)" v-if="count_parent_id0 < count_parent_id0_in_db">
-            <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
+        <form @submit.prevent = "showMore(0, -1)" v-if = "count_parent_id0 < count_parent_id0_in_db">
+            <button v-bind:style = "{'margin-left': 30+'px'}" type = "submit" class = "btn btn-light">Показать больше</button>
         </form>
-        <form @submit.prevent = "coverUp(0, -1)" v-if="count_parent_id0 > 3">
-            <button v-bind:style = "{'margin-left': 30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+        <form @submit.prevent = "coverUp(0, -1)" v-if = "count_parent_id0 > 3">
+            <button v-bind:style = "{'margin-left': 30+'px'}" type = "submit" class = "btn btn-light">Скрыть ответы</button>
         </form>
     </div>
 </template>
@@ -107,7 +107,7 @@ export default {
                     console.log(error.response);
                 })
         },
-        showMore(id, index, parent_id) {
+        showMore(id, index) {
             index = index+1;
             let to, from, count_comment_id = 0;
             count_comment_id = this.count_comment[index] + 1;
@@ -203,15 +203,21 @@ export default {
 }
 </script>
 
-<style>
-.nesting {
-    display: inline-block;
-}
-.comment{
-    font-size: 20px;
-    display: inline-block;
-}
-.comments{
-    margin-right: 10px;
-}
+<style scoped>
+    .nesting {
+        display: inline-block;
+    }
+    .comment {
+        font-size: 20px;
+        display: inline-block;
+    }
+    .comments {
+        margin-right: 10px;
+    }
+    .link {
+        font-size: 25px;
+    }
+    a {
+        color: #0F5E9A;
+    }
 </style>
