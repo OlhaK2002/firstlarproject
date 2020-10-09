@@ -62,7 +62,10 @@ class Comment extends Model
         ];
     }
 
-
+    public function countComment(){
+        $count_children0 = $this::where('parent_id', 0)->count();
+        return $count_children0;
+    }
     public function reply($text, $parent_id, $user_id, $nesting)
     {
         $this->text1 = $text;

@@ -18,9 +18,11 @@ class CommentController extends Controller
     public function commentView()
     {
         $array = $this->model->firstComment(0, 1, 3);
+        $count_comment0 = $this->model->countComment();
         $array_limit = [
             'perPage' => config('app.comments'),
             'children_limit' => config('app.max_children_comments'),
+            'count_comment0' => $count_comment0,
         ];
         return view('comment', compact('array'), compact('array_limit'));
     }

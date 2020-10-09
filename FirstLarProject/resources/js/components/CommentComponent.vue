@@ -9,50 +9,48 @@
             </form>
             <h4 v-else>  Для того чтобы оставить свой отзыв - <a style = "color: lightcoral" href = "/login">войдите</a> или <a style = "color: lightcoral" href = "/register">зарегистрируйтеся</a></h4><br><br>
         </div>
-
-            <div v-for = "(value, index) in array_comment">
-                {{index}}
-                <div class = "text">
-                    <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
-                        <div class = "comment author">{{value['author']}}</div>&nbsp
-                        <div class = "comment data">({{value['data']}})</div><br>
-                        <div class = "comment">{{value['text']}}</div>
-                    </div>
+        <div v-for = "(value, index) in array_comment">
+            <div class = "text" v-if="value['number_in_parent']">
+                <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
+                    <div class = "comment author">{{value['author']}}</div>&nbsp
+                    <div class = "comment data">({{value['data']}})</div><br>
+                    <div class = "comment">{{value['text']}}</div>
                 </div>
-                <div v-if = "bool">
-                    <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
-                        <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
-                            <h2 class = "mb-0">
-                                <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle = "collapse" aria-expanded = "false" :data-target = "'#collapse_'+value['id']" :aria-controls = "'collapse_'+value['id']">
-                                    Ответить
-                                </button>
-                            </h2>
-                        </div>
-                        <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
-                            <div class = "card-body">
-                                <form @submit.prevent = "onSubmit(value['id'], value['nesting'], index)">
-                                    <input type = "hidden" name = "_token" :value = "csrf">
-                                    <textarea required v-model="text" name = "text" class = "form-control"></textarea><br>
-                                    <button type = "submit" class = "btn btn-light">Отправить</button>
-                                </form>
-                            </div>
+            </div>
+            <div v-if = "bool">
+                <div class = "card" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF'}">
+                    <div  class = "card-header" :id = "'heading'+value['id']" v-bind:style = "{'margin-left': value['nesting']*30+'px', 'background-color': '#FFFFFF', 'border': '#FFFFFF'}">
+                        <h2 class = "mb-0">
+                            <button v-bind:style = "{'margin-left': -value['nesting']*30+'px'}" class = "btn btn-link btn-block text-left" type = "button" data-toggle = "collapse" aria-expanded = "false" :data-target = "'#collapse_'+value['id']" :aria-controls = "'collapse_'+value['id']">
+                                Ответить
+                            </button>
+                        </h2>
+                    </div>
+                    <div :id = "'collapse_'+value['id']" class = "collapse" :aria-labelledby = "'heading'+value['id']" data-parent = "#accordionExample">
+                        <div class = "card-body">
+                            <form @submit.prevent = "onSubmit(value['id'], value['nesting'], index)">
+                                <input type = "hidden" name = "_token" :value = "csrf">
+                                <textarea required v-model="text" name = "text" class = "form-control"></textarea><br>
+                                <button type = "submit" class = "btn btn-light">Отправить</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div>
+            </div>
+            <div>
 
-                    <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index+1] > 0 && (value['number_in_parent'] <= (count_comment[index + 1]*perPage))" >
-                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
-                    </form>
+                <form @submit.prevent = "coverUp(value['id'], index)" v-if = "count_comment[index+1] > 0 && (value['number_in_parent'] <= (count_comment[index + 1]*perPage)) && value['count_children']>0">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Скрыть ответы</button>
+                </form>
 
-                    <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] === 0">
-                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
-                    </form>
+                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] === 0">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать ответы</button>
+                </form>
 
-                    <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] * perPage < value['count_children'] && count_comment[index+1] !== 0">
-                        <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
-                    </form>
-                </div>
+                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index+1] * perPage < value['count_children'] && count_comment[index+1] !== 0">
+                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type="submit" class = "btn btn-light">Показать больше</button>
+                </form>
+            </div>
         </div>
         <br><br>
         <form @submit.prevent = "showMore(0, -1)">
@@ -78,7 +76,8 @@ export default {
             count_element: [],
             count_parent_id0: 0,
             count_comment: [],
-            limit_comment: [],
+            parent_comment: [],
+
         }
     },
     methods: {
@@ -98,7 +97,6 @@ export default {
                 this.array_comment[index]['count_children']++;
                 this.text = '';
                 this.text_parent_id_0 = '';
-                console.log(this.array_comment);
             })
 
             .catch(function (error) {
@@ -129,9 +127,11 @@ export default {
                 for (let index1 = 0; index1 < response.data.length; index1++)
                 {
                     this.array_comment.splice(index1 + i, 0, response.data[index1]);
+                    this.parent_comment.splice(index1 + i, 0, index);
                     this.count_comment.splice(index, 0, 0);
                 }
                 this.count_comment.splice(index, 1, count_comment_id);
+                console.log(this.parent_comment);
 
             })
         },
@@ -144,7 +144,9 @@ export default {
                 }
             }
             this.array_comment.splice(index + 1, this.count_element.length);
+            this.parent_comment.splice(index + 1, this.count_element.length);
             this.count_comment.splice(index + 1, this.count_element.length);
+            console.log(this.parent_comment);
         },
 
         deleteElement(id) {
@@ -159,11 +161,13 @@ export default {
 
     computed: {
         displayComment() {
-            for (let index = 1; index <= this.array_comment.length; index++) {
-                if (this.array_comment[index - 1]['parent_id'] === 0) this.count_parent_id0++;
-                if (!(this.count_comment[index - 1] >= 0)) {this.count_comment.splice(index, 0, 0);}
+            for (let index = 0; index < this.array_comment.length; index++) {
+                if (this.array_comment[index]['parent_id'] === 0) this.count_parent_id0++;
+                if (!(this.count_comment[index] >= 0)) {this.count_comment.splice(index, 0, 0);}
             }
             if (this.count < 1) {
+                this.parent_comment.length = 3;
+                this.parent_comment.fill(0);
                 this.count_comment.fill(0);
                 this.count_comment.splice(0,0,1);
             }

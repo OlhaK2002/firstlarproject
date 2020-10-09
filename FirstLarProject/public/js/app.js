@@ -1969,8 +1969,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -1987,7 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
       count_element: [],
       count_parent_id0: 0,
       count_comment: [],
-      limit_comment: []
+      parent_comment: []
     };
   },
   methods: {
@@ -2013,7 +2011,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.array_comment[index]['count_children']++;
         _this.text = '';
         _this.text_parent_id_0 = '';
-        console.log(_this.array_comment);
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -2049,10 +2046,14 @@ __webpack_require__.r(__webpack_exports__);
         for (var index1 = 0; index1 < response.data.length; index1++) {
           _this2.array_comment.splice(index1 + i, 0, response.data[index1]);
 
+          _this2.parent_comment.splice(index1 + i, 0, index);
+
           _this2.count_comment.splice(index, 0, 0);
         }
 
         _this2.count_comment.splice(index, 1, count_comment_id);
+
+        console.log(_this2.parent_comment);
       });
     },
     coverUp: function coverUp(id, index) {
@@ -2066,7 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.array_comment.splice(index + 1, this.count_element.length);
+      this.parent_comment.splice(index + 1, this.count_element.length);
       this.count_comment.splice(index + 1, this.count_element.length);
+      console.log(this.parent_comment);
     },
     deleteElement: function deleteElement(id) {
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
@@ -2079,15 +2082,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     displayComment: function displayComment() {
-      for (var index = 1; index <= this.array_comment.length; index++) {
-        if (this.array_comment[index - 1]['parent_id'] === 0) this.count_parent_id0++;
+      for (var index = 0; index < this.array_comment.length; index++) {
+        if (this.array_comment[index]['parent_id'] === 0) this.count_parent_id0++;
 
-        if (!(this.count_comment[index - 1] >= 0)) {
+        if (!(this.count_comment[index] >= 0)) {
           this.count_comment.splice(index, 0, 0);
         }
       }
 
       if (this.count < 1) {
+        this.parent_comment.length = 3;
+        this.parent_comment.fill(0);
         this.count_comment.fill(0);
         this.count_comment.splice(0, 0, 1);
       }
@@ -38596,29 +38601,30 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.array_comment, function(value, index) {
         return _c("div", [
-          _vm._v("\n            " + _vm._s(index) + "\n            "),
-          _c("div", { staticClass: "text" }, [
-            _c(
-              "div",
-              { style: { "margin-left": value["nesting"] * 30 + "px" } },
-              [
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment author" }, [
-                  _vm._v(_vm._s(value["author"]))
-                ]),
-                _vm._v(" \n                    "),
-                _c("div", { staticClass: "comment data" }, [
-                  _vm._v("(" + _vm._s(value["data"]) + ")")
-                ]),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment" }, [
-                  _vm._v(_vm._s(value["text"]))
-                ])
-              ]
-            )
-          ]),
+          value["number_in_parent"]
+            ? _c("div", { staticClass: "text" }, [
+                _c(
+                  "div",
+                  { style: { "margin-left": value["nesting"] * 30 + "px" } },
+                  [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "comment author" }, [
+                      _vm._v(_vm._s(value["author"]))
+                    ]),
+                    _vm._v(" \n                "),
+                    _c("div", { staticClass: "comment data" }, [
+                      _vm._v("(" + _vm._s(value["data"]) + ")")
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "comment" }, [
+                      _vm._v(_vm._s(value["text"]))
+                    ])
+                  ]
+                )
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.bool
             ? _c("div", [
@@ -38662,7 +38668,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                Ответить\n                            "
+                                "\n                            Ответить\n                        "
                               )
                             ]
                           )
@@ -38746,7 +38752,8 @@ var render = function() {
           _c("div", [
             _vm.count_comment[index + 1] > 0 &&
             value["number_in_parent"] <=
-              _vm.count_comment[index + 1] * _vm.perPage
+              _vm.count_comment[index + 1] * _vm.perPage &&
+            value["count_children"] > 0
               ? _c(
                   "form",
                   {
