@@ -22,7 +22,7 @@ class CommentController extends Controller
         $array_limit = [
             'perPage' => config('app.comments'),
             'children_limit' => config('app.max_children_comments'),
-            'count_comment0' => $count_comment0,
+            'comment_parent_id0' => $count_comment0,
         ];
         return view('comment', compact('array'), compact('array_limit'));
     }

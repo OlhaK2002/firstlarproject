@@ -27,6 +27,7 @@ class Comment extends Model
     public function firstComment($id, $from, $to)
     {
         $comments = $this::where('parent_id', $id)->get();
+        $count_children = $this::where('parent_id', $id)->count();
         foreach ($comments as $comment) {
             $count = 0;
             $this->index++;
