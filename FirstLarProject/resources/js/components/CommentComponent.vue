@@ -92,20 +92,20 @@ export default {
             form.append('parent_id', parent_id);
             form.append('nesting', nesting);
             axios({
-                    method: 'post',
-                    url: '/reply',
-                    data: form
+                method: 'post',
+                url: '/reply',
+                data: form
             })
-            .then(response => {
-                this.array_comment = this.array_comment || [];
-                this.array_comment[index]['count_children']++;
-                this.text = '';
-                this.text_parent_id_0 = '';
-            })
+                .then(response => {
+                    this.array_comment = this.array_comment || [];
+                    this.array_comment[index]['count_children']++;
+                    this.text = '';
+                    this.text_parent_id_0 = '';
+                })
 
-            .catch(function (error) {
-                console.log(error.response);
-            })
+                .catch(function (error) {
+                    console.log(error.response);
+                })
         },
         showMore(id, index) {
             index = index+1;
@@ -123,20 +123,20 @@ export default {
                 url: '/comment',
                 data: form
             })
-            .then( response => {
-                let i;
-                if (index === 0) {i = this.array_comment.length;}
-                else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
-                else i = 0;
-                for (let index1 = 0; index1 < response.data.length; index1++)
-                {
-                    this.array_comment.splice(index1 + i, 0, response.data[index1]);
-                    this.count_comment.splice(index1 + i, 0, 0);
-                }
-                this.count_comment.splice(index + response.data.length, 1);
-                if(index !== 0) this.count_comment.splice(index, 0, count_comment_id);
-                else this.count_comment.splice(index, 1, count_comment_id);
-            })
+                .then( response => {
+                    let i;
+                    if (index === 0) {i = this.array_comment.length;}
+                    else if (count_comment_id > 0) {i = count_comment_id * this.perPage - this.perPage + index;}
+                    else i = 0;
+                    for (let index1 = 0; index1 < response.data.length; index1++)
+                    {
+                        this.array_comment.splice(index1 + i, 0, response.data[index1]);
+                        this.count_comment.splice(index1 + i, 0, 0);
+                    }
+                    this.count_comment.splice(index, 1, count_comment_id);
+
+                    console.log(this.count_comment);
+                })
         },
         coverUp(id, index) {
             let array_length = this.array_comment.length;
@@ -160,9 +160,10 @@ export default {
             }
             else {
                 this.array_comment.splice(index + (array_length - this.count_element.length) + 1, this.count_element.length);
-                this.count_comment.splice(index + (array_length - this.count_element.length) + 1, this.count_element.length);
+                this.count_comment.splice(index + (array_length - this.count_element.length) , this.count_element.length);
                 this.count_comment.splice(0, 1, 1);
             }
+            console.log(this.array_comment, this.count_comment);
         },
 
         deleteElement(id) {
@@ -198,14 +199,14 @@ export default {
 </script>
 
 <style>
-    .nesting {
-        display: inline-block;
-    }
-    .comment{
-        font-size: 20px;
-        display: inline-block;
-    }
-    .comments{
-        margin-right: 10px;
-    }
+.nesting {
+    display: inline-block;
+}
+.comment{
+    font-size: 20px;
+    display: inline-block;
+}
+.comments{
+    margin-right: 10px;
+}
 </style>

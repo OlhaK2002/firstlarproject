@@ -2054,9 +2054,9 @@ __webpack_require__.r(__webpack_exports__);
           _this2.count_comment.splice(index1 + i, 0, 0);
         }
 
-        _this2.count_comment.splice(index + response.data.length, 1);
+        _this2.count_comment.splice(index, 1, count_comment_id);
 
-        if (index !== 0) _this2.count_comment.splice(index, 0, count_comment_id);else _this2.count_comment.splice(index, 1, count_comment_id);
+        console.log(_this2.count_comment);
       });
     },
     coverUp: function coverUp(id, index) {
@@ -2082,9 +2082,11 @@ __webpack_require__.r(__webpack_exports__);
         this.count_comment.splice(index + 1, this.count_element.length);
       } else {
         this.array_comment.splice(index + (array_length - this.count_element.length) + 1, this.count_element.length);
-        this.count_comment.splice(index + (array_length - this.count_element.length) + 1, this.count_element.length);
+        this.count_comment.splice(index + (array_length - this.count_element.length), this.count_element.length);
         this.count_comment.splice(0, 1, 1);
       }
+
+      console.log(this.array_comment, this.count_comment);
     },
     deleteElement: function deleteElement(id) {
       for (var index1 = 0; index1 < this.array_comment.length; index1++) {
