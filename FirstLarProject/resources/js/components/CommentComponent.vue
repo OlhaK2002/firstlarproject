@@ -11,6 +11,19 @@
         </div>
 
         <div v-for = "(value, index) in array_comment">
+            <div v-if="index > 1">
+                <div v-if = "parent_comment[index-1] !== parent_comment[index]">
+
+                     {{ button(index, value['nesting'], array_comment[index - 1]['nesting'])}}
+                        <div v-for = "(value2, index2) in array_nesting">
+                            <form @submit.prevent = "showMore(array_comment[value2]['id'], value2)" v-if = "count_comment[value2 + 1]*perPage < array_comment[value2]['count_children']">
+                                <br>
+                                <button v-bind:style = "{'margin-left': (value['nesting'] - 1) * 30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
+                                <br>
+                            </form>
+                        </div>
+                </div>
+            </div>
             <div class = "text" v-if="value['number_in_parent']">
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                     <div class = "comment author">{{value['author']}}</div>&nbsp
@@ -46,13 +59,6 @@
                 <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
                     <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать ответы </button>
                 </form>
-                <div v-if="value['parent_id'] !== 0">
-                    <form @submit.prevent = "showMore(array_comment[parent_comment[index] - 1]['id'], parent_comment[index] - 1)" v-if = "count_comment[parent_comment[index]]*perPage === value['number_in_parent']">
-                        <br>
-                        <button v-bind:style = "{'margin-left': (value['nesting'] - 1) * 30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
-                        <br>
-                    </form>
-                </div>
             </div>
         </div>
         <br><br>
@@ -76,6 +82,7 @@ export default {
             text_parent_id_0: '',
             parent_id: '',
             nesting: '',
+            array_nesting: [],
             array_comment: this.array || [],
             array_first: [],
             perPage: this.array_limit['perPage'],
@@ -170,11 +177,11 @@ export default {
                 if (comment['parent_id'] === id) {
                     if (index !== -1) {
                         this.count_element.push(index1);
-                        this.deleteElement(this.array_comment[index1]['id']);
+                        this.countElement(this.array_comment[index1]['id']);
                     }
                     else if (comment['id'] !== this.array_first[0]['id'] && comment['id'] !== this.array_first[1]['id'] && comment['id'] !== this.array_first[2]['id']) {
                         this.count_element.push(index1);
-                        this.deleteElement(this.array_comment[index1]['id']);
+                        this.countElement(this.array_comment[index1]['id']);
                     }
                 }
             }
@@ -191,11 +198,19 @@ export default {
             }
         },
 
-        deleteElement(id) {
+        countElement(id) {
             for (let index1 = 0; index1 < this.array_comment.length; index1++) {
                 if (this.array_comment[index1]['parent_id'] === id) {
                     this.count_element.push(index1);
-                    this.deleteElement(this.array_comment[index1]['id']);
+                    this.countElement(this.array_comment[index1]['id']);
+                }
+            }
+        },
+        button (index1, nesting1, nesting2) {
+            this.array_nesting = [];
+            for (let nesting = nesting2 - 1; nesting >= nesting1; nesting--) {
+                for (let index = index1 - 1; index >=0; index--) {
+                    if (this.array_comment[index]['nesting'] === nesting) {this.array_nesting.push(index); break;}
                 }
             }
         }
@@ -218,8 +233,7 @@ export default {
                 this.count_comment.splice(0,0,1);
             }
             this.count++;
-            console.log(this.parent_comment);
-        }
+        },
     },
 }
 </script>
@@ -237,7 +251,6 @@ export default {
     }
     .link {
         font-size: 25px;
-        padding-top: 40px;
     }
     a {
         color: #0F5E9A;
