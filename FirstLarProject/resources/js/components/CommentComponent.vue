@@ -50,6 +50,7 @@
                     <form @submit.prevent = "showMore(array_comment[parent_comment[index] - 1]['id'], parent_comment[index] - 1)" v-if = "count_comment[parent_comment[index]]*perPage === value['number_in_parent']">
                         <br>
                         <button v-bind:style = "{'margin-left': (value['nesting'] - 1) * 30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
+                        <br>
                     </form>
                 </div>
             </div>
@@ -236,6 +237,7 @@ export default {
     }
     .link {
         font-size: 25px;
+        padding-top: 40px;
     }
     a {
         color: #0F5E9A;

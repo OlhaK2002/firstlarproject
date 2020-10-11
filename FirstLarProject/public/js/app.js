@@ -1975,6 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['array', 'bool', 'array_limit'],
   data: function data() {
@@ -6677,7 +6678,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.nesting[data-v-d6b6866e] {\n    display: inline-block;\n}\n.comment[data-v-d6b6866e] {\n    font-size: 20px;\n    display: inline-block;\n}\n.comments[data-v-d6b6866e] {\n    margin-right: 10px;\n}\n.link[data-v-d6b6866e] {\n    font-size: 25px;\n}\na[data-v-d6b6866e] {\n    color: #0F5E9A;\n}\n", ""]);
+exports.push([module.i, "\n.nesting[data-v-d6b6866e] {\n    display: inline-block;\n}\n.comment[data-v-d6b6866e] {\n    font-size: 20px;\n    display: inline-block;\n}\n.comments[data-v-d6b6866e] {\n    margin-right: 10px;\n}\n.link[data-v-d6b6866e] {\n    font-size: 25px;\n    padding-top: 40px;\n}\na[data-v-d6b6866e] {\n    color: #0F5E9A;\n}\n", ""]);
 
 // exports
 
@@ -6715,7 +6716,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nhtml[data-v-1ee65e30], body[data-v-1ee65e30] {\n    background-color:#CFEDF1;\n    color: #35848F;\n    font-family: 'Nunito', sans-serif;\n    font-weight: 200;\n    height: 100vh;\n    margin: 0;\n}\n.full-height[data-v-1ee65e30] {\n    height: 40vh;\n}\n.flex-center[data-v-1ee65e30] {\n    margin: 0 0 0 80px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.position-ref[data-v-1ee65e30] {\n    position: relative;\n}\n.title[data-v-1ee65e30] {\n    font-size: 140px;\n}\n.links > a[data-v-1ee65e30] {\n    color: #35848F;\n    padding: 0 25px;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.m-b-md[data-v-1ee65e30] {\n    margin-bottom: 30px;\n}\n\n", ""]);
+exports.push([module.i, "\nhtml[data-v-1ee65e30], body[data-v-1ee65e30] {\n    background-color:#CFEDF1;\n    color: #35848F;\n    font-family: 'Nunito', sans-serif;\n    font-weight: 200;\n    height: 100vh;\n    margin: 0;\n}\n.full-height[data-v-1ee65e30] {\n    height: 40vh;\n}\n.flex-center[data-v-1ee65e30] {\n    margin: 0 0 0 80px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.position-ref[data-v-1ee65e30] {\n    position: relative;\n}\n.title[data-v-1ee65e30] {\n   font-size: 10vw;\n}\n\n\n", ""]);
 
 // exports
 
@@ -38877,7 +38878,9 @@ var render = function() {
                               attrs: { type: "submit" }
                             },
                             [_vm._v(" Показать больше ")]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("br")
                         ]
                       )
                     : _vm._e()
