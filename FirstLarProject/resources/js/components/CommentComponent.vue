@@ -9,6 +9,7 @@
             </form>
             <div class="link" v-else>  Для того чтобы оставить свой отзыв - <a href = "/login">войдите</a> или <a href = "/register">зарегистрируйтеся</a></div><br><br>
         </div>
+
         <div v-for = "(value, index) in array_comment">
             <div class = "text" v-if="value['number_in_parent']">
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
@@ -87,8 +88,9 @@ export default {
     methods: {
         onSubmit(parent_id, nesting, index) {
             let form = new FormData();
-            if (parent_id === 0) {form.append('text', this.text_parent_id_0);}
-            else {form.append('text', this.text);}
+            let index_new_comment;
+            if (parent_id === 0) {index_new_comment = index; form.append('text', this.text_parent_id_0);}
+            else {index_new_comment = index + 1; form.append('text', this.text);}
             form.append('parent_id', parent_id);
             form.append('nesting', nesting);
             axios({
@@ -96,26 +98,18 @@ export default {
                 url: '/reply',
                 data: form
             })
-                .then(response => {
-                    let count = 0, k =0;
-                    this.array_comment = this.array_comment || [];
-                    this.array_comment[index]['count_children']++;
-                    for (let id = this.array_comment.length - 1; id >= index - 1; id--) {
-                        if (this.array_comment[id]['parent_id'] === this.array_comment[index]) {
-                            count = id; k++;
-                            if (k === 3) break;
-                        }
-                    }
-                    if(k === 3) {this.coverUp(this.array_comment[count]['id'], count); this.array_comment.splice(count, 0, response.data)}
-                    else if (k>0) {this.array_comment.splice(count, 0, response.data)}
-                    else this.array_comment.splice(index, 0, response.data);
-                    this.text = '';
-                    this.text_parent_id_0 = '';
-                })
+            .then(response => {
+                this.array_comment = this.array_comment || [];
+                this.array_comment[index]['count_children']++;
+                this.array_comment.splice(index_new_comment, 0, response.data);
+                this.count_comment.splice(index_new_comment + 1, 0, 0);
+                this.text = '';
+                this.text_parent_id_0 = '';
+            })
 
-                .catch(function (error) {
-                    console.log(error.response);
-                })
+            .catch(function (error) {
+                console.log(error.response);
+            })
         },
         showMore(id, index) {
             index = index+1;
@@ -133,14 +127,14 @@ export default {
                 data: form
             })
                 .then( response => {
-                    let i, ind, count = 0;
+                    let i, count = 0;
                     if (index === 0) {
                         i = this.array_comment.length + 1;
                     }
                     else {
-                        for (ind = this.array_comment.length - 1; ind >= index - 1; ind--) {
-                            if (this.array_comment[ind]['parent_id'] === id) {
-                                count = ind;
+                        for (let index1 = this.array_comment.length - 1; index1 >= index - 1; index1--) {
+                            if (this.array_comment[index1]['parent_id'] === id) {
+                                count = index1;
                                 break;
                             }
                         }
