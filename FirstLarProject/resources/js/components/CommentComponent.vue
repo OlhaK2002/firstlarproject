@@ -46,19 +46,21 @@
                 <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] === 0">
                     <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать ответы </button>
                 </form>
-
-                <form @submit.prevent = "showMore(value['id'], index)" v-if = "value['count_children'] > 0 && count_comment[index + 1] !== 0 && value['count_children'] > (count_comment[index + 1]*perPage)">
-                    <button v-bind:style = "{'margin-left': value['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
-                </form>
+                <div v-if="value['parent_id'] !== 0">
+                    <form @submit.prevent = "showMore(array_comment[parent_comment[index] - 1]['id'], parent_comment[index] - 1)" v-if = "count_comment[parent_comment[index]]*perPage === value['number_in_parent']">
+                        <br>
+                        <button v-bind:style = "{'margin-left': (value['nesting'] - 1) * 30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
+                    </form>
+                </div>
             </div>
         </div>
         <br><br>
 
         <form @submit.prevent = "showMore(0, -1)" v-if = "count_comment[0]*perPage < count_parent_id0_in_db">
-            <button v-bind:style = "{'margin-left': 30+'px'}" type = "submit" class = "btn btn-light">Показать больше</button>
+            <button v-bind:style = "{'margin-left': 30 + 'px'}" type = "submit" class = "btn btn-light">Показать больше</button>
         </form>
         <form @submit.prevent = "coverUp(0, -1)" v-if = "count_comment[0]*perPage > 3">
-            <button v-bind:style = "{'margin-left': 30+'px'}" type = "submit" class = "btn btn-light">Скрыть ответы</button>
+            <button v-bind:style = "{'margin-left': 30 + 'px'}" type = "submit" class = "btn btn-light">Скрыть ответы</button>
         </form>
     </div>
 </template>
@@ -105,6 +107,7 @@ export default {
                 }
                 this.array_comment = this.array_comment || [];
                 this.array_comment.splice(index_new_comment, 0, response.data);
+                this.parent_comment.splice(index_new_comment, 0, index);
                 this.count_comment.splice(index_new_comment + 1, 0, 0);
 
                 this.text = '';
@@ -150,11 +153,13 @@ export default {
                     for (let index1 = 0; index1 < response.data.length; index1++) {
                         if (response.data[index1]['number_in_parent'] <= count_children) {
                             this.array_comment.splice(i + index1 - 1, 0, response.data[index1]);
+                            this.parent_comment.splice(i + index1 - 1, 0, index);
                             this.count_comment.splice(i + index1, 0, 0);
                         }
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
                 })
+            console.log(this.parent_comment, this.count_comment);
         },
         coverUp(id, index) {
             let array_length = this.array_comment.length;
@@ -174,11 +179,12 @@ export default {
             }
             if (index !== -1) {
                 this.array_comment.splice(index + 1, this.count_element.length);
+                this.parent_comment.splice(index + 1, this.count_element.length);
                 this.count_comment.splice(index + 1, this.count_element.length);
             }
             else {
-                console.log(this.new_comment_parent_id0);
                 this.array_comment.splice(index + (array_length - this.count_element.length) + 1 + this.new_comment_parent_id0, this.count_element.length - this.new_comment_parent_id0);
+                this.parent_comment.splice(index + (array_length - this.count_element.length) + 1 + this.new_comment_parent_id0, this.count_element.length - this.new_comment_parent_id0);
                 this.count_comment.splice(index + (array_length - this.count_element.length) + this.new_comment_parent_id0 , this.count_element.length - this.new_comment_parent_id0);
                 this.count_comment.splice(0, 1, 1);
             }
@@ -202,6 +208,8 @@ export default {
             if (this.count < 1) {
                 this.new_comment_parent_id0 = 0;
                 this.array_first = [];
+                this.parent_comment.length = 3;
+                this.parent_comment.fill(0);
                 this.array_first.splice(0, 0, this.array_comment['0'])
                 this.array_first.splice(1, 0, this.array_comment['1'])
                 this.array_first.splice(2, 0, this.array_comment['2'])
@@ -209,6 +217,7 @@ export default {
                 this.count_comment.splice(0,0,1);
             }
             this.count++;
+            console.log(this.parent_comment);
         }
     },
 }
