@@ -9,21 +9,20 @@
             </form>
             <div class="link" v-else>  Для того чтобы оставить свой отзыв - <a href = "/login">войдите</a> или <a href = "/register">зарегистрируйтеся</a></div><br><br>
         </div>
-
+        {{button}}
         <div v-for = "(value, index) in array_comment">
-            <div v-if="index > 1">
-                <div v-if = "parent_comment[index-1] !== parent_comment[index]">
-
-                     {{ button(index, value['nesting'], array_comment[index - 1]['nesting'])}}
-                        <div v-for = "(value2, index2) in array_nesting">
-                            <form @submit.prevent = "showMore(array_comment[value2]['id'], value2)" v-if = "count_comment[value2 + 1]*perPage < array_comment[value2]['count_children']">
-                                <br>
-                                <button v-bind:style = "{'margin-left': (value['nesting'] - 1) * 30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
-                                <br>
-                            </form>
-                        </div>
+            <div v-for="(value2, index2) in array_nesting">
+                <div v-if = "index2 === index && value2.length > 0">
+                    <div v-for="(value3, index3) in value2">
+                        <form @submit.prevent = "showMore(array_comment[value3]['id'], value3)" v-if = "count_comment[value3 + 1]*perPage < array_comment[value3]['count_children'] && count_comment[value3 + 1] !== 0">
+                            <br>
+                            <button v-bind:style = "{'margin-left': array_comment[value3]['nesting']*30+'px'}" type = "submit" class = "btn btn-light"> Показать больше </button>
+                            <br>
+                        </form>
+                    </div>
                 </div>
             </div>
+
             <div class = "text" v-if="value['number_in_parent']">
                 <div v-bind:style = "{'margin-left': value['nesting']*30+'px'}"><br>
                     <div class = "comment author">{{value['author']}}</div>&nbsp
@@ -85,6 +84,7 @@ export default {
             array_nesting: [],
             array_comment: this.array || [],
             array_first: [],
+            array_index: [],
             perPage: this.array_limit['perPage'],
             children_limit: this.array_limit['children_limit'],
             count: 0,
@@ -111,7 +111,6 @@ export default {
             .then(response => {
                 if (parent_id === 0){
                     this.new_comment_parent_id0++;
-                    console.log(this.new_comment_parent_id0);
                 }
                 this.array_comment = this.array_comment || [];
                 this.array_comment.splice(index_new_comment, 0, response.data);
@@ -163,7 +162,6 @@ export default {
                             i = new_index + this.count_element.length + 1;
                         }
                     }
-                    console.log(i);
                     for (let index1 = 0; index1 < response.data.length; index1++) {
                         if (response.data[index1]['number_in_parent'] <= count_children) {
                             this.array_comment.splice(i + index1 - 1, 0, response.data[index1]);
@@ -173,7 +171,6 @@ export default {
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
                 })
-            console.log(this.parent_comment, this.count_comment);
         },
         coverUp(id, index) {
             let array_length = this.array_comment.length;
@@ -212,14 +209,6 @@ export default {
                 }
             }
         },
-        button (index1, nesting1, nesting2) {
-            this.array_nesting = [];
-            for (let nesting = nesting2 - 1; nesting >= nesting1; nesting--) {
-                for (let index = index1 - 1; index >=0; index--) {
-                    if (this.array_comment[index]['nesting'] === nesting) {this.array_nesting.push(index); break;}
-                }
-            }
-        }
     },
 
     computed: {
@@ -240,6 +229,27 @@ export default {
             }
             this.count++;
         },
+        button () {
+            this.array_nesting = [];
+            let nesting1, nesting2, array = [];
+            this.array_nesting.push(array);
+            for (let index1 = 1; index1 < this.array_comment.length; index1++) {
+                array = [];
+                if (this.parent_comment[index1 - 1] !== this.parent_comment[index1]) {
+                    nesting1 = this.array_comment[index1]['nesting'];
+                    nesting2 = this.array_comment[index1 - 1]['nesting'];
+                    for (let nesting = nesting2 - 1; nesting >= nesting1; nesting--) {
+                        for (let index = index1 - 1; index >=0; index--) {
+                            if (this.array_comment[index]['nesting'] === nesting) {
+                                array.push(index);
+                                break;
+                            }
+                        }
+                    }
+                }
+                this.array_nesting.push(array);
+            }
+        }
     },
 }
 </script>
