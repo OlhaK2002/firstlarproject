@@ -2065,8 +2065,9 @@ __webpack_require__.r(__webpack_exports__);
         data: form
       }).then(function (response) {
         var i,
-            count = 0,
+            new_index = 0,
             count_children = 0;
+        _this2.count_element = [];
 
         if (index === 0) {
           count_children = _this2.count_parent_id0_in_db;
@@ -2076,17 +2077,23 @@ __webpack_require__.r(__webpack_exports__);
 
           for (var index1 = _this2.array_comment.length - 1; index1 >= index - 1; index1--) {
             if (_this2.array_comment[index1]['parent_id'] === id) {
-              count = index1;
+              new_index = index1;
               break;
             }
           }
 
-          if (count === 0) {
+          if (new_index === 0) {
             i = index + 1;
           } else {
-            i = count + 2;
+            _this2.count_element.push(new_index);
+
+            _this2.countElement(_this2.array_comment[new_index]['id']);
+
+            i = new_index + _this2.count_element.length + 1;
           }
         }
+
+        console.log(i);
 
         for (var _index = 0; _index < response.data.length; _index++) {
           if (response.data[_index]['number_in_parent'] <= count_children) {

@@ -142,7 +142,8 @@ export default {
                 data: form
             })
                 .then( response => {
-                    let i, count = 0, count_children = 0;
+                    let i, new_index = 0, count_children = 0;
+                    this.count_element = [];
                     if (index === 0) {
                         count_children = this.count_parent_id0_in_db;
                         i = this.array_comment.length + 1;
@@ -151,13 +152,18 @@ export default {
                         count_children = this.array_comment[index - 1]['count_children'];
                         for (let index1 = this.array_comment.length - 1; index1 >= index - 1; index1--) {
                             if (this.array_comment[index1]['parent_id'] === id) {
-                                count = index1;
+                                new_index = index1;
                                 break;
                             }
                         }
-                        if (count === 0) {i = index + 1;}
-                        else {i = count + 2;}
+                        if (new_index === 0) {i = index + 1;}
+                        else {
+                            this.count_element.push(new_index);
+                            this.countElement(this.array_comment[new_index]['id']);
+                            i = new_index + this.count_element.length + 1;
+                        }
                     }
+                    console.log(i);
                     for (let index1 = 0; index1 < response.data.length; index1++) {
                         if (response.data[index1]['number_in_parent'] <= count_children) {
                             this.array_comment.splice(i + index1 - 1, 0, response.data[index1]);
