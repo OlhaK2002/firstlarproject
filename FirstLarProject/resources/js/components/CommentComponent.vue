@@ -141,32 +141,32 @@ export default {
                 data: form
             })
                 .then( response => {
-                    let i, new_index = 0, count_children = 0;
+                    let index_comment = 0, new_index, count_children = 0;
                     this.count_element = [];
                     if (index === 0) {
                         count_children = this.count_parent_id0_in_db;
-                        i = this.array_comment.length + 1;
+                        new_index = this.array_comment.length + 1;
                     }
                     else {
                         count_children = this.array_comment[index - 1]['count_children'];
                         for (let index1 = this.array_comment.length - 1; index1 >= index - 1; index1--) {
                             if (this.array_comment[index1]['parent_id'] === id) {
-                                new_index = index1;
+                                index_comment = index1;
                                 break;
                             }
                         }
-                        if (new_index === 0) {i = index + 1;}
+                        if (index_comment === 0) {new_index = index + 1;}
                         else {
-                            this.count_element.push(new_index);
-                            this.countElement(this.array_comment[new_index]['id']);
-                            i = new_index + this.count_element.length + 1;
+                            this.count_element.push(index_comment);
+                            this.countElement(this.array_comment[index_comment]['id']);
+                            new_index = index_comment + this.count_element.length + 1;
                         }
                     }
                     for (let index1 = 0; index1 < response.data.length; index1++) {
                         if (response.data[index1]['number_in_parent'] <= count_children) {
-                            this.array_comment.splice(i + index1 - 1, 0, response.data[index1]);
-                            this.parent_comment.splice(i + index1 - 1, 0, index);
-                            this.count_comment.splice(i + index1, 0, 0);
+                            this.array_comment.splice(new_index + index1 - 1, 0, response.data[index1]);
+                            this.parent_comment.splice(new_index + index1 - 1, 0, index);
+                            this.count_comment.splice(new_index + index1, 0, 0);
                         }
                     }
                     this.count_comment.splice(index, 1, count_comment_id);
@@ -247,7 +247,7 @@ export default {
                         }
                     }
                 }
-                this.array_nesting.push(array);
+            this.array_nesting.push(array);
             }
         }
     },
